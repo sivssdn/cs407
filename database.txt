@@ -1,0 +1,37 @@
+1. vehicles collection
+[
+{
+"_id" : ObjectId("asjhg5"),
+"departure_date" : date,
+"departure_time" : time,
+"departure_place" : "place",
+"destination" : "destination_place",
+"vehicle_identification" : "number or name",
+"total_seats" : number,
+"price" : number,
+"occupants" : [
+		{"occupant_id" : "id_from_occupant_table"},
+		{"occupant_id" : "id_from_occupant_table"},
+		{"occupant_id" : "id_from_occupant_table"}
+	]
+},
+{...}
+]
+
+2. users collection
+[
+{
+"_id" : ObjectId("asjhg15"),
+"email" : "abc@g.c",
+"contact" : "number",
+"department" : "department string"
+},
+{
+"_id" : ObjectId("a45sjhg5"),
+"email" : "abc@g.c",
+"contact" : "number",
+"department" : "department string"
+}
+]
+
+Mongo DB does not have a fixed schema, it can have different attibutes for different records in the same collection. "_id" object is default primary key and unique. Relationships between collections are called reference and is done with $ref variable and has no constraints like foreign key.
