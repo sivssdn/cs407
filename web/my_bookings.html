@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="theme-color" content="black">
+
+    <title>Transit</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+
+    <link type="text/css" rel="stylesheet" href="css/materialize_0_100_2.css">
+    <link type="text/css" rel="stylesheet" href="css/animate.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        html {
+            background-image: url("images/WP_20150415_17_41_08_Pro.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+
+        }
+
+        body {
+            background: rgba(0, 0, 0, .8);
+            -webkit-backdrop-filter: grayscale(1) contrast(3) blur(10px);
+            /*backdrop-filter: grayscale(1) contrast(3) blur(1px);*/
+            z-index: 100;
+
+            min-width: 100% !important;
+            max-width: 100%;
+            min-height: 200% !important;
+            /*max-height: device-width;*/
+
+            color: #ffffff;
+
+        }
+
+        th {
+            text-align: center;
+        }
+
+        .outer {
+            margin-top: -2%;
+            width: 100% !important;
+        }
+
+        .card-padding {
+            padding-top: 5% !important;
+            padding-bottom: 5% !important;
+        }
+        .button-availability:hover{
+            content: 'ADD';
+        }
+    </style>
+</head>
+<body>
+<header class="animated bounceInDown">
+    <nav class="navbar-fixed blue darken-4 z-depth-2 ">
+        <div class="nav-wrapper">
+            <a class="brand-logo"> &nbsp;Transit</a>
+            <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li id="local_admin_name_li"></li>
+                <li><a href="add_vehicles.html">Add Vehicle</a></li>
+                <li class="active"><a href="my_bookings.html">My Bookings</a></li>
+                <li><a href="my_profile.html">My Profile</a></li>
+                <li><a href="my_vehicles.html">My Vehicles</a></li>
+                <li><a href="see_available_seats.html">See Available Seats</a></li>
+                <li><a href="../admin/menu">Signout</a></li>
+
+            </ul>
+        </div>
+        <ul class="side-nav black-text" id="mobile-side-menu">
+            <li id="local_admin_name_li_mobile"></li>
+            <li><a href="../admin/menu">Home</a></li>
+            <li>
+                <form action="../signout" method="post" id="signout_form_mobile"><a
+                        id="signout_button_mobile" class="black-text">Signout</a></form>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="section"></div>
+    <div class="container outer ">
+
+        <div class="row animated bounceInDown">
+            <div class="section hide-on-small-and-down"></div>
+            <h4 class="center">My Bookings</h4>
+            <div class="section hide-on-small-and-down"></div>
+
+            <div class="col l10 m5 push-l1 s12">
+                <table class="center bordered responsive-table">
+                    <thead>
+                    <tr>
+                        <th> </th>
+                        <th>Departure Place</th>
+                        <th>Arrival Place</th>
+                        <th>Vehicle</th>
+                        <th>Departure Date</th>
+                        <th>Departure Time</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="center">
+                            <a class="btn waves-effect waves-light red button-availability" data-availability="10">Cancel</a>
+                        </td>
+                        <th>
+                            Jahangirpuri
+                        </th>
+                        <th>
+                            Campus
+                        </th>
+                        <th>
+                           Shuttle
+                        </th>
+                        <th>
+                            16-11-2017
+                        </th>
+                        <th>
+                            16:00
+                        </th>
+                        <th>
+                            Confirmed
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="center">
+                            <a class="btn waves-effect waves-light red button-availability" data-availability="10">Cancel</a>
+                        </td>
+                        <th>
+                            Jahangirpuri
+                        </th>
+                        <th>
+                            Campus
+                        </th>
+                        <th>
+                           UP AC 16
+                        </th>
+                        <th>
+                            16-11-2017
+                        </th>
+                        <th>
+                            17:00
+                        </th>
+
+                        <th>
+                            WL 1
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="center">
+                            <a class="btn waves-effect waves-light red button-availability" data-availability="10">Cancel</a>
+                        </td>
+                        <th>
+                            Jahangirpuri
+                        </th>
+                        <th>
+                            Campus
+                        </th>
+                        <th>
+                           UP AC 16
+                        </th>
+                        <th>
+                            16-11-2017
+                        </th>
+                        <th>
+                            20:00
+                        </th>
+                        <th>
+                            WL 5
+                        </th>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+    </div>
+</main>
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/materialize_0_100_2_min.js"></script>
+<script>
+    $(document).ready(function () {
+
+    });
+</script>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="theme-color" content="black">
+
+    <title>Transit</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+
+    <!--<link type="text/css" rel="stylesheet" href="css/materialize.css">-->
+    <link type="text/css" rel="stylesheet" href="css/materialize_0_100_2.css">
+    <link type="text/css" rel="stylesheet" href="css/animate.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        html {
+            background-image: url("images/WP_20150415_17_41_08_Pro.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+
+        }
+
+        body {
+            background: rgba(0, 0, 0, .8);
+            -webkit-backdrop-filter: grayscale(1) contrast(3) blur(10px);
+            /*backdrop-filter: grayscale(1) contrast(3) blur(1px);*/
+            z-index: 100;
+
+            min-width: 100% !important;
+            max-width: 100%;
+            min-height: 200% !important;
+            /*max-height: device-width;*/
+
+            color: #ffffff;
+
+        }
+
+        th {
+            text-align: center;
+        }
+
+        .outer {
+            margin-top: -2%;
+            width: 100% !important;
+        }
+
+        .card-padding {
+            padding-top: 5% !important;
+            padding-bottom: 5% !important;
+        }
+        .button-availability:hover{
+            content: 'ADD';
+        }
+    </style>
+
+    <!--for oauth-->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id"
+          content="447413120920-vc7i2j5a8lefvotflqlbfb7sm43cqtmf.apps.googleusercontent.com">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<body>
+<main>
+    <div class="section"></div>
+    <div class="container outer ">
+        <div class="row animated bounceInDown">
+            <div class="section hide-on-small-and-down"></div>
+            <div class="col l5 m5 push-l4 s12 push-s2">
+                <img src="images/logo.png" height="400">
+                <br>
+                <div id="oauth_button" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-width="320" data-height="50" data-longtitle="true"></div>
+            </div>
+        </div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+    </div>
+</main>
+</body>
+
+<!--<script type="text/javascript" src="js/materialize.min.js"></script>-->
+<script type="text/javascript" src="js/materialize_0_100_2_min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>-->
+<script>
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+    function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        /*console.log("ID Token: " + id_token);*/
+        var url = "ajax/checkAuth.jsp";
+        $.ajax({
+            type: 'POST',
+            url: url,
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            dataType: "json",
+            data: {id: googleUser.getAuthResponse().id_token},
+            success: function (response) {
+                $('#info-modal .modal-title #spinner').remove();
+                if (response && response.status == 0) {
+                    window.location.assign(response.redirectURL);
+                }
+                else {
+
+                    alert('Login using Ashoka ID');
+                    signOut();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert('There was an unexpected error in connecting to the server');
+                signOut();
+            }
+        });
+    }
+
+    function onLoad() {
+        gapi.load('auth2', function () {
+            gapi.auth2.init();
+        });
+    }
+</script>
+</html>

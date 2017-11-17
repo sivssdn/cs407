@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="theme-color" content="black">
+
+    <title>Transit</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+
+    <!--<link type="text/css" rel="stylesheet" href="css/materialize.css">-->
+    <link type="text/css" rel="stylesheet" href="css/materialize_0_100_2.css">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
+    <link type="text/css" rel="stylesheet" href="css/animate.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        html {
+            background-image: url("images/WP_20150415_17_41_08_Pro.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+
+        }
+
+        body {
+            background: rgba(0, 0, 0, .8);
+            -webkit-backdrop-filter: grayscale(1) contrast(3) blur(10px);
+            /*backdrop-filter: grayscale(1) contrast(3) blur(1px);*/
+            z-index: 100;
+
+            min-width: 100% !important;
+            max-width: 100%;
+            min-height: 200% !important;
+            /*max-height: device-width;*/
+
+            color: #ffffff;
+
+        }
+
+        th {
+            text-align: center;
+        }
+
+        .outer {
+            margin-top: -2%;
+            width: 100% !important;
+        }
+
+        .card-padding {
+            padding-top: 5% !important;
+            padding-bottom: 5% !important;
+        }
+        .button-availability:hover{
+            content: 'ADD';
+        }
+    </style>
+</head>
+<body>
+<header class="animated bounceInDown">
+    <nav class="navbar-fixed blue darken-4 z-depth-2 ">
+        <div class="nav-wrapper">
+            <a class="brand-logo"> &nbsp;Transit</a>
+            <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li id="local_admin_name_li"></li>
+                <li><a href="add_vehicles.html">Add Vehicle</a></li>
+                <li><a href="my_bookings.html">My Bookings</a></li>
+                <li><a href="my_profile.html">My Profile</a></li>
+                <li><a href="my_vehicles.html">My Vehicles</a></li>
+                <li class="active"><a href="see_available_seats.html">See Available Seats</a></li>
+                <li><a href="../admin/menu">Signout</a></li>
+
+            </ul>
+        </div>
+        <ul class="side-nav black-text" id="mobile-side-menu">
+            <li id="local_admin_name_li_mobile"></li>
+            <li><a href="../admin/menu">Home</a></li>
+            <li>
+                <form action="../signout" method="post" id="signout_form_mobile"><a
+                        id="signout_button_mobile" class="black-text">Signout</a></form>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="section"></div>
+    <div class="container outer ">
+        <!--<div class="fixed-action-btn verticle">
+            <a class="btn-floating btn-large materialize-red">
+                <i class="large material-icons">menu</i>
+            </a>
+            <ul>
+                <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Sign out"><i
+                        class="material-icons">power_settings_new</i></a></li>
+                <li><a class="btn-floating green tooltipped" data-position="left" data-delay="50"
+                       data-tooltip="Add New Ride"><i class="material-icons">add</i></a></li>
+                <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="50"
+                       data-tooltip="My Bookings"><i class="material-icons">playlist_add_check</i></a></li>
+            </ul>
+        </div>-->
+        <!--<h4>TRANSITS</h4>-->
+
+
+        <div class="row animated bounceInDown">
+            <div class="section hide-on-small-and-down"></div>
+            <h4 class="center">See Available Seats</h4>
+
+            <div class="col l7 m5 push-l2 s12">
+                <table class="center">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <h5>Choose Date</h5>
+                        </td>
+                        <td>
+                            <div class="input-field">
+                                <input type="text" id="departure_date" class="datepicker">
+                                <label for="departure_date">Click here to select date</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>Choose Time</h5>
+                        </td>
+                        <td>
+                            <div class="input-field">
+                                <input type="text" id="departure_time" class="timepicker">
+                                <label for="departure_time">Click here to select time</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>Place of Departure</h5>
+                        </td>
+                        <td>
+                            <div class="input-field">
+                                <select id="departure_place">
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="1">Campus</option>
+                                    <option value="2">Parker</option>
+                                    <option value="3">Jahangirpuri</option>
+                                </select>
+                                <label for="departure_place">Click here to select place</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>Select Destination</h5>
+                        </td>
+                        <td>
+                            <div class="input-field">
+                                <select id="arrival_place">
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="1">Campus</option>
+                                    <option value="2">Parker</option>
+                                    <option value="3">Jahangirpuri</option>
+                                </select>
+                                <label for="arrival_place">Click here to select place</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <button class="btn btn-large waves-effect waves-light blue darken-4" type="submit" name="action">Submit
+                            </button>
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="section"></div>
+    </div>
+</main>
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<!--<script type="text/javascript" src="js/materialize.min.js"></script>-->
+<script type="text/javascript" src="js/materialize_0_100_2_min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>-->
+<script>
+    $(document).ready(function () {
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: false // Close upon selecting a date,
+        });
+        $('.timepicker').pickatime({
+            default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+            fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+            twelvehour: false, // Use AM/PM or 24-hour format
+            donetext: 'OK', // text for done-button
+            cleartext: 'Clear', // text for clear-button
+            canceltext: 'Cancel', // Text for cancel-button
+            autoclose: false, // automatic close timepicker
+            ampmclickable: true, // make AM PM clickable
+            aftershow: function(){} //Function for after opening timepicker
+        });
+        $('select').material_select();
+    });
+</script>
+</html>

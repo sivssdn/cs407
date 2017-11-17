@@ -1,0 +1,38 @@
+What would you prefer for booking seats in shuttle?
+- Mobile Site
+- Website
+- Both
+- Insignificant
+
+Is internet access outside campus a concern?
+- Yes
+- No
+
+Would you like to carpool your cars with Ashokans?
+- Yes 
+- No
+
+Would you like to travel in a carpool shared by Ashokans?
+- Yes
+- No
+
+Would you prefer carpool to be paid or free?
+- Paid
+- Free
+
+How would you like to be identified by the carpool driver?
+- OTP in app
+- Ashoka ID
+- Other: textarea
+
+Any other concern/feedback?
+- textarea
+
+Would you mind carrying Ashoka ID cards while boarding shuttle?
+- Yes
+- No
+
+
+
+half seats booked
+peak level booking only
