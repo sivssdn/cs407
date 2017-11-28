@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="theme-color" content="black">
+
+    <title>Transit</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <link type="text/css" rel="stylesheet" href="/css/materialize.css">
+    <link type="text/css" rel="stylesheet" href="/css/animate.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        html {
+            background-image: url("/images/WP_20150415_17_41_08_Pro.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+
+        }
+
+        body {
+            background: rgba(0, 0, 0, .8);
+            -webkit-backdrop-filter: grayscale(1) contrast(3) blur(10px);
+            /*backdrop-filter: grayscale(1) contrast(3) blur(1px);*/
+            z-index: 100;
+
+            min-width: 100% !important;
+            max-width: 100%;
+            min-height: 200% !important;
+            /*max-height: device-width;*/
+
+            color: #ffffff;
+
+        }
+
+        th {
+            text-align: center;
+        }
+
+        .outer {
+            margin-top: -2%;
+            width: 100% !important;
+        }
+
+        .card-padding {
+            padding-top: 5% !important;
+            padding-bottom: 5% !important;
+        }
+        .button-availability:hover{
+            content: 'ADD';
+        }
+    </style>
+</head>
+<body>
+<header class="animated bounceInDown">
+    <nav class="navbar-fixed blue darken-4 z-depth-2 ">
+        <div class="nav-wrapper">
+            <a class="brand-logo"> &nbsp;Transit</a>
+            <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/add_vehicles">Add Vehicle</a></li>
+                <li><a href="/my_bookings">My Bookings</a></li>
+                <li><a href="/my_profile">My Profile</a></li>
+                <li><a href="/my_vehicles">My Vehicles</a></li>
+                <li><a href="/available_seats_form">See Available Seats</a></li>
+                <li><a href="../admin/menu">Signout</a></li>
+            </ul>
+        </div>
+        <ul class="side-nav black-text" id="mobile-side-menu">
+            <li>
+                <form action="../signout" method="post" id="signout_form_mobile"><a
+                            id="signout_button_mobile" class="black-text">Signout</a></form>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="section"></div>
+    <div class="container outer ">
+        <!--<div class="fixed-action-btn verticle">
+            <a class="btn-floating btn-large materialize-red">
+                <i class="large material-icons">menu</i>
+            </a>
+            <ul>
+                <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Sign out"><i
+                        class="material-icons">power_settings_new</i></a></li>
+                <li><a class="btn-floating green tooltipped" data-position="left" data-delay="50"
+                       data-tooltip="Add New Ride"><i class="material-icons">add</i></a></li>
+                <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="50"
+                       data-tooltip="My Bookings"><i class="material-icons">playlist_add_check</i></a></li>
+            </ul>
+        </div>-->
+        <!--<h4>TRANSITS</h4>-->
+
+
+        <div class="row animated bounceInDown">
+            <div class="section hide-on-small-and-down"></div>
+            <h4 class="center">See Available Seats</h4>
+            <div class="section hide-on-small-and-down"></div>
+            <div class="col l7 m5 push-l2 s12">
+                <table class="center">
+                    <thead>
+                    <tr>
+                        <th>Availability</th>
+                        <th colspan="3">From Campus to Jahangirpuri</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td>
+                            <a class="btn-floating btn-large waves-effect waves-light green button-availability" data-availability="10">10</a>
+                        </td>
+                        <td>
+                            <div class="card-panel blue card-padding">
+                                Shuttle
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card-panel blue card-padding">
+                                10:35 AM
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card-panel blue card-padding">
+                                Free
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a class="btn-floating btn-large waves-effect waves-light green button-availability" data-availability="10">10</a>
+                        </td>
+                        <td>
+                            <div class="card-panel blue card-padding">
+                                DL 16
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card-panel blue card-padding">
+                                10:35 AM
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card-panel blue card-padding">
+                                Free
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a class="btn-floating btn-large waves-effect waves-light orange" data-availability="10">10</a>
+                        </td>
+                        <td>
+                            <div class="card-panel blue card-padding">
+                                UP 16 AC
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card-panel blue card-padding">
+                                10:30 AM
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card-panel blue card-padding">
+                                Rs. 500
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+
+    </div>
+</main>
+</body>
+<script type="text/javascript" src="/javascripts/jquery.js"></script>
+<script type="text/javascript" src="/javascripts/materialize.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".button-collapse").sideNav();
+    });
+
+    var screen_page = {};
+    screen_page.availability_buttons = document.getElementsByClassName("button-availability");
+    //loop to toggle between '+' sign and number of seats available on mouseover event
+    for (var loop1 = 0;loop1 < screen_page.availability_buttons.length; loop1++){
+        screen_page.availability_buttons[loop1].addEventListener("mouseenter", function () {
+            this.innerHTML = "<i class=\"material-icons\">add</i>";
+        });
+        screen_page.availability_buttons[loop1].addEventListener("mouseleave", function () {
+            this.innerHTML = this.getAttribute("data-availability");
+        });
+    }
+</script>
+</html>

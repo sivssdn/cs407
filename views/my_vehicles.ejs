@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="theme-color" content="black">
+
+    <title>Transit</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <link type="text/css" rel="stylesheet" href="/css/materialize_0_100_2.css">
+    <link type="text/css" rel="stylesheet" href="/css/animate.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        html {
+            background-image: url("/images/WP_20150415_17_41_08_Pro.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+
+        }
+
+        body {
+            background: rgba(0, 0, 0, .8);
+            -webkit-backdrop-filter: grayscale(1) contrast(3) blur(10px);
+            /*backdrop-filter: grayscale(1) contrast(3) blur(1px);*/
+            z-index: 100;
+
+            min-width: 100% !important;
+            max-width: 100%;
+            min-height: 200% !important;
+            /*max-height: device-width;*/
+
+            color: #ffffff;
+
+        }
+
+        th {
+            text-align: center;
+        }
+
+        .outer {
+            margin-top: -2%;
+            width: 100% !important;
+        }
+
+        .card-padding {
+            padding-top: 5% !important;
+            padding-bottom: 5% !important;
+        }
+        .button-availability:hover{
+            content: 'ADD';
+        }
+    </style>
+</head>
+<body>
+<header class="animated bounceInDown">
+    <nav class="navbar-fixed blue darken-4 z-depth-2 ">
+        <div class="nav-wrapper">
+            <a class="brand-logo"> &nbsp;Transit</a>
+            <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/add_vehicles">Add Vehicle</a></li>
+                <li><a href="/my_bookings">My Bookings</a></li>
+                <li><a href="/my_profile">My Profile</a></li>
+                <li class="active"><a href="/my_vehicles">My Vehicles</a></li>
+                <li><a href="/available_seats_form">See Available Seats</a></li>
+                <li><a href="../admin/menu">Signout</a></li>
+            </ul>
+        </div>
+        <ul class="side-nav black-text" id="mobile-side-menu">
+
+            <li>
+                <form action="../signout" method="post" id="signout_form_mobile"><a
+                            id="signout_button_mobile" class="black-text">Signout</a></form>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="section"></div>
+    <div class="container outer ">
+
+        <div class="row animated bounceInDown">
+            <div class="section hide-on-small-and-down"></div>
+            <h4 class="center">My Vehicles</h4>
+            <div class="section"></div>
+
+            <div class="col l10 m5 push-l1 s12">
+                <table class="center bordered responsive-table">
+                    <thead>
+                    <tr>
+                        <th>Vehicle</th>
+                        <th>Name</th>
+                        <th>Number</th>
+                        <th>Departure Place</th>
+                        <th>Destination</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>UP 16 AC</th>
+                        <th>Karan</th>
+                        <th>9958108335</th>
+                        <th>Campus</th>
+                        <th>Jahangirpuri</th>
+                    </tr>
+                    <tr>
+                        <th>UP 16 AC</th>
+                        <th>Arjun</th>
+                        <th>9958102335</th>
+                        <th>Campus</th>
+                        <th>Jahangirpuri</th>
+                    </tr>
+                    <tr>
+                        <th>DL 18 AC</th>
+                        <th>Prof</th>
+                        <th>9958456335</th>
+                        <th>Jahangirpuri</th>
+                        <th>Campus</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+    </div>
+</main>
+</body>
+<script type="text/javascript" src="/javascripts/jquery.js"></script>
+<script type="text/javascript" src="/javascripts/materialize_0_100_2_min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".button-collapse").sideNav();
+    });
+</script>
+</html>

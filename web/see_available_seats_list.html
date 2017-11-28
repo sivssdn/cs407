@@ -201,6 +201,10 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script>
+    $(document).ready(function () {
+        $(".button-collapse").sideNav();
+    });
+
     var screen_page = {};
     screen_page.availability_buttons = document.getElementsByClassName("button-availability");
     //loop to toggle between '+' sign and number of seats available on mouseover event

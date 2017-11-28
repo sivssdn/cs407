@@ -4,15 +4,21 @@
 "_id" : ObjectId("asjhg5"),
 "departure_date" : date,
 "departure_time" : time,
-"departure_place" : "place",
+"source" : "place",
 "destination" : "destination_place",
 "vehicle_identification" : "number or name",
-"total_seats" : number,
+"total_seats" : number, #without driver
 "price" : number,
-"occupants" : [
-		{"occupant_id" : "id_from_occupant_table"},
-		{"occupant_id" : "id_from_occupant_table"},
-		{"occupant_id" : "id_from_occupant_table"}
+"owner": user id,
+"passengers" : [ 
+		{
+			"user_id" : "id_from_occupant_table",
+			"booking_time" : "time"
+		},
+		{
+			"user_id" : "id_from_occupant_table",
+			"booking_time" : "time"
+		}
 	]
 },
 {...}
@@ -35,3 +41,25 @@
 ]
 
 Mongo DB does not have a fixed schema, it can have different attibutes for different records in the same collection. "_id" object is default primary key and unique. Relationships between collections are called reference and is done with $ref variable and has no constraints like foreign key.
+
+
+db.vehicles.insert({
+"departure_date" : "date",
+"departure_time" : "time",
+"source" : "place",
+"destination" : "destination_place",
+"vehicle_identification" : "number or name",
+"total_seats" : 2, 
+"price" : 100,
+"owner": "user id",
+"passengers" : [ 
+		{
+			"user_id" : "id_from_occupant_table",
+			"booking_time" : "time"
+		},
+		{
+			"user_id" : "id_from_occupant_table",
+			"booking_time" : "time"
+		}
+	]
+})
