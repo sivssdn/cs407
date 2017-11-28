@@ -1,21 +1,23 @@
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/transit";
 
-var addVehicles = function () {
-    console.log("---------------");
+var addVehicle = function (vehicleProfile) {
+    console.log("-------vehicles.js--------");
+
+    MongoClient.connect(url, function(error, db){
+        if(error) throw error;
+
+        db.collection("vehicles").insertOne(vehicleProfile, function (err, result) {
+            if(err) throw err;
+            console.log("Inserted-----"+result);
+            db.close();
+        });
+    });
     return "add vehicles";
 };
 
-/*
-var MongoClient = require('mongodb').MongoClient
-
-MongoClient.connect('mongodb://localhost:27017/animals', function (err, db) {
-    if (err) throw err;
-
-    db.collection('mammals').find().toArray(function (err, result) {
-        if (err) throw err;
-
-        console.log(result);
-    })
-});
-*/
-
-module.exports = addVehicles;
+module.exports = {
+    addVehicle : function (vehicleProfile) {
+        addVehicle(vehicleProfile);
+    }
+};
