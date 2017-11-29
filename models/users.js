@@ -1,4 +1,4 @@
-var vehicle = require("vehicles");
+var vehicle = require("../models/vehicles");
 var MongoClient = require("mongodb").MongoClient;
 var url = "mongodb://localhost:27017/transit";
 
@@ -58,17 +58,37 @@ var getUserVehicles = function (userEmail) {
 
 var getUserBookings = function (userEmail) {
 
-    MongoClient.connect(url ,function (error, db) {
+    MongoClient.connect(url, function (error, db) {
         console.log("-----get booking / users.js-----");
-        if(error) throw error;
+        if (error) throw error;
         //for searching email in passenger array
-        db.collection("vehicles").find({passengers:{$elemMatch:{email : userEmail}}}).toArray(function (error, result) {
-            if(error) throw error;
-            console.log(result+"=============");
+        db.collection("vehicles").find({passengers: {$elemMatch: {email: userEmail}}}).toArray(function (error, result) {
+            if (error) throw error;
+            console.log(result + "=============");
 
         });
     });
 
+};
+
+var bookUserSeat = function (vehicleID, passengerEmail) {
+//---------------------------------------------------------------------------
+    MongoClient.connect(url, function (error, db) {
+        if (error) throw error;
+        var passengerDetails = {
+            $push: {
+                passengers: [
+                    {
+                        email: passengerEmail
+                    }
+                ]
+            }
+        };
+        db.collection("vehicles").update({_id : vehicleID}, passengerDetails, function (error, result) {
+            if(error) throw error;
+            console.log(result);
+        });
+    });
 };
 
 module.exports = {
@@ -86,5 +106,8 @@ module.exports = {
     },
     getUserBookings: function (userEmail) {
         getUserBookings(userEmail);
+    },
+    bookUserSeat : function (vehicleID, passengerEmail) {
+        bookUserSeat(vehicleID, passengerEmail);
     }
 };
