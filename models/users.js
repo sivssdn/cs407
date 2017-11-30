@@ -1,4 +1,5 @@
 var vehicle = require("../models/vehicles");
+
 var MongoClient = require("mongodb").MongoClient;
 var url = "mongodb://localhost:27017/transit";
 
@@ -9,6 +10,7 @@ var addUser = function (user) {
 
         if (error) throw error;
         var insertUserObject = {
+            "name": user.name,
             "email": user.email,
             "contact": user.phone,
             "department": user.department
@@ -24,23 +26,16 @@ var addUser = function (user) {
 
 var getUserProfile = function (userEmail) {
 
-    MongoClient.connect(url, function (error, db) {
+    //promises to be able to return the result
+    return MongoClient.connect(url).then(function (db, error) {
         console.log("----get user / users.js-----");
         if (error) throw error;
-        db.collection("users").find({email: userEmail}).toArray(function (error, result) {
-            if (error) throw error;
-            console.log(result);
-            db.close();
-        });
+        return db.collection("users").find({email: userEmail}).toArray();
+    }).then(function (items) {
+        //console.log(items);
+        return items;
     });
-
 };
-
-/*
-var addUserVehicle = function (vehicleProfile) {
-    vehicle.addVehicle(vehicleProfile);
-};
-*/
 
 var getUserVehicles = function (userEmail) {
 
@@ -99,7 +94,7 @@ module.exports = {
         vehicle.addVehicle(vehicleProfile);
     },
     getUserProfile: function (userEmail) {
-        getUserProfile(userEmail);
+        return getUserProfile(userEmail);
     },
     getUserVehicles: function (userEmail) {
         getUserVehicles(userEmail);

@@ -1,3 +1,9 @@
+<%
+//var email = (usermail | '');
+var name = (userProfile[0].name | '');
+var contact = (userProfile[0].contact | '');
+var department = (userProfile[0].department | '');
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -54,7 +60,8 @@
             padding-top: 5% !important;
             padding-bottom: 5% !important;
         }
-        .button-availability:hover{
+
+        .button-availability:hover {
             content: 'ADD';
         }
     </style>
@@ -71,15 +78,16 @@
                 <li class="active"><a href="/my_profile">My Profile</a></li>
                 <li><a href="/my_vehicles">My Vehicles</a></li>
                 <li><a href="/available_seats_form">See Available Seats</a></li>
-                <li><a href="../admin/menu">Signout</a></li>
+                <li><a href="/authentication/logout">Signout</a></li>
             </ul>
         </div>
         <ul class="side-nav black-text" id="mobile-side-menu">
-
-            <li>
-                <form action="../signout" method="post" id="signout_form_mobile"><a
-                            id="signout_button_mobile" class="black-text">Signout</a></form>
-            </li>
+            <li><a href="/add_vehicles">Add Vehicle</a></li>
+            <li><a href="/my_bookings">My Bookings</a></li>
+            <li class="active"><a href="/my_profile">My Profile</a></li>
+            <li><a href="/my_vehicles">My Vehicles</a></li>
+            <li><a href="/available_seats_form">See Available Seats</a></li>
+            <li><a href="/authentication/logout">Signout</a></li>
         </ul>
     </nav>
 </header>
@@ -92,59 +100,108 @@
 
             <div class="col l7 m5 push-l2 s12">
                 <table class="center">
-                    <tbody>
-                    <tr>
-                        <td>
-                            <h5>Name</h5>
-                        </td>
-                        <td>
-                            <div class="input-field">
-                                <input id="name" type="text" class="validate">
-                                <label for="name">Click here to enter name</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>Contact Number</h5>
-                        </td>
-                        <td>
-                            <div class="input-field">
-                                <input id="phone_number" type="text" class="validate">
-                                <label for="phone_number">Click here to enter phone number</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>Department</h5>
-                        </td>
-                        <td>
-                            <div class="input-field">
-                                <select id="department">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">UG 1</option>
-                                    <option value="2">UG 2</option>
-                                    <option value="3">UG 3</option>
-                                    <option value="4">ASP</option>
-                                    <option value="5">Faculty</option>
-                                    <option value="6">Staff</option>
-                                </select>
-                                <label for="department">Click here to select department</label>
-                            </div>
-                        </td>
-                    </tr>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <h5>Name</h5>
+                            </td>
+                            <td>
+                                <div class="input-field">
+                                    <% if(name.length > 0){ %>
+                                    <input id="name" type="text" class="validate"
+                                           value="<%- email.trim() %>" required>
+                                    <% }else{ %>
+                                    <input id="name" type="text" class="validate" required>
+                                    <% } %>
+                                    <label for="name">Click here to enter name</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5>Contact Number</h5>
+                            </td>
+                            <td>
+                                <div class="input-field">
+                                    <% if(contact != 0){ %>
+                                    <input id="phone_number" type="tel" class="validate"
+                                           value="<%- contact.toString().trim() %>" required>
+                                    <% }else{ %>
+                                    <input id="phone_number" type="tel" class="validate" required>
+                                    <% } %>
+                                    <label for="phone_number">Click here to enter phone number</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5>Department</h5>
+                            </td>
+                            <td>
+                                <div class="input-field">
+                                    <select id="department">
+                                        <% if(department.length > 0){ %>
+                                            <% if(department && department.trim() === "UG 1"){ %>
+                                            <option value="UG 1" selected>UG 1</option>
+                                            <% }else{ %>
+                                            <option value="UG 1">UG 1</option>
+                                            <% } %>
+                                            <% if(department && department.trim() === "UG 2"){ %>
+                                            <option value="UG 2" selected>UG 2</option>
+                                            <% }else{ %>
+                                            <option value="UG 2">UG 2</option>
+                                            <% } %>
+                                            <% if(department && department.trim() === "UG 3"){ %>
+                                            <option value="UG 3" selected>UG 3</option>
+                                            <% }else{ %>
+                                            <option value="UG 3">UG 3</option>
+                                            <% } %>
+                                            <% if(department && department.trim() === "ASP"){ %>
+                                            <option value="ASP" selected>ASP</option>
+                                            <% }else{ %>
+                                            <option value="ASP">ASP</option>
+                                            <% } %>
+                                            <% if(department && department.trim() === "Faculty"){ %>
+                                            <option value="Faculty" selected>Faculty</option>
+                                            <% }else{ %>
+                                            <option value="Faculty">Faculty</option>
+                                            <% } %>
+                                            <% if(department && department.trim() === "Staff"){ %>
+                                            <option value="Staff" selected>Staff</option>
+                                            <% }else{ %>
+                                            <option value="Staff">Staff</option>
+                                            <% } %>
+                                        <% }else{ %>
+                                        <option value="" disabled selected>Choose your option</option>
+                                        <option value="UG 1">UG 1</option>
+                                        <option value="UG 2">UG 2</option>
+                                        <option value="UG 3">UG 3</option>
+                                        <option value="ASP">ASP</option>
+                                        <option value="Faculty">Faculty</option>
+                                        <option value="Staff">Staff</option>
+                                        <% } %>
+                                    </select>
+                                    <label for="department">Click here to select department</label>
 
-                    <tr>
-                        <th colspan="2">
-                            <button class="btn btn-large waves-effect waves-light blue darken-4" type="submit" name="action">Submit
-                            </button>
-                        </th>
-                    </tr>
-                    </tbody>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <button class="btn btn-large waves-effect waves-light blue darken-4"
+                                        id="submit_profile">Submit
+                                </button>
+                            </th>
+                        </tr>
+                        </tbody>
                 </table>
             </div>
         </div>
+        <form action="/user/add" method="post" id="add_profile_form" enctype="application/x-www-form-urlencoded">
+            <input name="name" id="hidden_name" hidden>
+            <input name="phone" id="hidden_phone" hidden>
+            <input name="department" id="hidden_department" hidden>
+        </form>
         <div class="section"></div>
         <div class="section"></div>
         <div class="section"></div>
@@ -160,6 +217,12 @@
     $(document).ready(function () {
         $('select').material_select();
         $(".button-collapse").sideNav();
+    });
+    document.getElementById("submit_profile").addEventListener("click", function () {
+        document.getElementById("hidden_name").value=document.getElementById("name").value;
+        document.getElementById("hidden_phone").value=document.getElementById("phone_number").value;
+        document.getElementById("hidden_department").value=document.getElementById("department").value;
+        document.getElementById("add_profile_form").submit();
     });
 </script>
 </html>

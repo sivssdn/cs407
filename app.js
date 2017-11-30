@@ -4,8 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require("express-session");
 
-var index = require('./routes/user');
+var index = require('./routes/user_routes');
 var authentication = require('./routes/authentication');
 
 var app = express();
@@ -21,6 +22,42 @@ app.use(bodyParser.urlencoded({extended: false})); //to allow parsing with query
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//intialize express sessions
+app.use(session({
+    key: 'user_sid',
+    secret: 'sivssdn',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
+}));
+// This middleware will check if user's cookie is still saved in browser and user is not set,
+// then automatically log the user out.
+// This usually happens when you stop your express server after login, your cookie still remains saved in the browser.
+app.use(function (req, res, next) {
+    if(req.session.user_sid && !req.session.user){
+        res.clearCookie('user_sid');
+    }
+    next();
+});
+// middleware function to check for logged-in users
+var sessionChecker = function (res, req, next) {
+  if(!res.session.user_sid && !res.session.user){
+      res.redirect('/authentication/login');  //redirect to login page
+  }
+};
+
+/*var sessionCh = function checkSession(req, res, next){
+    req.session.user = 'Paras';
+    console.log("--------"+req.session.user);
+    req.session.destroy();
+    if(req.session !== undefined)
+    console.log("--++++++---"+req.session.user);
+    next();
+};
+app.use(sessionCh);*/
+//  req.session.user = user.dataValues; //SET SESSIONS
 app.use('/user', index);
 app.use('/', authentication);
 app.use('/authentication', authentication);

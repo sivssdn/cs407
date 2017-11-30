@@ -49,9 +49,9 @@ passport.use(new GoogleStrategy({
     },
     function(request, accessToken, refreshToken, profile, done) {
         // asynchronous verification, for effect...
-        console.log("-----"+profile.id);
+        /*console.log("-----"+profile.id);*/
         var emails = {email_list : profile.emails};
-        console.log("----"+emails.email_list[0].value);
+        request.session.userMail = emails.email_list[0].value;
         //console.log("-----"+JSON.stringify(profile.emails));
 
         process.nextTick(function () {
@@ -128,7 +128,8 @@ app.get( '/auth/google/callback',
 
 app.get('/logout', function(req, res){
     req.logout();
-    res.redirect('/authentication');
+    req.session.destroy();
+    res.redirect('/authentication/login');
 });
 
 // Simple route middleware to ensure user is authenticated.
