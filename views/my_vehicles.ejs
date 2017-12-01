@@ -28,7 +28,7 @@
             background: rgba(0, 0, 0, .8);
             -webkit-backdrop-filter: grayscale(1) contrast(3) blur(10px);
             /*backdrop-filter: grayscale(1) contrast(3) blur(1px);*/
-            z-index: 100;
+            z-index: 1;
 
             min-width: 100% !important;
             max-width: 100%;
@@ -52,9 +52,11 @@
             padding-top: 5% !important;
             padding-bottom: 5% !important;
         }
-        .button-availability:hover{
+
+        .button-availability:hover {
             content: 'ADD';
         }
+
     </style>
 </head>
 <body>
@@ -64,20 +66,21 @@
             <a class="brand-logo"> &nbsp;Transit</a>
             <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="/add_vehicles">Add Vehicle</a></li>
+                <li><a href="/user/vehicles/add">Add Vehicle</a></li>
                 <li><a href="/my_bookings">My Bookings</a></li>
-                <li><a href="/my_profile">My Profile</a></li>
-                <li class="active"><a href="/my_vehicles">My Vehicles</a></li>
+                <li><a href="/user">My Profile</a></li>
+                <li class="active"><a href="/user/vehicles">My Vehicles</a></li>
                 <li><a href="/available_seats_form">See Available Seats</a></li>
-                <li><a href="../admin/menu">Signout</a></li>
+                <li><a href="/authentication/logout">Signout</a></li>
             </ul>
         </div>
         <ul class="side-nav black-text" id="mobile-side-menu">
-
-            <li>
-                <form action="../signout" method="post" id="signout_form_mobile"><a
-                            id="signout_button_mobile" class="black-text">Signout</a></form>
-            </li>
+            <li><a href="/user/vehicles/add">Add Vehicle</a></li>
+            <li><a href="/my_bookings">My Bookings</a></li>
+            <li><a href="/user">My Profile</a></li>
+            <li class="active"><a href="/user/vehicles">My Vehicles</a></li>
+            <li><a href="/available_seats_form">See Available Seats</a></li>
+            <li><a href="/authentication/logout">Signout</a></li>
         </ul>
     </nav>
 </header>
@@ -95,21 +98,33 @@
                     <thead>
                     <tr>
                         <th>Vehicle</th>
-                        <th>Name</th>
-                        <th>Number</th>
-                        <th>Departure Place</th>
+                        <th>Source</th>
                         <th>Destination</th>
+                        <th>Departure date</th>
+                        <th>Departure time</th>
+                        <th>Seats</th>
+                        <th>Price</th>
+                        <th>Passengers</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <%
+                    for(var loop1 = 0; loop1 < vehicles.length; loop1++){
+                    %>
                     <tr>
-                        <th>UP 16 AC</th>
-                        <th>Karan</th>
-                        <th>9958108335</th>
-                        <th>Campus</th>
-                        <th>Jahangirpuri</th>
+                        <th><%- vehicles[loop1].vehicle_identification %></th>
+                        <th><%- vehicles[loop1].source %></th>
+                        <th><%- vehicles[loop1].destination %></th>
+                        <th><%- vehicles[loop1].departure_date %></th>
+                        <th><%- vehicles[loop1].departure_time %></th>
+                        <th><%- vehicles[loop1].total_seats %></th>
+                        <th><%- vehicles[loop1].price %></th>
+                        <th>
+                            <a href="#modal1" class="blue darken-4 waves-effect waves-light btn modal-trigger">View</a>
+                        </th>
                     </tr>
-                    <tr>
+                    <% } %>
+                    <!--<tr>
                         <th>UP 16 AC</th>
                         <th>Arjun</th>
                         <th>9958102335</th>
@@ -122,11 +137,36 @@
                         <th>9958456335</th>
                         <th>Jahangirpuri</th>
                         <th>Campus</th>
-                    </tr>
+                    </tr>-->
                     </tbody>
                 </table>
             </div>
         </div>
+        <div id="modal1" class="modal bottom-sheet">
+            <div class="modal-content black-text">
+                <h4>Passengers</h4>
+                <table class="center">
+                    <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>Contact</td>
+                        <td>Email</td>
+                        <td>Department</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Contact</td>
+                        <td>Email</td>
+                        <td>Department</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
+            </div>
+        </div>
+
         <div class="section"></div>
         <div class="section"></div>
         <div class="section"></div>
@@ -147,6 +187,7 @@
 <script>
     $(document).ready(function () {
         $(".button-collapse").sideNav();
+        $('.modal').modal();
     });
 </script>
 </html>

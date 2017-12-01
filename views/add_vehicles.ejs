@@ -95,20 +95,22 @@
             <a class="brand-logo"> &nbsp;Transit</a>
             <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li class="active"><a href="/add_vehicles">Add Vehicle</a></li>
+                <li class="active"><a href="/user/vehicles/add">Add Vehicle</a></li>
                 <li><a href="/my_bookings">My Bookings</a></li>
-                <li><a href="/my_profile">My Profile</a></li>
+                <li><a href="/user">My Profile</a></li>
                 <li><a href="/my_vehicles">My Vehicles</a></li>
                 <li><a href="/available_seats_form">See Available Seats</a></li>
-                <li><a href="../admin/menu">Signout</a></li>
+                <li><a href="/authentication/logout">Signout</a></li>
 
             </ul>
         </div>
         <ul class="side-nav black-text" id="mobile-side-menu">
-            <li>
-                <form action="../signout" method="post" id="signout_form_mobile"><a
-                            id="signout_button_mobile" class="black-text">Signout</a></form>
-            </li>
+            <li class="active"><a href="/user/vehicles/add">Add Vehicle</a></li>
+            <li><a href="/my_bookings">My Bookings</a></li>
+            <li><a href="/user">My Profile</a></li>
+            <li><a href="/my_vehicles">My Vehicles</a></li>
+            <li><a href="/available_seats_form">See Available Seats</a></li>
+            <li><a href="/authentication/logout">Signout</a></li>
         </ul>
     </nav>
 </header>
@@ -128,8 +130,8 @@
                         </td>
                         <td>
                             <div class="input-field">
-                                <input type="text" id="departure_date" class="datepicker">
-                                <label for="departure_date">Enter date</label>
+                                <input type="text" id="date" class="datepicker">
+                                <label for="date">Enter date</label>
                             </div>
                         </td>
                     </tr>
@@ -139,8 +141,8 @@
                         </td>
                         <td>
                             <div class="input-field">
-                                <input type="text" id="departure_time" class="timepicker">
-                                <label for="departure_time">Enter time</label>
+                                <input type="text" id="time" class="timepicker">
+                                <label for="time">Enter time</label>
                             </div>
                         </td>
                     </tr>
@@ -150,13 +152,13 @@
                         </td>
                         <td>
                             <div class="input-field">
-                                <select id="departure_place">
+                                <select id="departure">
                                     <option value="" disabled selected>Choose your option</option>
                                     <option value="1">Campus</option>
                                     <option value="2">Parker</option>
                                     <option value="3">Jahangirpuri</option>
                                 </select>
-                                <label for="departure_place">Enter place</label>
+                                <label for="departure">Enter place</label>
                             </div>
                         </td>
                     </tr>
@@ -166,13 +168,13 @@
                         </td>
                         <td>
                             <div class="input-field">
-                                <select id="arrival_place">
+                                <select id="arrival">
                                     <option value="" disabled selected>Choose your option</option>
                                     <option value="1">Campus</option>
                                     <option value="2">Parker</option>
                                     <option value="3">Jahangirpuri</option>
                                 </select>
-                                <label for="arrival_place">Enter place</label>
+                                <label for="arrival">Enter place</label>
                             </div>
                         </td>
                     </tr>
@@ -182,8 +184,8 @@
                         </td>
                         <td>
                             <div class="input-field">
-                                <input id="vehicle_name" type="text" class="validate">
-                                <label for="vehicle_name">Enter vehicle number</label>
+                                <input id="v_name" type="text" class="validate">
+                                <label for="v_name">Enter vehicle number</label>
                             </div>
                         </td>
                     </tr>
@@ -193,8 +195,8 @@
                         </td>
                         <td>
                             <div class="input-field">
-                                <input id="vehicle_seats" type="number" class="validate">
-                                <label for="vehicle_seats">Enter seats</label>
+                                <input id="v_seats" type="number" class="validate">
+                                <label for="v_seats">Enter seats</label>
                             </div>
                         </td>
                     </tr>
@@ -204,14 +206,14 @@
                         </td>
                         <td>
                             <div class="input-field">
-                                <input id="seat_price" type="number" class="validate">
-                                <label for="seat_price">Enter Price</label>
+                                <input id="price" type="number" class="validate">
+                                <label for="price">Enter Price</label>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <th colspan="2">
-                            <button class="btn btn-large waves-effect waves-light blue darken-4" type="submit" name="action">Submit
+                            <button class="btn btn-large waves-effect waves-light blue darken-4" type="submit" id="submit_vehicle">Submit
                             </button>
                         </th>
                     </tr>
@@ -221,6 +223,15 @@
         </div>
         <div class="section"></div>
     </div>
+    <form method="post" action="/user/vehicles/add" id="add_vehicle_form">
+        <input name="departure_date" id="departure_date" hidden>
+        <input name="departure_time" id="departure_time" hidden>
+        <input name="departure_place" id="departure_place" hidden>
+        <input name="arrival_place" id="arrival_place" hidden>
+        <input name="vehicle_name" id="vehicle_name" hidden>
+        <input name="vehicle_seats" id="vehicle_seats" hidden>
+        <input name="seat_price" id="seat_price" hidden>
+    </form>
 </main>
 </body>
 <script type="text/javascript" src="/javascripts/jquery.js"></script>
@@ -250,6 +261,17 @@
             aftershow: function(){} //Function for after opening timepicker
         });
         $('select').material_select();
+
+        document.getElementById("submit_vehicle").addEventListener("click", function () {
+            document.getElementById("departure_date").value = document.getElementById("date").value;
+            document.getElementById("departure_time").value = document.getElementById("time").value;
+            document.getElementById("departure_place").value = document.getElementById("departure").value;
+            document.getElementById("arrival_place").value = document.getElementById("arrival").value;
+            document.getElementById("vehicle_name").value = document.getElementById("v_name").value;
+            document.getElementById("vehicle_seats").value = document.getElementById("v_seats").value;
+            document.getElementById("seat_price").value = document.getElementById("price").value;
+            document.getElementById("add_vehicle_form").submit();
+        });
     });
 </script>
 </html>

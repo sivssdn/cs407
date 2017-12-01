@@ -6,13 +6,13 @@ var bodyParser = require('body-parser');
 //Application routes
 router.get('/', function (req, res, next) {
     if (sessionPresent(req, res)) {
-        //var userMail = req.session.userMail;
+        var userMail = req.session.userMail;
 
-        users.getUserProfile("abc@g.c").then(function (profile) {
+        users.getUserProfile(userMail).then(function (profile) {
         /*    var userMail = req.session.userMail;
             console.log(userMail);
-*/
-            //res.render('my_profile', {userProfile: profile, usermail : userMail});
+         */
+
             res.render('my_profile', {userProfile: profile});
         }, function (err) {
             console.error('The promise was rejected', err, err.stack);
@@ -34,7 +34,8 @@ router.post("/add", function (req, res, next) {
             department: req.body.department
         };
         users.addUser(user);
-        res.send("user added");
+        res.redirect('/user');
+        //res.send("user added");
 
     }else{
         //not logged in
@@ -42,28 +43,52 @@ router.post("/add", function (req, res, next) {
     }
 });
 router.get('/vehicles', function (req, res, next) {
-    checkSession(req, res);
-    users.getUserVehicles("user id");
-    res.render('my_vehicles');
+    if(sessionPresent(req, res)) {
+        var userMail = req.session.userMail;
+        users.getUserVehicles(userMail).then(function (vehicleList) {
+            res.render('my_vehicles', {vehicles : vehicleList});
+        }, function (error) {
+            console.log("Promise was rejected in /vehicles", error, error.stack);
+        });
+
+    }else{
+        //not logged in
+        res.redirect('/authentication/login');
+    }
 });
 
 router.get('/vehicles/add', function (req, res, next) {
-    checkSession(req, res);
-    // /user/vehicles/add
-    var vehicleProfile = {
-        "departure_date": "date",
-        "departure_time": "time",
-        "source": "place",
-        "destination": "destination_place",
-        "vehicle_identification": "number or name",
-        "total_seats": 2,
-        "price": 100,
-        "owner": userEmail,
-        "passengers": []
-    };
-    users.addUserVehicle(vehicleProfile);
-    res.render('add_vehicles');
+    if(sessionPresent(req, res)) {
+        res.render('add_vehicles');
+    }else{
+        //not logged in
+        res.redirect('/authentication/login');
+    }
 });
+
+router.post('/vehicles/add', function (req, res, next) {
+    /*/user/vehicles/add*/
+    if(sessionPresent(req, res)) {
+
+        var vehicleProfile = {
+            "departure_date": req.body.departure_date,
+            "departure_time": req.body.departure_time,
+            "source": req.body.departure_place,
+            "destination": req.body.arrival_place,
+            "vehicle_identification": req.body.vehicle_name,
+            "total_seats": req.body.vehicle_seats,
+            "price": req.body.seat_price,
+            "owner": req.session.userMail,
+            "passengers": []
+        };
+        users.addUserVehicle(vehicleProfile);
+        res.render('add_vehicles');
+    }else{
+        //not logged in
+        res.redirect('/authentication/login');
+    }
+});
+
 router.get('/bookings', function (req, res, next) { //user/bookings
     checkSession(req, res);
     //next is callback function, mandatory argument

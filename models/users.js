@@ -30,23 +30,20 @@ var getUserProfile = function (userEmail) {
     return MongoClient.connect(url).then(function (db, error) {
         console.log("----get user / users.js-----");
         if (error) throw error;
-        return db.collection("users").find({email: userEmail}).toArray();
-    }).then(function (items) {
-        //console.log(items);
-        return items;
+        /*return db.collection("users").find({email: userEmail}).toArray();*/
+        var profile = db.collection("users").find({email: userEmail}).toArray();
+        db.close();
+        return profile;
     });
 };
 
 var getUserVehicles = function (userEmail) {
 
-    MongoClient.connect(url, function (error, db) {
-        console.log("-----get vehicles / users.js-----");
-        if (error) throw error;
-        db.collection("vehicles").find({owner: userEmail}).toArray(function (error, result) {
-            if (error) throw error;
-            console.log(result);
-            db.close();
-        });
+    return MongoClient.connect(url).then(function (db, error) {
+        if(error) throw error;
+        var userVehiclesList= db.collection("vehicles").find({owner: userEmail}).toArray();
+        db.close();
+        return userVehiclesList;
     });
 
 };
@@ -97,7 +94,7 @@ module.exports = {
         return getUserProfile(userEmail);
     },
     getUserVehicles: function (userEmail) {
-        getUserVehicles(userEmail);
+        return getUserVehicles(userEmail);
     },
     getUserBookings: function (userEmail) {
         getUserBookings(userEmail);
