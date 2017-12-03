@@ -21,11 +21,15 @@ var getVehicles = function (journeyDetails) {
     return MongoClient.connect(url).then(function (db, error) {
         if (error) throw error;
         var query = {
-            departure_date : journeyDetails.date,
+            departure_date: journeyDetails.date,
             source: journeyDetails.source,
-            destination: journeyDetails.destination
+            destination: journeyDetails.destination,
+            $and: [
+                {departure_time: {$gte: journeyDetails.time1}},
+                {departure_time: {$lte: journeyDetails.time2}}
+                ]
         };
-console.log(query);
+        console.log(query);
         var vehicleList = db.collection("vehicles").find(query).toArray();
         db.close();
         return vehicleList;
@@ -36,7 +40,7 @@ module.exports = {
     addVehicle: function (vehicleProfile) {
         addVehicle(vehicleProfile);
     },
-    getVehicles : function (journeyDetails) {
+    getVehicles: function (journeyDetails) {
         return getVehicles(journeyDetails);
     }
 };

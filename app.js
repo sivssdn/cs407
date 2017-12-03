@@ -30,7 +30,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 600000
+        expires: 1200000 //20 minutes
     }
 }));
 // This middleware will check if user's cookie is still saved in browser and user is not set,

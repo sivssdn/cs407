@@ -81,7 +81,7 @@ router.post('/vehicles/add', function (req, res, next) {
             "source": req.body.departure_place,
             "destination": req.body.arrival_place,
             "vehicle_identification": req.body.vehicle_name,
-            "total_seats": req.body.vehicle_seats,
+            "total_seats": parseInt(req.body.vehicle_seats),
             "price": req.body.seat_price,
             "owner": req.session.userMail,
             "passengers": []

@@ -20,8 +20,8 @@ router.post('/', function (req, res, next) {
     if (sessionPresent(req, res)) {
 
         var journeyDate = new Date(formatDate(req.body.date));
-        var time1 = new Date("2000-11-11 " + req.body.time1);
-        var time2 = new Date("2000-11-11 " + req.body.time1 );
+        var time1 = new Date("2000-11-11T" + req.body.time1+"Z");
+        var time2 = new Date("2000-11-11T" + req.body.time2+"Z");
         var journeyDetails = {
             date: journeyDate,
             source: req.body.source,
@@ -29,10 +29,10 @@ router.post('/', function (req, res, next) {
             time1: time1,
             time2: time2
         };
-        console.log(journeyDetails);
+console.log(journeyDetails);
         vehicles.getVehicles(journeyDetails).then(function (vehicleList) {
-            console.log(vehicleList);
-            res.render("available_seats", {vehicles: vehicleList});
+console.log(vehicleList);
+            res.render("available_seats", {vehicles: vehicleList, journey : journeyDetails});
         }, function (error) {
             console.log("Promise was rejected in /bookings", error, error.stack);
         });
