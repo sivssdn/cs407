@@ -8,6 +8,7 @@ var session = require("express-session");
 
 var index = require('./routes/user_routes');
 var authentication = require('./routes/authentication');
+var vehicles = require('./routes/vehicle_routes');
 
 var app = express();
 
@@ -58,8 +59,9 @@ var sessionChecker = function (res, req, next) {
 };
 app.use(sessionCh);*/
 //  req.session.user = user.dataValues; //SET SESSIONS
-app.use('/user', index);
 app.use('/', authentication);
+app.use('/user', index);
+app.use('/vehicles', vehicles);
 app.use('/authentication', authentication);
 
 // catch 404 and forward to error handler

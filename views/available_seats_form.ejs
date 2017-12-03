@@ -38,7 +38,6 @@
             /*max-height: device-width;*/
 
             color: #ffffff;
-
         }
 
         th {
@@ -66,42 +65,27 @@
             <a class="brand-logo"> &nbsp;Transit</a>
             <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="/add_vehicles">Add Vehicle</a></li>
-                <li><a href="/my_bookings">My Bookings</a></li>
-                <li><a href="/my_profile">My Profile</a></li>
-                <li><a href="/my_vehicles">My Vehicles</a></li>
-                <li class="active"><a href="/available_seats_form">See Available Seats</a></li>
-                <li><a href="../admin/menu">Signout</a></li>
-
+                <li><a href="/user/vehicles/add">Add Vehicle</a></li>
+                <li><a href="/user/bookings">My Bookings</a></li>
+                <li><a href="/user">My Profile</a></li>
+                <li><a href="/user/vehicles">My Vehicles</a></li>
+                <li class="active"><a href="/vehicles">See Available Seats</a></li>
+                <li><a href="/authentication/logout">Signout</a></li>
             </ul>
         </div>
         <ul class="side-nav black-text" id="mobile-side-menu">
-            <li>
-                <form action="../signout" method="post" id="signout_form_mobile"><a
-                            id="signout_button_mobile" class="black-text">Signout</a></form>
-            </li>
+            <li><a href="/user/vehicles/add">Add Vehicle</a></li>
+            <li><a href="/user/bookings">My Bookings</a></li>
+            <li><a href="/user">My Profile</a></li>
+            <li><a href="/user/vehicles">My Vehicles</a></li>
+            <li class="active"><a href="/vehicles">See Available Seats</a></li>
+            <li><a href="/authentication/logout">Signout</a></li>
         </ul>
     </nav>
 </header>
 <main>
     <div class="section"></div>
-    <div class="container outer ">
-        <!--<div class="fixed-action-btn verticle">
-            <a class="btn-floating btn-large materialize-red">
-                <i class="large material-icons">menu</i>
-            </a>
-            <ul>
-                <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Sign out"><i
-                        class="material-icons">power_settings_new</i></a></li>
-                <li><a class="btn-floating green tooltipped" data-position="left" data-delay="50"
-                       data-tooltip="Add New Ride"><i class="material-icons">add</i></a></li>
-                <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="50"
-                       data-tooltip="My Bookings"><i class="material-icons">playlist_add_check</i></a></li>
-            </ul>
-        </div>-->
-        <!--<h4>TRANSITS</h4>-->
-
-
+    <div class="container outer">
         <div class="row animated bounceInDown">
             <div class="section hide-on-small-and-down"></div>
             <h4 class="center">See Available Seats</h4>
@@ -116,18 +100,29 @@
                         <td>
                             <div class="input-field">
                                 <input type="text" id="departure_date" class="datepicker">
-                                <label for="departure_date">Click here to select date</label>
+                                <label for="departure_date">Select date</label>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h5>Choose Time</h5>
+                            <h5>Choose Time Range</h5>
                         </td>
                         <td>
                             <div class="input-field">
-                                <input type="text" id="departure_time" class="timepicker">
-                                <label for="departure_time">Click here to select time</label>
+                                <input type="text" id="departure_time1" class="timepicker">
+                                <label for="departure_time1">Time 1</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5></h5>
+                        </td>
+                        <td>
+                            <div class="input-field">
+                                <input type="text" id="departure_time2" class="timepicker">
+                                <label for="departure_time2">Time 2</label>
                             </div>
                         </td>
                     </tr>
@@ -139,9 +134,9 @@
                             <div class="input-field">
                                 <select id="departure_place">
                                     <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">Campus</option>
-                                    <option value="2">Parker</option>
-                                    <option value="3">Jahangirpuri</option>
+                                    <option value="Campus">Campus</option>
+                                    <option value="Parker">Parker</option>
+                                    <option value="Jahangirpuri">Jahangirpuri</option>
                                 </select>
                                 <label for="departure_place">Click here to select place</label>
                             </div>
@@ -155,9 +150,9 @@
                             <div class="input-field">
                                 <select id="arrival_place">
                                     <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">Campus</option>
-                                    <option value="2">Parker</option>
-                                    <option value="3">Jahangirpuri</option>
+                                    <option value="Campus">Campus</option>
+                                    <option value="Parker">Parker</option>
+                                    <option value="Jahangirpuri">Jahangirpuri</option>
                                 </select>
                                 <label for="arrival_place">Click here to select place</label>
                             </div>
@@ -165,7 +160,7 @@
                     </tr>
                     <tr>
                         <th colspan="2">
-                            <button class="btn btn-large waves-effect waves-light blue darken-4" type="submit" name="action">Submit
+                            <button class="btn btn-large waves-effect waves-light blue darken-4" type="submit" id="submit_available_seats_form">Submit
                             </button>
                         </th>
                     </tr>
@@ -173,6 +168,13 @@
                 </table>
             </div>
         </div>
+        <form action="/vehicles" method="post" id="available_seats_form">
+            <input name="source" id="source" hidden>
+            <input name="destination" id="destination" hidden>
+            <input name="time1" id="time1" hidden>
+            <input name="time2" id="time2" hidden>
+            <input name="date" id="date" hidden>
+        </form>
         <div class="section"></div>
     </div>
 </main>
@@ -187,11 +189,12 @@
         $(".button-collapse").sideNav();
         $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
-            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            selectYears: 1, // Creates a dropdown of 15 years to control year,
             today: 'Today',
             clear: 'Clear',
             close: 'Ok',
-            closeOnSelect: false // Close upon selecting a date,
+            closeOnSelect: true, // Close upon selecting a date,
+            format: 'dd-mm-yyyy'
         });
         $('.timepicker').pickatime({
             default: 'now', // Set default time: 'now', '1:30AM', '16:30'
@@ -205,6 +208,16 @@
             aftershow: function(){} //Function for after opening timepicker
         });
         $('select').material_select();
+
+        document.getElementById("submit_available_seats_form").addEventListener("click", function () {
+            document.getElementById("source").value = document.getElementById("departure_place").value;
+            document.getElementById("destination").value = document.getElementById("arrival_place").value;
+            document.getElementById("time1").value = document.getElementById("departure_time1").value;
+            document.getElementById("time2").value = document.getElementById("departure_time2").value;
+            document.getElementById("date").value = document.getElementById("departure_date").value;
+
+            document.getElementById("available_seats_form").submit();
+        });
     });
 </script>
 </html>

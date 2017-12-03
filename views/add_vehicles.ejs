@@ -96,20 +96,20 @@
             <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li class="active"><a href="/user/vehicles/add">Add Vehicle</a></li>
-                <li><a href="/my_bookings">My Bookings</a></li>
+                <li><a href="/user/bookings">My Bookings</a></li>
                 <li><a href="/user">My Profile</a></li>
-                <li><a href="/my_vehicles">My Vehicles</a></li>
-                <li><a href="/available_seats_form">See Available Seats</a></li>
+                <li><a href="/user/vehicles">My Vehicles</a></li>
+                <li><a href="/vehicles">See Available Seats</a></li>
                 <li><a href="/authentication/logout">Signout</a></li>
 
             </ul>
         </div>
         <ul class="side-nav black-text" id="mobile-side-menu">
             <li class="active"><a href="/user/vehicles/add">Add Vehicle</a></li>
-            <li><a href="/my_bookings">My Bookings</a></li>
+            <li><a href="/user/bookings">My Bookings</a></li>
             <li><a href="/user">My Profile</a></li>
-            <li><a href="/my_vehicles">My Vehicles</a></li>
-            <li><a href="/available_seats_form">See Available Seats</a></li>
+            <li><a href="/user/vehicles">My Vehicles</a></li>
+            <li><a href="/vehicles">See Available Seats</a></li>
             <li><a href="/authentication/logout">Signout</a></li>
         </ul>
     </nav>
@@ -154,9 +154,9 @@
                             <div class="input-field">
                                 <select id="departure">
                                     <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">Campus</option>
-                                    <option value="2">Parker</option>
-                                    <option value="3">Jahangirpuri</option>
+                                    <option value="Campus">Campus</option>
+                                    <option value="Parker">Parker</option>
+                                    <option value="Jahangirpuri">Jahangirpuri</option>
                                 </select>
                                 <label for="departure">Enter place</label>
                             </div>
@@ -170,9 +170,9 @@
                             <div class="input-field">
                                 <select id="arrival">
                                     <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">Campus</option>
-                                    <option value="2">Parker</option>
-                                    <option value="3">Jahangirpuri</option>
+                                    <option value="Campus">Campus</option>
+                                    <option value="Parker">Parker</option>
+                                    <option value="Jahangirpuri">Jahangirpuri</option>
                                 </select>
                                 <label for="arrival">Enter place</label>
                             </div>
@@ -243,11 +243,12 @@
         $(".button-collapse").sideNav();
         $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
-            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            selectYears: 1, // Creates a dropdown of 15 years to control year,
             today: 'Today',
             clear: 'Clear',
             close: 'Ok',
-            closeOnSelect: false // Close upon selecting a date,
+            closeOnSelect: true, // Close upon selecting a date,
+            format: 'dd-mm-yyyy'
         });
         $('.timepicker').pickatime({
             default: 'now', // Set default time: 'now', '1:30AM', '16:30'
@@ -258,7 +259,7 @@
             canceltext: 'Cancel', // Text for cancel-button
             autoclose: false, // automatic close timepicker
             ampmclickable: true, // make AM PM clickable
-            aftershow: function(){} //Function for after opening timepicker
+            /*aftershow: function(){} //Function for after opening timepicker*/
         });
         $('select').material_select();
 

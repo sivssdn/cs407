@@ -57,6 +57,10 @@
             content: 'ADD';
         }
 
+        .modal {
+            min-height: 100% !important;
+            max-height: 100% !important;
+        }
     </style>
 </head>
 <body>
@@ -67,19 +71,19 @@
             <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="/user/vehicles/add">Add Vehicle</a></li>
-                <li><a href="/my_bookings">My Bookings</a></li>
+                <li><a href="/user/bookings">My Bookings</a></li>
                 <li><a href="/user">My Profile</a></li>
                 <li class="active"><a href="/user/vehicles">My Vehicles</a></li>
-                <li><a href="/available_seats_form">See Available Seats</a></li>
+                <li><a href="/vehicles">See Available Seats</a></li>
                 <li><a href="/authentication/logout">Signout</a></li>
             </ul>
         </div>
         <ul class="side-nav black-text" id="mobile-side-menu">
             <li><a href="/user/vehicles/add">Add Vehicle</a></li>
-            <li><a href="/my_bookings">My Bookings</a></li>
+            <li><a href="/user/bookings">My Bookings</a></li>
             <li><a href="/user">My Profile</a></li>
             <li class="active"><a href="/user/vehicles">My Vehicles</a></li>
-            <li><a href="/available_seats_form">See Available Seats</a></li>
+            <li><a href="/vehicles">See Available Seats</a></li>
             <li><a href="/authentication/logout">Signout</a></li>
         </ul>
     </nav>
@@ -109,7 +113,10 @@
                     </thead>
                     <tbody>
                     <%
+                    var passengers = [];
                     for(var loop1 = 0; loop1 < vehicles.length; loop1++){
+                        /*passenger_emails[vehicles[loop1]._id] = */
+                        passengers[vehicles[loop1]._id] = vehicles[loop1].passengers;
                     %>
                     <tr>
                         <th><%- vehicles[loop1].vehicle_identification %></th>
@@ -124,25 +131,11 @@
                         </th>
                     </tr>
                     <% } %>
-                    <!--<tr>
-                        <th>UP 16 AC</th>
-                        <th>Arjun</th>
-                        <th>9958102335</th>
-                        <th>Campus</th>
-                        <th>Jahangirpuri</th>
-                    </tr>
-                    <tr>
-                        <th>DL 18 AC</th>
-                        <th>Prof</th>
-                        <th>9958456335</th>
-                        <th>Jahangirpuri</th>
-                        <th>Campus</th>
-                    </tr>-->
                     </tbody>
                 </table>
             </div>
         </div>
-        <div id="modal1" class="modal bottom-sheet">
+        <div id="modal1" class="modal bottom-sheet modal-fixed-foote">
             <div class="modal-content black-text">
                 <h4>Passengers</h4>
                 <table class="center">

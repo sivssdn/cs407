@@ -50,17 +50,12 @@ var getUserVehicles = function (userEmail) {
 
 var getUserBookings = function (userEmail) {
 
-    MongoClient.connect(url, function (error, db) {
-        console.log("-----get booking / users.js-----");
-        if (error) throw error;
-        //for searching email in passenger array
-        db.collection("vehicles").find({passengers: {$elemMatch: {email: userEmail}}}).toArray(function (error, result) {
-            if (error) throw error;
-            console.log(result + "=============");
-
-        });
+    return MongoClient.connect(url).then(function(db , error){
+        if(error) throw error;
+        var vehiclesList = db.collection("vehicles").find({passengers : {$elemMatch: {email: userEmail}}}).toArray();
+        db.close();
+        return vehiclesList;
     });
-
 };
 
 var bookUserSeat = function (vehicleID, passengerEmail) {
@@ -97,7 +92,7 @@ module.exports = {
         return getUserVehicles(userEmail);
     },
     getUserBookings: function (userEmail) {
-        getUserBookings(userEmail);
+        return getUserBookings(userEmail);
     },
     bookUserSeat : function (vehicleID, passengerEmail) {
         bookUserSeat(vehicleID, passengerEmail);

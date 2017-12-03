@@ -9,9 +9,9 @@ router.get('/', function (req, res, next) {
         var userMail = req.session.userMail;
 
         users.getUserProfile(userMail).then(function (profile) {
-        /*    var userMail = req.session.userMail;
-            console.log(userMail);
-         */
+            /*    var userMail = req.session.userMail;
+                console.log(userMail);
+             */
 
             res.render('my_profile', {userProfile: profile});
         }, function (err) {
@@ -24,7 +24,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post("/add", function (req, res, next) {
-    if(sessionPresent(req, res)) {
+    if (sessionPresent(req, res)) {
         //console.log(req.body);
         //add user
         var user = {
@@ -37,30 +37,32 @@ router.post("/add", function (req, res, next) {
         res.redirect('/user');
         //res.send("user added");
 
-    }else{
+    } else {
         //not logged in
         res.redirect('/authentication/login');
     }
 });
+
+/*/user/vehicles  - user vehicles*/
 router.get('/vehicles', function (req, res, next) {
-    if(sessionPresent(req, res)) {
+    if (sessionPresent(req, res)) {
         var userMail = req.session.userMail;
         users.getUserVehicles(userMail).then(function (vehicleList) {
-            res.render('my_vehicles', {vehicles : vehicleList});
+            res.render('my_vehicles', {vehicles: vehicleList});
         }, function (error) {
             console.log("Promise was rejected in /vehicles", error, error.stack);
         });
 
-    }else{
+    } else {
         //not logged in
         res.redirect('/authentication/login');
     }
 });
 
 router.get('/vehicles/add', function (req, res, next) {
-    if(sessionPresent(req, res)) {
+    if (sessionPresent(req, res)) {
         res.render('add_vehicles');
-    }else{
+    } else {
         //not logged in
         res.redirect('/authentication/login');
     }
@@ -68,11 +70,14 @@ router.get('/vehicles/add', function (req, res, next) {
 
 router.post('/vehicles/add', function (req, res, next) {
     /*/user/vehicles/add*/
-    if(sessionPresent(req, res)) {
+    if (sessionPresent(req, res)) {
+
+        var departure_time = new Date("2000-11-11T" + req.body.departure_time + "Z"); //for comparison purposes, date is fixed
+        var departure_date = formatDate(req.body.departure_date);
 
         var vehicleProfile = {
-            "departure_date": req.body.departure_date,
-            "departure_time": req.body.departure_time,
+            "departure_date": new Date(departure_date),
+            "departure_time": departure_time,
             "source": req.body.departure_place,
             "destination": req.body.arrival_place,
             "vehicle_identification": req.body.vehicle_name,
@@ -81,31 +86,28 @@ router.post('/vehicles/add', function (req, res, next) {
             "owner": req.session.userMail,
             "passengers": []
         };
+
         users.addUserVehicle(vehicleProfile);
         res.render('add_vehicles');
-    }else{
+    } else {
         //not logged in
         res.redirect('/authentication/login');
     }
 });
 
 router.get('/bookings', function (req, res, next) { //user/bookings
-    checkSession(req, res);
-    //next is callback function, mandatory argument
-    users.getUserBookings("a@gmail.com");
-    res.render('my_bookings');
-});
+    if (sessionPresent(req, res)) {
+        var userMail = req.session.userMail;
+        users.getUserBookings(userMail).then(function (vehicleList) {
+            res.render('my_bookings', {vehicles: vehicleList});
+        }, function (error) {
+            console.log("Promise was rejected in /bookings", error, error.stack);
+        });
 
-router.get('/available_seats_form', function (req, res, next) {
-    checkSession(req, res);
-    //can change between get and post
-    res.render('available_seats_form');
-});
-router.get('/bookings/book', function (req, res, next) {
-    checkSession(req, res);
-    //   /user/bookings/book
-    //can change between get and post
-    res.render('available_seats');
+    } else {
+        //not logged in
+        res.redirect('/authentication/login');
+    }
 });
 
 var sessionPresent = function (req, res, next) {
@@ -116,4 +118,22 @@ var sessionPresent = function (req, res, next) {
         return 1;
     }
 };
+
+var formatDate = function(date){
+    //to format date to validate and for comparison
+
+    //assuming input format dd-mm-yyyy and converted to yyyy-mm-dd
+    /*var dateObj = new Date(date);
+    var day = parseInt(dateObj.getDate());
+    var month = parseInt(dateObj.getMonth())+1;*/
+    /*if(month < 10)
+        month = "0"+month;
+    if(day < 10)
+        day = "0"+day;*/
+    var formattedDate = date.split("-");
+    formattedDate = formattedDate[2]+"-"+formattedDate[1]+"-"+formattedDate[0]+"T00:00Z";
+    //return dateObj.getFullYear()+"-"+month+"-"+day+"T00:00Z";
+    return formattedDate;
+};
+
 module.exports = router;
