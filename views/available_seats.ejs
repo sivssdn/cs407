@@ -1,6 +1,6 @@
 <%
 var source = "", destination = "", date = "";
-if (journey) {
+if (typeof journey != 'undefined') {
     if (journey.source) {
         source = journey.source;
     }
@@ -8,7 +8,7 @@ if (journey) {
         destination = journey.destination;
     }
     if (journey.date) {
-        date = journey.date;
+        date = journey.date.toDateString();
     }
 }
 %>
@@ -31,35 +31,15 @@ if (journey) {
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         html {
-            background-image: url("/images/WP_20150415_17_41_08_Pro.jpg");
+            background-image: url("/images/bg_ashoka.jpg");
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
-
-        }
-
-        body {
-            background: rgba(0, 0, 0, .8);
-            -webkit-backdrop-filter: grayscale(1) contrast(3) blur(10px);
-            /*backdrop-filter: grayscale(1) contrast(3) blur(1px);*/
-            z-index: 100;
-
-            min-width: 100% !important;
-            max-width: 100%;
-            min-height: 200% !important;
-            /*max-height: device-width;*/
-
             color: #ffffff;
-
         }
 
         th {
             text-align: center;
-        }
-
-        .outer {
-            margin-top: -2%;
-            width: 100% !important;
         }
 
         .card-padding {
@@ -99,79 +79,74 @@ if (journey) {
 </header>
 <main>
     <div class="section"></div>
-    <div class="container outer ">
 
+    <div class="row animated bounceInDown">
+        <div class="section hide-on-small-and-down"></div>
+        <h4 class="center">See Available Seats</h4>
+        <div class="section hide-on-small-and-down"></div>
+        <div class="col l7 m5 push-l2 s12">
+            <table class="center">
+                <thead>
+                <tr>
+                    <th>Availability</th>
+                    <th colspan="3">From <%- source %> to <%- destination %> on <%- date %></th>
+                </tr>
+                </thead>
+                <tbody>
+                <%
+                var departure_time = "", seats_left = "";
+                total_vehicles = vehicles.length;
+                for(var loop1 = 0; loop1 < total_vehicles; loop1++){
+                %>
+                <tr>
+                    <td>
+                        <%
+                            seats_left = vehicles[loop1].total_seats - vehicles[loop1].passengers.length;
+                        if(seats_left < 0){
+                            seats_left = 0;
+                        %>
+                        <a class="btn-floating btn-large waves-effect waves-light red button-availability"
+                           data-vehicle-id="<%- vehicles[loop1]._id %>"
+                           data-availability="<%- seats_left %>"><%- seats_left %></a>
+                        <% }else{ %>
+                        <a class="btn-floating btn-large waves-effect waves-light green button-availability"
+                           data-vehicle-id="<%- vehicles[loop1]._id %>"
+                           data-availability="<%- seats_left %>"><%- seats_left %></a>
+                        <% } %>
+                    </td>
+                    <td>
+                        <div class="card-panel blue card-padding">
+                            <%- vehicles[loop1].vehicle_identification %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card-panel blue card-padding">
+                            <%
+                                //preparing time format
+                                if (String(vehicles[loop1].departure_time).length > 0) {
+                                    departure_time = new Date(vehicles[loop1].departure_time).toISOString().split("T")[1].split(":").slice(0, 2);
+                                    departure_time = String(departure_time).replace(",", ":");
+                                }
+                            %>
+                            <%- departure_time %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card-panel blue card-padding">
+                            &#x20b9; <%- vehicles[loop1].price %>
+                        </div>
+                    </td>
+                </tr>
+                <% } %>
 
-        <div class="row animated bounceInDown">
-            <div class="section hide-on-small-and-down"></div>
-            <h4 class="center">See Available Seats</h4>
-            <div class="section hide-on-small-and-down"></div>
-            <div class="col l7 m5 push-l2 s12">
-                <table class="center">
-                    <thead>
-                    <tr>
-                        <th>Availability</th>
-                        <th colspan="3">From <%- source %> to <%- destination %> on <%- date.toDateString() %></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <%
-                    var departure_time = "";
-                    total_vehicles = vehicles.length;
-                    for(var loop1 = 0; loop1 < total_vehicles; loop1++){
-                    %>
-                    <tr>
-                        <td>
-                            <a class="btn-floating btn-large waves-effect waves-light green button-availability"
-                               data-id="<%-vehicles._id%>"
-                               data-availability="<%- vehicles[loop1].total_seats %>"><%- vehicles[loop1].total_seats %></a>
-                        </td>
-                        <td>
-                            <div class="card-panel blue card-padding">
-                                <%- vehicles[loop1].vehicle_identification %>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="card-panel blue card-padding">
-                                <%
-                                    //preparing time format
-                                    if(String(vehicles[loop1].departure_time).length > 0) {
-                                        departure_time = new Date(vehicles[loop1].departure_time).toISOString().split("T")[1].split(":").slice(0, 2);
-                                        departure_time = String(departure_time).replace(",", ":");
-                                    }
-
-                                %>
-                                <%-departure_time%>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="card-panel blue card-padding">
-                                &#x20b9; <%- vehicles[loop1].price %>
-                            </div>
-                        </td>
-                    </tr>
-                    <% } %>
-
-                    </tbody>
-                </table>
-            </div>
-
+                </tbody>
+            </table>
         </div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-
     </div>
+    <form method="post" action="/vehicles/book" id="book_seat_form">
+        <input id="vehicle_id" name="vehicle_id" hidden>
+    </form>
+
 </main>
 </body>
 <script type="text/javascript" src="/javascripts/jquery.js"></script>
@@ -181,15 +156,21 @@ if (journey) {
         $(".button-collapse").sideNav();
     });
 
-    var screen_page = {};
-    screen_page.availability_buttons = document.getElementsByClassName("button-availability");
+    var availability_seats_page = {};
+    availability_seats_page.availability_buttons = document.getElementsByClassName("button-availability");
     //loop to toggle between '+' sign and number of seats available on mouseover event
-    for (var loop1 = 0; loop1 < screen_page.availability_buttons.length; loop1++) {
-        screen_page.availability_buttons[loop1].addEventListener("mouseenter", function () {
+    for (var loop1 = 0; loop1 < availability_seats_page.availability_buttons.length; loop1++) {
+        //ui changes
+        availability_seats_page.availability_buttons[loop1].addEventListener("mouseenter", function () {
             this.innerHTML = "<i class=\"material-icons\">add</i>";
         });
-        screen_page.availability_buttons[loop1].addEventListener("mouseleave", function () {
+        availability_seats_page.availability_buttons[loop1].addEventListener("mouseleave", function () {
             this.innerHTML = this.getAttribute("data-availability");
+        });
+        //form
+        availability_seats_page.availability_buttons[loop1].addEventListener("click", function () {
+            document.getElementById("vehicle_id").value = this.getAttribute("data-vehicle-id");
+            document.getElementById("book_seat_form").submit();
         });
     }
 </script>

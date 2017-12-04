@@ -58,26 +58,6 @@ var getUserBookings = function (userEmail) {
     });
 };
 
-var bookUserSeat = function (vehicleID, passengerEmail) {
-//---------------------------------------------------------------------------
-    MongoClient.connect(url, function (error, db) {
-        if (error) throw error;
-        var passengerDetails = {
-            $push: {
-                passengers: [
-                    {
-                        email: passengerEmail
-                    }
-                ]
-            }
-        };
-        db.collection("vehicles").update({_id : vehicleID}, passengerDetails, function (error, result) {
-            if(error) throw error;
-            console.log(result);
-        });
-    });
-};
-
 module.exports = {
     addUser: function (user) {
         addUser(user);
@@ -93,8 +73,5 @@ module.exports = {
     },
     getUserBookings: function (userEmail) {
         return getUserBookings(userEmail);
-    },
-    bookUserSeat : function (vehicleID, passengerEmail) {
-        bookUserSeat(vehicleID, passengerEmail);
     }
 };

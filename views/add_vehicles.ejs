@@ -12,71 +12,22 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
 
-    <!--<link type="text/css" rel="stylesheet" href="css/materialize.css">-->
     <link type="text/css" rel="stylesheet" href="/css/materialize_0_100_2.css">
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
     <link type="text/css" rel="stylesheet" href="/css/animate.css">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
 
-        @media only screen and (max-width: 990px) {
-
             html {
-                background-image: url("/images/WP_20150415_17_41_08_Pro.jpg");
+                background-image: url("/images/bg_ashoka.jpg");
                 background-repeat: no-repeat;
                 background-size: cover;
                 background-attachment: fixed;
-            }
-
-            body {
-                background: rgba(0, 0, 0, .8);
-                -webkit-backdrop-filter: grayscale(1) contrast(3) blur(10px);
-                /*backdrop-filter: grayscale(1) contrast(3) blur(1px);*/
-                z-index: 100;
-
-                min-width: 100% !important;
-                max-width: 100%;
-                min-height: 200% !important;
-                /*max-height: device-width;*/
-
                 color: #ffffff;
-
             }
-
-        }
-
-        @media only screen and (min-width: 992px) {
-            html {
-                background-image: url("/images/WP_20150415_17_41_08_Pro.jpg");
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-attachment: fixed;
-            }
-
-            body {
-                background: rgba(0, 0, 0, .8);
-                -webkit-backdrop-filter: grayscale(1) contrast(3) blur(10px);
-                /*backdrop-filter: grayscale(1) contrast(3) blur(1px);*/
-                z-index: 100;
-
-                min-width: 100% !important;
-                max-width: 100%;
-                min-height: 200% !important;
-                /*max-height: device-width;*/
-
-                color: #ffffff;
-
-            }
-        }
 
 
         th {
             text-align: center;
-        }
-
-        .outer {
-            margin-top: -2%;
-            width: 100% !important;
         }
 
         .card-padding {
@@ -116,7 +67,7 @@
 </header>
 <main>
     <div class="section"></div>
-    <div class="container outer ">
+
         <div class="row animated bounceInDown">
             <div class="section hide-on-small-and-down"></div>
             <h4 class="center">Add Vehicles</h4>
@@ -222,7 +173,7 @@
             </div>
         </div>
         <div class="section"></div>
-    </div>
+
     <form method="post" action="/user/vehicles/add" id="add_vehicle_form">
         <input name="departure_date" id="departure_date" hidden>
         <input name="departure_time" id="departure_time" hidden>

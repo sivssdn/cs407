@@ -99,7 +99,7 @@ router.get('/bookings', function (req, res, next) { //user/bookings
     if (sessionPresent(req, res)) {
         var userMail = req.session.userMail;
         users.getUserBookings(userMail).then(function (vehicleList) {
-            res.render('my_bookings', {vehicles: vehicleList});
+            res.render('my_bookings', {vehicles: vehicleList, userMail : userMail});
         }, function (error) {
             console.log("Promise was rejected in /bookings", error, error.stack);
         });

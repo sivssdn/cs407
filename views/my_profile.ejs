@@ -1,10 +1,10 @@
 <%
 //check for empty array for new records
 var name = "", contact = "", department = "";
-if (userProfile[0]) {
-    name = (userProfile[0].name === undefined ? '' : userProfile[0].name);
-    contact = (userProfile[0].contact === undefined ? '' : userProfile[0].contact);
-    department = (userProfile[0].department === undefined ? '' : userProfile[0].department);
+if (typeof userProfile != 'undefined' && typeof userProfile[0] != 'undefined') {
+    name = (typeof userProfile[0].name == 'undefined' ? '' : userProfile[0].name);
+    contact = (typeof userProfile[0].contact == 'undefined' ? '' : userProfile[0].contact);
+    department = (typeof userProfile[0].department == 'undefined' ? '' : userProfile[0].department);
 }
 %>
 <!DOCTYPE HTML>
@@ -28,35 +28,15 @@ if (userProfile[0]) {
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         html {
-            background-image: url("/images/WP_20150415_17_41_08_Pro.jpg");
+            background-image: url("/images/bg_ashoka.jpg");
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
-
-        }
-
-        body {
-            background: rgba(0, 0, 0, .8);
-            -webkit-backdrop-filter: grayscale(1) contrast(3) blur(10px);
-            /*backdrop-filter: grayscale(1) contrast(3) blur(1px);*/
-            z-index: 100;
-
-            min-width: 100% !important;
-            max-width: 100%;
-            min-height: 200% !important;
-            /*max-height: device-width;*/
-
             color: #ffffff;
-
         }
 
         th {
             text-align: center;
-        }
-
-        .outer {
-            margin-top: -2%;
-            width: 100% !important;
         }
 
         .card-padding {
@@ -96,7 +76,7 @@ if (userProfile[0]) {
 </header>
 <main>
     <div class="section"></div>
-    <div class="container outer ">
+
         <div class="row animated bounceInDown">
             <div class="section hide-on-small-and-down"></div>
             <h4 class="center">My Profile</h4>
@@ -205,17 +185,11 @@ if (userProfile[0]) {
             <input name="phone" id="hidden_phone" hidden>
             <input name="department" id="hidden_department" hidden>
         </form>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-    </div>
+
 </main>
 </body>
 <script type="text/javascript" src="/javascripts/jquery.js"></script>
-<!--<script type="text/javascript" src="js/materialize.min.js"></script>-->
 <script type="text/javascript" src="/javascripts/materialize_0_100_2_min.js"></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>-->
 <script>
     $(document).ready(function () {
         $('select').material_select();

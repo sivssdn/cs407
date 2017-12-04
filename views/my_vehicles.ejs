@@ -17,35 +17,15 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         html {
-            background-image: url("/images/WP_20150415_17_41_08_Pro.jpg");
+            background-image: url("/images/bg_ashoka.jpg");
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
-
-        }
-
-        body {
-            background: rgba(0, 0, 0, .8);
-            -webkit-backdrop-filter: grayscale(1) contrast(3) blur(10px);
-            /*backdrop-filter: grayscale(1) contrast(3) blur(1px);*/
-            z-index: 1;
-
-            min-width: 100% !important;
-            max-width: 100%;
-            min-height: 200% !important;
-            /*max-height: device-width;*/
-
             color: #ffffff;
-
         }
 
         th {
             text-align: center;
-        }
-
-        .outer {
-            margin-top: -2%;
-            width: 100% !important;
         }
 
         .card-padding {
@@ -90,7 +70,6 @@
 </header>
 <main>
     <div class="section"></div>
-    <div class="container outer ">
 
         <div class="row animated bounceInDown">
             <div class="section hide-on-small-and-down"></div>
@@ -113,21 +92,25 @@
                     </thead>
                     <tbody>
                     <%
-                    var passengers = [];
+                    var passengers = [], departure_time = "";
                     for(var loop1 = 0; loop1 < vehicles.length; loop1++){
-                        /*passenger_emails[vehicles[loop1]._id] = */
+                        if (String(vehicles[loop1].departure_time).length > 0) {
+                            departure_time = new Date(vehicles[loop1].departure_time).toISOString().split("T")[1].split(":").slice(0, 2);
+                            departure_time = String(departure_time).replace(",", ":");
+                        }
+
                         passengers[vehicles[loop1]._id] = vehicles[loop1].passengers;
                     %>
                     <tr>
                         <th><%- vehicles[loop1].vehicle_identification %></th>
                         <th><%- vehicles[loop1].source %></th>
                         <th><%- vehicles[loop1].destination %></th>
-                        <th><%- vehicles[loop1].departure_date %></th>
-                        <th><%- vehicles[loop1].departure_time %></th>
+                        <th><%- vehicles[loop1].departure_date.toDateString() %></th>
+                        <th><%- departure_time %></th>
                         <th><%- vehicles[loop1].total_seats %></th>
                         <th><%- vehicles[loop1].price %></th>
                         <th>
-                            <a href="#modal1" class="blue darken-4 waves-effect waves-light btn modal-trigger">View</a>
+                            <a href="#modal1" class="blue darken-4 waves-effect waves-light btn modal-trigger">View (<%-vehicles[loop1].passengers.length%>)</a>
                         </th>
                     </tr>
                     <% } %>
@@ -135,7 +118,7 @@
                 </table>
             </div>
         </div>
-        <div id="modal1" class="modal bottom-sheet modal-fixed-foote">
+        <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
             <div class="modal-content black-text">
                 <h4>Passengers</h4>
                 <table class="center">
@@ -160,19 +143,6 @@
             </div>
         </div>
 
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
-    </div>
 </main>
 </body>
 <script type="text/javascript" src="/javascripts/jquery.js"></script>

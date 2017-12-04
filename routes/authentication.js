@@ -90,7 +90,8 @@ app.use( passport.initialize());
 app.use( passport.session());
 
 app.get('/', function(req, res){
-    res.redirect('/authentication/login');
+    res.render('index', { user: req.user });
+    //res.redirect('/authentication/login');
 });
 app.get('/login', function(req, res){
     res.render('index', { user: req.user });

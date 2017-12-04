@@ -1,25 +1,57 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="theme-color" content="black">
+
+    <title>Transit</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/css/materialize_0_100_2.css">
+    <link type="text/css" rel="stylesheet" href="/css/animate.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        body        { padding-top:80px; }
+        html {
+            background-image: url("/images/bg_ashoka.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            color: #ffffff;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        .card-padding {
+            padding-top: 5% !important;
+            padding-bottom: 5% !important;
+        }
+
+        .button-availability:hover {
+            content: 'ADD';
+        }
     </style>
+
 </head>
 <body>
-<div class="container">
+<main>
+    <div class="section"></div>
 
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span> Node Authentication</h1>
+        <div class="row animated bounceInDown">
+            <div class="section hide-on-small-and-down"></div>
+            <div class="col l5 m5 push-l4 s12 push-s2">
+                <img src="/images/logo.png" height="400">
+                <div class="section"></div>
+                    <a href="/authentication/auth/google" class="btn btn-large blue darken-4"><span class="fa fa-google-plus"></span>
+                        &nbsp; &nbsp; Sign in using Gmail Account &nbsp; &nbsp;</a>
+            </div>
+        </div>
 
-        <p>Login or Register with:</p>
-
-        <a href="/authentication/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
-
-    </div>
-
-</div>
+</main>
 </body>
 </html>
