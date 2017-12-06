@@ -46,7 +46,7 @@ router.post('/book', function (req, res, next) {
     if (sessionPresent(req, res)) {
 
         vehicles.bookSeat(req.body.vehicle_id, req.session.userMail);
-        res.render('available_seats');
+        res.render('my_bookings');
     } else {
         //not logged in
         res.redirect("/authentication/login");
