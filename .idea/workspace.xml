@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="65eaeda9-8a34-4d86-8e9a-99ef7a88f0c8" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bg_ashoka.jpg" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/users.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/vehicles.js" />
@@ -38,6 +39,20 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/buffer-shims/license.md" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/buffer-shims/package.json" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/buffer-shims/readme.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/camelize/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/camelize/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/camelize/example/camel.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/camelize/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/camelize/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/camelize/readme.markdown" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/camelize/test/camel.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/content-security-policy-builder/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/content-security-policy-builder/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/content-security-policy-builder/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/content-security-policy-builder/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/content-security-policy-builder/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/content-security-policy-builder/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/content-security-policy-builder/test/index.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/core-util-is/LICENSE" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/core-util-is/README.md" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/core-util-is/float.patch" />
@@ -60,6 +75,32 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/crc/lib/define_crc.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/crc/lib/index.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/crc/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dasherize/.jshintrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dasherize/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dasherize/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dasherize/example/dash.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dasherize/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dasherize/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dasherize/readme.markdown" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dasherize/test/dash.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dashify/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dashify/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dashify/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dashify/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dns-prefetch-control/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dns-prefetch-control/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dns-prefetch-control/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dns-prefetch-control/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dns-prefetch-control/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dns-prefetch-control/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dns-prefetch-control/test/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dont-sniff-mimetype/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dont-sniff-mimetype/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dont-sniff-mimetype/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dont-sniff-mimetype/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dont-sniff-mimetype/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dont-sniff-mimetype/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/dont-sniff-mimetype/test/index.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/es6-promise/CHANGELOG.md" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/es6-promise/LICENSE" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/es6-promise/README.md" />
@@ -78,6 +119,11 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/es6-promise/lib/es6-promise/then.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/es6-promise/lib/es6-promise/utils.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/es6-promise/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/expect-ct/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/expect-ct/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/expect-ct/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/expect-ct/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/expect-ct/package.json" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/express-session/HISTORY.md" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/express-session/LICENSE" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/express-session/README.md" />
@@ -92,6 +138,63 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/express-session/session/memory.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/express-session/session/session.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/express-session/session/store.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/frameguard/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/frameguard/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/frameguard/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/frameguard/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/frameguard/lib/isstring.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/frameguard/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/check-options/check-directive/boolean.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/check-options/check-directive/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/check-options/check-directive/plugin-types.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/check-options/check-directive/report-uri.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/check-options/check-directive/require-sri-for.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/check-options/check-directive/sandbox.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/check-options/check-directive/source-list.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/check-options/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/config.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/contains-function.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/get-header-keys-for-browser.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/is-boolean.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/is-function.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/is-string.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/parse-dynamic-directives.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/lib/transform-directives-for-browser.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet-csp/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet/HISTORY.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/helmet/security.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hide-powered-by/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hide-powered-by/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hide-powered-by/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hide-powered-by/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hide-powered-by/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hide-powered-by/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hide-powered-by/test/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hpkp/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hpkp/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hpkp/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hpkp/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hpkp/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hsts/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hsts/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hsts/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hsts/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/hsts/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ienoopen/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ienoopen/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ienoopen/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ienoopen/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ienoopen/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ienoopen/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ienoopen/test/index.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/isarray/.npmignore" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/isarray/.travis.yml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/isarray/Makefile" />
@@ -100,6 +203,10 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/isarray/index.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/isarray/package.json" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/isarray/test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/lodash.reduce/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/lodash.reduce/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/lodash.reduce/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/lodash.reduce/package.json" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/mongodb-core/.coveralls.yml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/mongodb-core/.eslintrc" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/mongodb-core/HISTORY.md" />
@@ -179,6 +286,11 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/mongodb/lib/utils.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/mongodb/package.json" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/mongodb/yarn.lock" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/nocache/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/nocache/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/nocache/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/nocache/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/nocache/package.json" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/oauth/.npmignore" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/oauth/LICENSE" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/oauth/Makefile" />
@@ -249,6 +361,10 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/pause/Readme.md" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/pause/index.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/pause/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/platform/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/platform/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/platform/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/platform/platform.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/process-nextick-args/.travis.yml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/process-nextick-args/index.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/process-nextick-args/license.md" />
@@ -282,6 +398,11 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/readable-stream/transform.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/readable-stream/writable-browser.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/readable-stream/writable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/referrer-policy/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/referrer-policy/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/referrer-policy/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/referrer-policy/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/referrer-policy/package.json" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/require_optional/.npmignore" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/require_optional/.travis.yml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/require_optional/HISTORY.md" />
@@ -321,6 +442,15 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/util-deprecate/browser.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/util-deprecate/node.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/util-deprecate/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/x-xss-protection/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/x-xss-protection/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/x-xss-protection/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/x-xss-protection/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/x-xss-protection/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/x-xss-protection/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/x-xss-protection/test/disabled_browser_list.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/x-xss-protection/test/enabled_browser_list.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/x-xss-protection/test/index.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/authentication.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/user_routes.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/vehicle_routes.js" />
@@ -346,21 +476,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="my_vehicles.ejs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/my_vehicles.ejs">
+      <file leaf-file-name="user_routes.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/user_routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="208" column="58" lean-forward="false" selection-start-line="208" selection-start-column="58" selection-end-line="208" selection-end-column="58" />
+            <state relative-caret-position="119">
+              <caret line="130" column="100" lean-forward="false" selection-start-line="130" selection-start-column="95" selection-end-line="130" selection-end-column="100" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/user_routes.js">
+      <file leaf-file-name="my_bookings.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/my_bookings.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+            <state relative-caret-position="326">
+              <caret line="158" column="7" lean-forward="true" selection-start-line="158" selection-start-column="7" selection-end-line="158" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vehicles.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models/vehicles.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="35" column="4" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/users.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="35" lean-forward="false" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -414,19 +564,19 @@
         <option value="$PROJECT_DIR$/config/passport.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/routes/user.js" />
-        <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/models/users.js" />
-        <option value="$PROJECT_DIR$/models/vehicles.js" />
         <option value="$PROJECT_DIR$/routes/authentication.js" />
         <option value="$PROJECT_DIR$/views/add_vehicles.ejs" />
         <option value="$PROJECT_DIR$/views/my_profile.ejs" />
         <option value="$PROJECT_DIR$/views/available_seats_form.ejs" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
-        <option value="$PROJECT_DIR$/views/my_bookings.ejs" />
-        <option value="$PROJECT_DIR$/views/available_seats.ejs" />
+        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/vehicle_routes.js" />
-        <option value="$PROJECT_DIR$/routes/user_routes.js" />
+        <option value="$PROJECT_DIR$/views/available_seats.ejs" />
         <option value="$PROJECT_DIR$/views/my_vehicles.ejs" />
+        <option value="$PROJECT_DIR$/models/vehicles.js" />
+        <option value="$PROJECT_DIR$/routes/user_routes.js" />
+        <option value="$PROJECT_DIR$/models/users.js" />
+        <option value="$PROJECT_DIR$/views/my_bookings.ejs" />
       </list>
     </option>
   </component>
@@ -463,8 +613,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -475,24 +626,13 @@
             <path>
               <item name="cs407_node" type="b2602c69:ProjectViewProjectNode" />
               <item name="cs407_node" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cs407_node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cs407_node" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cs407_node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cs407_node" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -638,15 +778,19 @@
       <workItem from="1512390811151" duration="16043000" />
       <workItem from="1512458414163" duration="1331000" />
       <workItem from="1512553384470" duration="8866000" />
-      <workItem from="1512578315143" duration="5812000" />
+      <workItem from="1512578315143" duration="6834000" />
+      <workItem from="1512640688654" duration="1131000" />
+      <workItem from="1513080428962" duration="603000" />
+      <workItem from="1513087359663" duration="9376000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151117000" />
+    <option name="totallyTimeSpent" value="163249000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -656,20 +800,20 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30862328" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32223904" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967105" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967105" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -951,31 +1095,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/vehicles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="102" column="11" lean-forward="false" selection-start-line="102" selection-start-column="11" selection-end-line="102" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="66" column="20" lean-forward="false" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/authentication.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="92" column="6" lean-forward="false" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/add_vehicles.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1000,14 +1123,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/my_bookings.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-236">
-          <caret line="106" column="27" lean-forward="false" selection-start-line="106" selection-start-column="27" selection-end-line="106" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1015,42 +1130,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/users.js">
+    <entry file="file://$PROJECT_DIR$/views/available_seats.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="39" column="4" lean-forward="false" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
-          <folding />
+        <state relative-caret-position="17">
+          <caret line="135" column="24" lean-forward="true" selection-start-line="135" selection-start-column="24" selection-end-line="135" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/vehicle_routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="48" column="31" lean-forward="false" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
-          <folding />
+        <state relative-caret-position="34">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/available_seats.ejs">
+    <entry file="file://$PROJECT_DIR$/views/add_vehicles.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/user_routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+        <state relative-caret-position="349">
+          <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/my_vehicles.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="208" column="58" lean-forward="false" selection-start-line="208" selection-start-column="58" selection-end-line="208" selection-end-column="58" />
+        <state relative-caret-position="190">
+          <caret line="107" column="122" lean-forward="false" selection-start-line="107" selection-start-column="122" selection-end-line="107" selection-end-column="122" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="69" column="23" lean-forward="true" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="35" lean-forward="false" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/user_routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="130" column="100" lean-forward="false" selection-start-line="130" selection-start-column="95" selection-end-line="130" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/my_bookings.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="158" column="7" lean-forward="true" selection-start-line="158" selection-start-column="7" selection-end-line="158" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/vehicles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="35" column="4" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
           <folding />
         </state>
       </provider>

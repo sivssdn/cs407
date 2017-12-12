@@ -2,11 +2,13 @@ var express = require('express');
 var router = express.Router();
 var users = require("../models/users");
 var bodyParser = require('body-parser');
+var vehicles = require("../models/vehicles");
 
 //Application routes
 router.get('/', function (req, res, next) {
     if (sessionPresent(req, res)) {
         var userMail = req.session.userMail;
+
 
         users.getUserProfile(userMail).then(function (profile) {
             /*    var userMail = req.session.userMail;
@@ -22,6 +24,9 @@ router.get('/', function (req, res, next) {
         res.redirect('/authentication/login');
     }
 });
+/*router.get('/:id', function (req, res, next) {
+    console.log("-------"+req.params.id);
+});*/
 
 router.post("/add", function (req, res, next) {
     if (sessionPresent(req, res)) {
@@ -90,7 +95,11 @@ router.post('/vehicles/add', function (req, res, next) {
         };
 
         users.addUserVehicle(vehicleProfile);
-        res.render('add_vehicles');
+        var userMail = req.session.userMail;
+        //getting the list of all user vehicles
+        users.getUserVehicles(userMail).then(function (vehicleList) {
+            res.render('my_vehicles', {newVehicleProfile: vehicleProfile, vehicles: vehicleList});
+        });
     } else {
         //not logged in
         res.redirect('/authentication/login');
@@ -101,7 +110,7 @@ router.get('/bookings', function (req, res, next) { //user/bookings
     if (sessionPresent(req, res)) {
         var userMail = req.session.userMail;
         users.getUserBookings(userMail).then(function (vehicleList) {
-            res.render('my_bookings', {vehicles: vehicleList, userMail : userMail});
+            res.render('my_bookings', {vehicles: vehicleList, userMail: userMail});
         }, function (error) {
             console.log("Promise was rejected in /bookings", error, error.stack);
         });
@@ -109,6 +118,51 @@ router.get('/bookings', function (req, res, next) { //user/bookings
     } else {
         //not logged in
         res.redirect('/authentication/login');
+    }
+});
+
+router.post('/bookings/add', function (req, res, next) {
+    if (sessionPresent(req, res)) {
+        var userMail = req.session.userMail;
+        vehicles.bookSeat(req.body.vehicle_id, req.session.userMail).then(function (err) {
+            if (err) throw err;
+            return users.getUserBookings(userMail);
+        }).then(function (vehicleList) {
+            res.render('my_bookings', {vehicles: vehicleList, userMail: userMail, seatStatus: "Added"});
+        }, function (error) {
+            console.log("Promise was rejected in /bookings", error, error.stack);
+        });
+        /*users.getUserBookings(userMail).then(function (vehicleList) {
+            res.render('my_bookings', {vehicles: vehicleList, userMail : userMail, seatStatus: "Added"});
+        });*/
+
+    } else {
+        //not logged in
+        res.redirect("/authentication/login");
+    }
+});
+
+router.post('/bookings/cancel', function (req, res, next) {
+    if (sessionPresent(req, res)) {
+        var userMail = req.session.userMail;
+        vehicles.cancelSeat(req.body.vehicle_id, req.body.passenger_id).then(function (err) {
+            if (err) throw err;
+            return users.getUserBookings(userMail);
+        }).then(function (vehicleList) {
+            res.render('my_bookings', {vehicles: vehicleList, userMail: userMail, seatStatus: "Cancelled"});
+        }, function (error) {
+            console.log("Promise was rejected in /bookings", error, error.stack);
+        });
+        /*
+        users.getUserBookings(userMail).then(function (vehicleList) {
+            res.render('my_bookings', {vehicles: vehicleList, seatStatus : "Cancelled"});
+        }, function (error) {
+            console.log("Promise was rejected in /bookings", error, error.stack);
+        });
+*/
+    } else {
+        //not logged in
+        res.redirect("/authentication/login");
     }
 });
 
@@ -121,7 +175,7 @@ var sessionPresent = function (req, res, next) {
     }
 };
 
-var formatDate = function(date){
+var formatDate = function (date) {
     //to format date to validate and for comparison
 
     //assuming input format dd-mm-yyyy and converted to yyyy-mm-dd
@@ -133,7 +187,7 @@ var formatDate = function(date){
     if(day < 10)
         day = "0"+day;*/
     var formattedDate = date.split("-");
-    formattedDate = formattedDate[2]+"-"+formattedDate[1]+"-"+formattedDate[0]+"T00:00Z";
+    formattedDate = formattedDate[2] + "-" + formattedDate[1] + "-" + formattedDate[0] + "T00:00Z";
     //return dateObj.getFullYear()+"-"+month+"-"+day+"T00:00Z";
     return formattedDate;
 };

@@ -4,7 +4,6 @@ var ObjectID = mongo.ObjectID;
 var url = "mongodb://localhost:27017/transit";
 
 var addVehicle = function (vehicleProfile) {
-    console.log("-------vehicles.js--------");
 
     MongoClient.connect(url, function (error, db) {
         if (error) throw error;
@@ -19,7 +18,7 @@ var addVehicle = function (vehicleProfile) {
 };
 
 var getVehicles = function (journeyDetails) {
-    console.log("---get vehicles---");
+
     return MongoClient.connect(url).then(function (db, error) {
         if (error) throw error;
         var query = {
@@ -32,7 +31,8 @@ var getVehicles = function (journeyDetails) {
             ]
         };
 
-        var vehicleList = db.collection("vehicles").find(query).toArray();
+        var sortResults = {departure_date: -1}; //-1 for sorting in descending order, recent date first
+        var vehicleList = db.collection("vehicles").find(query).sort(sortResults).limit(200).toArray();
         db.close();
         return vehicleList;
     });
@@ -125,11 +125,11 @@ var cancelSeat = function (vehicleID, passengerID) {
         }).then(function (passengerBookingStatus) {
             var updateQuery = {}, setQuery = {};
 
-             if (passengerBookingStatus === "Confirmed" || passengerBookingStatus === "Waitlist") {
+            if (passengerBookingStatus === "Confirmed" || passengerBookingStatus === "Waitlist") {
                 updateQuery = {
                     _id: new ObjectID(vehicleID),
-                    passengers : {
-                        $elemMatch : {_id: new ObjectID(passengerID)}
+                    passengers: {
+                        $elemMatch: {_id: new ObjectID(passengerID)}
                     }
                 };
                 setQuery = {
@@ -138,7 +138,7 @@ var cancelSeat = function (vehicleID, passengerID) {
                     }
                 };
                 db.collection("vehicles").update(updateQuery, setQuery, function (error, numAffected) {
-                    if(error) throw error;
+                    if (error) throw error;
                     return numAffected
                 });
             }

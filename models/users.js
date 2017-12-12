@@ -6,7 +6,6 @@ var url = "mongodb://localhost:27017/transit";
 var addUser = function (user) {
 
     MongoClient.connect(url, function (error, db) {
-        console.log("----add user / users.js-----");
 
         if (error) throw error;
         var insertUserObject = {
@@ -17,7 +16,6 @@ var addUser = function (user) {
         };
         db.collection("users").insertOne(insertUserObject, function (error, result) {
             if (error) throw error;
-            console.log("---user added---" + result);
             db.close();
         });
     });
@@ -40,8 +38,11 @@ var getUserProfile = function (userEmail) {
 var getUserVehicles = function (userEmail) {
 
     return MongoClient.connect(url).then(function (db, error) {
-        if(error) throw error;
-        var userVehiclesList= db.collection("vehicles").find({owner: userEmail}).toArray();
+        if (error) throw error;
+
+        var sortResults = {departure_date: -1}; //-1 for sorting in descending order, recent date first
+
+        var userVehiclesList = db.collection("vehicles").find({owner: userEmail}).sort(sortResults).limit(200).toArray();
         db.close();
         return userVehiclesList;
     });
@@ -50,9 +51,10 @@ var getUserVehicles = function (userEmail) {
 
 var getUserBookings = function (userEmail) {
 
-    return MongoClient.connect(url).then(function(db , error){
-        if(error) throw error;
-        var vehiclesList = db.collection("vehicles").find({passengers : {$elemMatch: {email: userEmail}}}).toArray();
+    return MongoClient.connect(url).then(function (db, error) {
+        if (error) throw error;
+        var sortResults = {departure_time: -1};
+        var vehiclesList = db.collection("vehicles").find({passengers: {$elemMatch: {email: userEmail}}}).sort(sortResults).limit(200).toArray();
         db.close();
         return vehiclesList;
     });

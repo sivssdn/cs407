@@ -42,28 +42,6 @@ router.post('/', function (req, res, next) {
     }
 });
 
-router.post('/book', function (req, res, next) {
-    if (sessionPresent(req, res)) {
-
-        vehicles.bookSeat(req.body.vehicle_id, req.session.userMail);
-        res.render('my_bookings');
-    } else {
-        //not logged in
-        res.redirect("/authentication/login");
-    }
-});
-
-router.post('/cancel', function (req, res, next) {
-    if (sessionPresent(req, res)) {
-
-        vehicles.cancelSeat(req.body.vehicle_id, req.body.passenger_id).then(function(result){
-            res.redirect('/user/bookings');
-        });
-    } else {
-        //not logged in
-        res.redirect("/authentication/login");
-    }
-});
 var sessionPresent = function (req, res, next) {
     if (req.session === undefined || !req.session.userMail) {
         return 0;

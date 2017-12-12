@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require("express-session");
+var helmet = require('helmet');
 
 var index = require('./routes/user_routes');
 var authentication = require('./routes/authentication');
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false})); //to allow parsing with query string library
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(helmet()); //for security headers
 
 //intialize express sessions
 app.use(session({

@@ -76,6 +76,13 @@
         <h4 class="center">My Vehicles</h4>
         <div class="section"></div>
 
+        <% if(typeof newVehicleProfile != 'undefined'){ %>
+        <div class="col l10 m5 push-l1 s12 green center">
+            <h5>Vehicle <%- newVehicleProfile.vehicle_identification %> added
+                for <%- newVehicleProfile.departure_date.toDateString()%></h5>
+        </div>
+        <div class="section"></div>
+        <% } %>
         <div class="col l10 m5 push-l1 s12">
             <table class="center bordered responsive-table">
                 <thead>
@@ -92,11 +99,13 @@
                 </thead>
                 <tbody>
                 <%
-                var passengers = {}, departure_time = "";
+                if(typeof vehicles != 'undefined'){
+                    var passengers = {}, departure_time = "";
                 for(var loop1 = 0; loop1 < vehicles.length; loop1++){
                     if (String(vehicles[loop1].departure_time).length > 0) {
-                        departure_time = new Date(vehicles[loop1].departure_time).toISOString().split("T")[1].split(":").slice(0, 2);
-                        departure_time = String(departure_time).replace(",", ":");
+                        //departure_time = new Date(vehicles[loop1].departure_time).toISOString().split("T")[1].split(":").slice(0, 2);
+                        //departure_time = String(departure_time).replace(",", ":");
+                        departure_time = vehicles[loop1].departure_time.getUTCHours()+" : "+vehicles[loop1].departure_time.getUTCMinutes();
                     }
                     //passengers[vehicles[loop1]._id] = new Array();
                     passengers[vehicles[loop1]._id] = vehicles[loop1].passengers;
@@ -120,6 +129,7 @@
                            data-id="<%- vehicles[loop1]._id %>">View (<%- vehicles[loop1].passengers.length %>)</a>
                     </th>
                 </tr>
+                <% } %>
                 <% } %>
                 </tbody>
             </table>
@@ -174,7 +184,7 @@
         %>
         var emails = [];
         <% for(var loop2 = 0; loop2 < passengers[key].length; loop2++){ %>
-        <% //  console.log(passengers[key][loop2])       %>
+        <% //  console.log(passengers[key][loop2])         %>
         /*
             { _id: 5a27f16c4920ab2cacac3108,
               email: 'paras.bhattrai@ashoka.edu.in',
