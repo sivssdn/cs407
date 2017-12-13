@@ -18,7 +18,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-app.use(logger('dev'));//to be removed on production ----------
+app.use(logger('dev'));//logging HTTP requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false})); //to allow parsing with query string library
 app.use(cookieParser());
@@ -45,21 +45,12 @@ app.use(function (req, res, next) {
     next();
 });
 // middleware function to check for logged-in users
-var sessionChecker = function (res, req, next) {
+/*var sessionChecker = function (res, req, next) {
   if(!res.session.user_sid && !res.session.user){
       res.redirect('/authentication/login');  //redirect to login page
   }
-};
+};*/
 
-/*var sessionCh = function checkSession(req, res, next){
-    req.session.user = 'Paras';
-    console.log("--------"+req.session.user);
-    req.session.destroy();
-    if(req.session !== undefined)
-    console.log("--++++++---"+req.session.user);
-    next();
-};
-app.use(sessionCh);*/
 //  req.session.user = user.dataValues; //SET SESSIONS
 app.use('/', authentication);
 app.use('/user', index);

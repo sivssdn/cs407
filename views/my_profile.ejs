@@ -47,6 +47,13 @@ if (typeof userProfile != 'undefined' && typeof userProfile[0] != 'undefined') {
         .button-availability:hover {
             content: 'ADD';
         }
+
+        #toast-container {
+            top: auto !important;
+            right: 7%;
+            bottom: 10%;
+            left: auto !important;
+        }
     </style>
 </head>
 <body>
@@ -77,114 +84,114 @@ if (typeof userProfile != 'undefined' && typeof userProfile[0] != 'undefined') {
 <main>
     <div class="section"></div>
 
-        <div class="row animated bounceInDown">
-            <div class="section hide-on-small-and-down"></div>
-            <h4 class="center">My Profile</h4>
+    <div class="row animated bounceInDown">
+        <div class="section hide-on-small-and-down"></div>
+        <h4 class="center">My Profile</h4>
 
-            <div class="col l7 m5 push-l2 s12">
-                <table class="center">
-                    <tbody>
-                    <tr>
-                        <td>
-                            <h5>Name</h5>
-                        </td>
-                        <td>
-                            <div class="input-field">
-                                <% if(name.length > 0){ %>
-                                <input id="name" type="text" class="validate"
-                                       value="<%- name.trim() %>" required>
+        <div class="col l7 m5 push-l2 s12">
+            <table class="center">
+                <tbody>
+                <tr>
+                    <td>
+                        <h5>Name</h5>
+                    </td>
+                    <td>
+                        <div class="input-field">
+                            <% if(name.length > 0){ %>
+                            <input id="name" type="text" class="validate"
+                                   value="<%= name.trim() %>" required>
+                            <% }else{ %>
+                            <input id="name" type="text" class="validate" required>
+                            <% } %>
+                            <label for="name">Click here to enter name</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h5>Contact Number</h5>
+                    </td>
+                    <td>
+                        <div class="input-field">
+                            <% if(contact != 0){ %>
+                            <input id="phone_number" type="tel" class="validate"
+                                   value="<%= contact.toString().trim() %>" required>
+                            <% }else{ %>
+                            <input id="phone_number" type="tel" class="validate" required>
+                            <% } %>
+                            <label for="phone_number">Click here to enter phone number</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h5>Department</h5>
+                    </td>
+                    <td>
+                        <div class="input-field">
+                            <select id="department">
+                                <% if(department.length > 0){ %>
+                                <% if(department && department.trim() === "UG 1"){ %>
+                                <option value="UG 1" selected>UG 1</option>
                                 <% }else{ %>
-                                <input id="name" type="text" class="validate" required>
+                                <option value="UG 1">UG 1</option>
                                 <% } %>
-                                <label for="name">Click here to enter name</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>Contact Number</h5>
-                        </td>
-                        <td>
-                            <div class="input-field">
-                                <% if(contact != 0){ %>
-                                <input id="phone_number" type="tel" class="validate"
-                                       value="<%- contact.toString().trim() %>" required>
+                                <% if(department && department.trim() === "UG 2"){ %>
+                                <option value="UG 2" selected>UG 2</option>
                                 <% }else{ %>
-                                <input id="phone_number" type="tel" class="validate" required>
+                                <option value="UG 2">UG 2</option>
                                 <% } %>
-                                <label for="phone_number">Click here to enter phone number</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>Department</h5>
-                        </td>
-                        <td>
-                            <div class="input-field">
-                                <select id="department">
-                                    <% if(department.length > 0){ %>
-                                    <% if(department && department.trim() === "UG 1"){ %>
-                                    <option value="UG 1" selected>UG 1</option>
-                                    <% }else{ %>
-                                    <option value="UG 1">UG 1</option>
-                                    <% } %>
-                                    <% if(department && department.trim() === "UG 2"){ %>
-                                    <option value="UG 2" selected>UG 2</option>
-                                    <% }else{ %>
-                                    <option value="UG 2">UG 2</option>
-                                    <% } %>
-                                    <% if(department && department.trim() === "UG 3"){ %>
-                                    <option value="UG 3" selected>UG 3</option>
-                                    <% }else{ %>
-                                    <option value="UG 3">UG 3</option>
-                                    <% } %>
-                                    <% if(department && department.trim() === "ASP"){ %>
-                                    <option value="ASP" selected>ASP</option>
-                                    <% }else{ %>
-                                    <option value="ASP">ASP</option>
-                                    <% } %>
-                                    <% if(department && department.trim() === "Faculty"){ %>
-                                    <option value="Faculty" selected>Faculty</option>
-                                    <% }else{ %>
-                                    <option value="Faculty">Faculty</option>
-                                    <% } %>
-                                    <% if(department && department.trim() === "Staff"){ %>
-                                    <option value="Staff" selected>Staff</option>
-                                    <% }else{ %>
-                                    <option value="Staff">Staff</option>
-                                    <% } %>
-                                    <% }else{ %>
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="UG 1">UG 1</option>
-                                    <option value="UG 2">UG 2</option>
-                                    <option value="UG 3">UG 3</option>
-                                    <option value="ASP">ASP</option>
-                                    <option value="Faculty">Faculty</option>
-                                    <option value="Staff">Staff</option>
-                                    <% } %>
-                                </select>
-                                <label for="department">Click here to select department</label>
+                                <% if(department && department.trim() === "UG 3"){ %>
+                                <option value="UG 3" selected>UG 3</option>
+                                <% }else{ %>
+                                <option value="UG 3">UG 3</option>
+                                <% } %>
+                                <% if(department && department.trim() === "ASP"){ %>
+                                <option value="ASP" selected>ASP</option>
+                                <% }else{ %>
+                                <option value="ASP">ASP</option>
+                                <% } %>
+                                <% if(department && department.trim() === "Faculty"){ %>
+                                <option value="Faculty" selected>Faculty</option>
+                                <% }else{ %>
+                                <option value="Faculty">Faculty</option>
+                                <% } %>
+                                <% if(department && department.trim() === "Staff"){ %>
+                                <option value="Staff" selected>Staff</option>
+                                <% }else{ %>
+                                <option value="Staff">Staff</option>
+                                <% } %>
+                                <% }else{ %>
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="UG 1">UG 1</option>
+                                <option value="UG 2">UG 2</option>
+                                <option value="UG 3">UG 3</option>
+                                <option value="ASP">ASP</option>
+                                <option value="Faculty">Faculty</option>
+                                <option value="Staff">Staff</option>
+                                <% } %>
+                            </select>
+                            <label for="department">Click here to select department</label>
 
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">
-                            <button class="btn btn-large waves-effect waves-light blue darken-4"
-                                    id="submit_profile">Submit
-                            </button>
-                        </th>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <button class="btn btn-large waves-effect waves-light blue darken-4"
+                                id="submit_profile">Submit
+                        </button>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <form action="/user/add" method="post" id="add_profile_form" enctype="application/x-www-form-urlencoded">
-            <input name="name" id="hidden_name" hidden>
-            <input name="phone" id="hidden_phone" hidden>
-            <input name="department" id="hidden_department" hidden>
-        </form>
+    </div>
+    <form action="/user/add" method="post" id="add_profile_form" enctype="application/x-www-form-urlencoded">
+        <input name="name" id="hidden_name" hidden>
+        <input name="phone" id="hidden_phone" hidden>
+        <input name="department" id="hidden_department" hidden>
+    </form>
 
 </main>
 </body>
@@ -196,10 +203,18 @@ if (typeof userProfile != 'undefined' && typeof userProfile[0] != 'undefined') {
         $(".button-collapse").sideNav();
     });
     document.getElementById("submit_profile").addEventListener("click", function () {
-        document.getElementById("hidden_name").value = document.getElementById("name").value;
-        document.getElementById("hidden_phone").value = document.getElementById("phone_number").value;
-        document.getElementById("hidden_department").value = document.getElementById("department").value;
-        document.getElementById("add_profile_form").submit();
+        if (document.getElementById("name").value.length < 1) {
+            Materialize.toast("Name empty", 3000, 'rounded');
+        } else if (document.getElementById("phone_number").value.length < 1) {
+            Materialize.toast("Phone Number empty", 3000, 'rounded');
+        } else if (document.getElementById("department").value.length < 1) {
+            Materialize.toast("Department empty", 3000, 'rounded');
+        } else {
+            document.getElementById("hidden_name").value = document.getElementById("name").value;
+            document.getElementById("hidden_phone").value = document.getElementById("phone_number").value;
+            document.getElementById("hidden_department").value = document.getElementById("department").value;
+            document.getElementById("add_profile_form").submit();
+        }
     });
 </script>
 </html>

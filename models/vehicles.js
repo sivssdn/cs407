@@ -5,16 +5,22 @@ var url = "mongodb://localhost:27017/transit";
 
 var addVehicle = function (vehicleProfile) {
 
-    MongoClient.connect(url, function (error, db) {
+    /*return MongoClient.connect(url, function (error, db) {
         if (error) throw error;
 
-        db.collection("vehicles").insertOne(vehicleProfile, function (err, result) {
+        return db.collection("vehicles").insertOne(vehicleProfile, function (err, result) {
             if (err) throw err;
-            console.log("Inserted-----" + result);
             db.close();
         });
+    });*/
+    //return "vehicle added";
+    return MongoClient.connect(url).then(function (db, error) {
+        if(error) throw error;
+        db.collection("vehicles").insertOne(vehicleProfile, function (err, numAffected) {
+           db.close();
+           return numAffected;
+        });
     });
-    return "vehicle added";
 };
 
 var getVehicles = function (journeyDetails) {
@@ -31,7 +37,7 @@ var getVehicles = function (journeyDetails) {
             ]
         };
 
-        var sortResults = {departure_date: -1}; //-1 for sorting in descending order, recent date first
+        var sortResults = {departure_date: 1}; //1 for sorting in ascending order
         var vehicleList = db.collection("vehicles").find(query).sort(sortResults).limit(200).toArray();
         db.close();
         return vehicleList;
@@ -142,13 +148,14 @@ var cancelSeat = function (vehicleID, passengerID) {
                     return numAffected
                 });
             }
+            db.close();
         });
     });
 };
 
 module.exports = {
     addVehicle: function (vehicleProfile) {
-        addVehicle(vehicleProfile);
+        return addVehicle(vehicleProfile);
     },
     getVehicles: function (journeyDetails) {
         return getVehicles(journeyDetails);

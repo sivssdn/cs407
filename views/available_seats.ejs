@@ -91,7 +91,7 @@ if(typeof vehicles == 'undefined')
                 <thead>
                 <tr>
                     <th>Availability</th>
-                    <th colspan="3">From <%- source %> to <%- destination %> on <%- date %></th>
+                    <th colspan="3">From <%= source %> to <%= destination %> on <%= date %></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -108,17 +108,17 @@ if(typeof vehicles == 'undefined')
                             seats_left = 0;
                         %>
                         <a class="btn-floating btn-large waves-effect waves-light red button-availability"
-                           data-vehicle-id="<%- vehicles[loop1]._id %>"
-                           data-availability="<%- seats_left %>"><%- seats_left %></a>
+                           data-vehicle-id="<%= vehicles[loop1]._id %>"
+                           data-availability="<%= seats_left %>"><%= seats_left %></a>
                         <% }else{ %>
                         <a class="btn-floating btn-large waves-effect waves-light green button-availability"
-                           data-vehicle-id="<%- vehicles[loop1]._id %>"
-                           data-availability="<%- seats_left %>"><%- seats_left %></a>
+                           data-vehicle-id="<%= vehicles[loop1]._id %>"
+                           data-availability="<%= seats_left %>"><%= seats_left %></a>
                         <% } %>
                     </td>
                     <td>
                         <div class="card-panel blue card-padding">
-                            <%- vehicles[loop1].vehicle_identification %>
+                            <%= vehicles[loop1].vehicle_identification %>
                         </div>
                     </td>
                     <td>
@@ -130,12 +130,12 @@ if(typeof vehicles == 'undefined')
                                     departure_time = String(departure_time).replace(",", ":");
                                 }
                             %>
-                            <%- departure_time %>
+                            <%= departure_time %>
                         </div>
                     </td>
                     <td>
                         <div class="card-panel blue card-padding">
-                            &#x20b9; <%- vehicles[loop1].price %>
+                            &#x20b9; <%= vehicles[loop1].price %>
                         </div>
                     </td>
                 </tr>
@@ -145,7 +145,7 @@ if(typeof vehicles == 'undefined')
             </table>
         </div>
     </div>
-    <form method="post" action="/bookings/add" id="book_seat_form">
+    <form method="post" action="/user/bookings/add" id="book_seat_form">
         <input id="vehicle_id" name="vehicle_id" hidden>
     </form>
 
@@ -172,7 +172,10 @@ if(typeof vehicles == 'undefined')
         //form
         availability_seats_page.availability_buttons[loop1].addEventListener("click", function () {
             document.getElementById("vehicle_id").value = this.getAttribute("data-vehicle-id");
-            document.getElementById("book_seat_form").submit();
+            if(document.getElementById("vehicle_id").value.length > 0) {
+                //submit only when vehicle id is present
+                document.getElementById("book_seat_form").submit();
+            }
         });
     }
 </script>

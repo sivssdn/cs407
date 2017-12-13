@@ -73,88 +73,88 @@
         <div class="section hide-on-small-and-down"></div>
 
         <% if(typeof seatStatus != 'undefined'){
-            if(seatStatus === "Cancelled"){
+        if(seatStatus === "Cancelled"){
         %>
         <div class="col l10 m5 push-l1 s12 red center">
             <h5>Seat Cancelled</h5>
-        <%}else if(seatStatus === "Added"){%>
-        <div class="col l10 m5 push-l1 s12 green center">
-            <h5>Seat Added</h5>
-        <%}%>
-        </div>
-        <div class="section"></div>
-        <% } %>
+            <% }else if(seatStatus === "Added"){ %>
+            <div class="col l10 m5 push-l1 s12 green center">
+                <h5>Seat Added</h5>
+                <% } %>
+            </div>
+            <div class="section"></div>
+            <% } %>
 
-        <div class="col l10 m5 push-l1 s12">
-            <table class="center bordered responsive-table">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Departure Place</th>
-                    <th>Destination</th>
-                    <th>Vehicle</th>
-                    <th>Departure Date</th>
-                    <th>Departure Time</th>
-                    <th>Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                <%
-                if(typeof vehicles != 'undefined'){
-                    //loop1 iterates over vehicles, loop2 over passengers and prints each row corresponding to each booking
+            <div class="col l10 m5 push-l1 s12">
+                <table class="center bordered responsive-table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Departure Place</th>
+                        <th>Destination</th>
+                        <th>Vehicle</th>
+                        <th>Departure Date</th>
+                        <th>Departure Time</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%
+                    if(typeof vehicles != 'undefined'){
+                        //loop1 iterates over vehicles, loop2 over passengers and prints each row corresponding to each booking
 
-                    var departure_time = "", presentDate = new Date();
-                for (var loop1 = 0; loop1 < vehicles.length; loop1++){
-                    //preparing time format for the vehicle
-                    if (String(vehicles[loop1].departure_time).length > 0) {
-                        //departure_time = new Date(vehicles[loop1].departure_time).toISOString().split("T")[1].split(":").slice(0, 2);
-                        //departure_time = String(departure_time).replace(",", ":");
-                        departure_time = vehicles[loop1].departure_time.getUTCHours() + " : " + vehicles[loop1].departure_time.getUTCMinutes();
-                    }
+                        var departure_time = "", presentDate = new Date();
+                    for (var loop1 = 0; loop1 < vehicles.length; loop1++){
+                        //preparing time format for the vehicle
+                        if (String(vehicles[loop1].departure_time).length > 0) {
+                            departure_time = new Date(vehicles[loop1].departure_time).toISOString().split("T")[1].split(":").slice(0, 2);
+                            departure_time = String(departure_time).replace(",", ":");
+                            //departure_time = vehicles[loop1].departure_time.getUTCHours() + " : " + vehicles[loop1].departure_time.getUTCMinutes();
+                        }
 
 
-                for (var loop2 = 0; loop2 < vehicles[loop1].passengers.length; loop2++) {
-                if(vehicles[loop1].passengers[loop2].email === userMail){
-                %>
-                <tr>
-                    <td class="center">
-                        <%
-                            //check if the date of the vehicle is today or later
-                        if(vehicles[loop1].passengers[loop2].status !=="Cancelled" && presentDate > vehicles[loop1].departure_date){
-                        %>
-                        <a class="btn waves-effect waves-light red button-availability cancel-button"
-                           data-vehicle-id="<%- vehicles[loop1]._id %>"
-                           data-passenger-id="<%- vehicles[loop1].passengers[loop2]._id %>">Cancel</a>
-                        <% }else if(presentDate.getTime() === vehicles[loop1].departure_date){
-                            //if the date is same, don't print cancel button for time before now
+                    for (var loop2 = 0; loop2 < vehicles[loop1].passengers.length; loop2++) {
+                    if(vehicles[loop1].passengers[loop2].email === userMail){
+                    %>
+                    <tr>
+                        <td class="center">
+                            <%
+                                //check if the date of the vehicle is today or later
+                            if(vehicles[loop1].passengers[loop2].status !== "Cancelled" && presentDate < vehicles[loop1].departure_date){
+                            %>
+                            <a class="btn waves-effect waves-light red button-availability cancel-button"
+                               data-vehicle-id="<%= vehicles[loop1]._id %>"
+                               data-passenger-id="<%= vehicles[loop1].passengers[loop2]._id %>">Cancel</a>
+                            <% }else if(presentDate.getTime() === vehicles[loop1].departure_date){
+                                //if the date is same, don't print cancel button for time before now
                             if(presentDate.getUTCHours() > vehicles[loop1].departure_time.getUTCHours() && presentDate.getUTCMinutes() > vehicles[loop1].departure_time.getUTCMinutes()){
-                        %>
-                        <a class="btn waves-effect waves-light red button-availability cancel-button"
-                           data-vehicle-id="<%- vehicles[loop1]._id %>"
-                           data-passenger-id="<%- vehicles[loop1].passengers[loop2]._id %>">Cancel</a>
-                        <%
+                            %>
+                            <a class="btn waves-effect waves-light red button-availability cancel-button"
+                               data-vehicle-id="<%= vehicles[loop1]._id %>"
+                               data-passenger-id="<%= vehicles[loop1].passengers[loop2]._id %>">Cancel</a>
+                            <%
                             }
-                        }%>
-                    </td>
-                    <th><%- vehicles[loop1].source %></th>
-                    <th><%- vehicles[loop1].destination %></th>
-                    <th><%- vehicles[loop1].vehicle_identification %></th>
-                    <th><%- vehicles[loop1].departure_date.toDateString() %></th>
-                    <th><%- departure_time %></th>
-                    <th><%- vehicles[loop1].passengers[loop2].status %></th>
-                </tr>
-                <% } %>
-                <% } %>
-                <% } %>
-                <% } %>
-                </tbody>
-            </table>
+                            } %>
+                        </td>
+                        <th><%= vehicles[loop1].source %></th>
+                        <th><%= vehicles[loop1].destination %></th>
+                        <th><%= vehicles[loop1].vehicle_identification %></th>
+                        <th><%= vehicles[loop1].departure_date.toDateString() %></th>
+                        <th><%= departure_time %></th>
+                        <th><%= vehicles[loop1].passengers[loop2].status %></th>
+                    </tr>
+                    <% } %>
+                    <% } %>
+                    <% } %>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <form id="cancel_booking_form" method="post" action="/user/bookings/cancel">
-        <input id="vehicle_id" name="vehicle_id" hidden>
-        <input id="passenger_id" name="passenger_id" hidden>
-    </form>
+        <form id="cancel_booking_form" method="post" action="/user/bookings/cancel">
+            <input id="vehicle_id" name="vehicle_id" hidden>
+            <input id="passenger_id" name="passenger_id" hidden>
+        </form>
 
 </main>
 </body>
@@ -169,7 +169,10 @@
         cancelButtons[loop1].addEventListener("click", function () {
             document.getElementById("vehicle_id").value = this.getAttribute("data-vehicle-id");
             document.getElementById("passenger_id").value = this.getAttribute("data-passenger-id");
-            document.getElementById("cancel_booking_form").submit();
+
+            if (document.getElementById("vehicle_id").value.length > 1 && document.getElementById("passenger_id").value.length > 1) {
+                document.getElementById("cancel_booking_form").submit();
+            }
         });
     }
 </script>

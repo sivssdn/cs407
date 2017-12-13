@@ -36,6 +36,13 @@
         .button-availability:hover {
             content: 'ADD';
         }
+
+        #toast-container {
+            top: auto !important;
+            right: 7%;
+            bottom: 10%;
+            left: auto !important;
+        }
     </style>
 </head>
 <body>
@@ -189,14 +196,25 @@
         $('select').material_select();
 
         document.getElementById("submit_available_seats_form").addEventListener("click", function () {
-            document.getElementById("source").value = document.getElementById("departure_place").value;
-            document.getElementById("destination").value = document.getElementById("arrival_place").value;
-            document.getElementById("time1").value = document.getElementById("departure_time1").value;
-            document.getElementById("time2").value = document.getElementById("departure_time2").value;
-            document.getElementById("date").value = document.getElementById("departure_date").value;
+            if (document.getElementById("departure_place").value.length < 1) {
+                Materialize.toast("Place of Departure empty", 3000, 'rounded');
+            } else if (document.getElementById("arrival_place").value.length < 1) {
+                Materialize.toast("Destination empty", 3000, 'rounded');
+            } else if (document.getElementById("departure_time1").value.length < 1 || document.getElementById("departure_time2").value.length < 1) {
+                Materialize.toast("Time empty", 3000, 'rounded');
+            }else if(document.getElementById("departure_date").value.length < 1){
+                Materialize.toast("Departure date empty", 3000, 'rounded');
+            }else {
+                document.getElementById("source").value = document.getElementById("departure_place").value;
+                document.getElementById("destination").value = document.getElementById("arrival_place").value;
+                document.getElementById("time1").value = document.getElementById("departure_time1").value;
+                document.getElementById("time2").value = document.getElementById("departure_time2").value;
+                document.getElementById("date").value = document.getElementById("departure_date").value;
+                document.getElementById("available_seats_form").submit();
+            }
 
-            document.getElementById("available_seats_form").submit();
         });
+
     });
 </script>
 </html>

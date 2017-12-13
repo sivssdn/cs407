@@ -20,23 +20,26 @@ router.post('/', function (req, res, next) {
     /*for /vehicles*/
     if (sessionPresent(req, res)) {
 
-        var journeyDate = new Date(formatDate(req.body.date));
-        var time1 = new Date("2000-11-11T" + req.body.time1 + "Z");
-        var time2 = new Date("2000-11-11T" + req.body.time2 + "Z");
-        var journeyDetails = {
-            date: journeyDate,
-            source: req.body.source,
-            destination: req.body.destination,
-            time1: time1,
-            time2: time2
-        };
+        try {
+            var journeyDate = new Date(formatDate(req.body.date));
+            var time1 = new Date("2000-11-11T" + req.body.time1 + "Z");
+            var time2 = new Date("2000-11-11T" + req.body.time2 + "Z");
+            var journeyDetails = {
+                date: journeyDate,
+                source: req.body.source,
+                destination: req.body.destination,
+                time1: time1,
+                time2: time2
+            };
 
-        vehicles.getVehicles(journeyDetails).then(function (vehicleList) {
-            res.render("available_seats", {vehicles: vehicleList, journey: journeyDetails});
-        }, function (error) {
-            console.log("Promise was rejected in /bookings", error, error.stack);
-        });
-
+            vehicles.getVehicles(journeyDetails).then(function (vehicleList) {
+                res.render("available_seats", {vehicles: vehicleList, journey: journeyDetails});
+            }, function (error) {
+                console.log("Promise was rejected in /bookings", error, error.stack);
+            });
+        }catch (exception){
+            req.render("available_seats_form");
+        }
     } else {
         res.redirect("/authentication/login");
     }

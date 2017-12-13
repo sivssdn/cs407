@@ -54,7 +54,7 @@ router.get('/vehicles', function (req, res, next) {
         var userMail = req.session.userMail;
         users.getUserVehicles(userMail).then(function (vehicleList) {
 
-//console.log(vehicleList[0].passengers);
+            //console.log(vehicleList[0].passengers);
             res.render('my_vehicles', {vehicles: vehicleList});
         }, function (error) {
             console.log("Promise was rejected in /vehicles", error, error.stack);
@@ -94,12 +94,15 @@ router.post('/vehicles/add', function (req, res, next) {
             "passengers": []
         };
 
-        users.addUserVehicle(vehicleProfile);
-        var userMail = req.session.userMail;
-        //getting the list of all user vehicles
-        users.getUserVehicles(userMail).then(function (vehicleList) {
+        users.addUserVehicle(vehicleProfile).then(function (error) {
+            if(error) throw error;
+            var userMail = req.session.userMail;
+
+            return users.getUserVehicles(userMail);
+        }).then(function (vehicleList) {
             res.render('my_vehicles', {newVehicleProfile: vehicleProfile, vehicles: vehicleList});
         });
+
     } else {
         //not logged in
         res.redirect('/authentication/login');
@@ -132,9 +135,6 @@ router.post('/bookings/add', function (req, res, next) {
         }, function (error) {
             console.log("Promise was rejected in /bookings", error, error.stack);
         });
-        /*users.getUserBookings(userMail).then(function (vehicleList) {
-            res.render('my_bookings', {vehicles: vehicleList, userMail : userMail, seatStatus: "Added"});
-        });*/
 
     } else {
         //not logged in
@@ -153,13 +153,7 @@ router.post('/bookings/cancel', function (req, res, next) {
         }, function (error) {
             console.log("Promise was rejected in /bookings", error, error.stack);
         });
-        /*
-        users.getUserBookings(userMail).then(function (vehicleList) {
-            res.render('my_bookings', {vehicles: vehicleList, seatStatus : "Cancelled"});
-        }, function (error) {
-            console.log("Promise was rejected in /bookings", error, error.stack);
-        });
-*/
+
     } else {
         //not logged in
         res.redirect("/authentication/login");

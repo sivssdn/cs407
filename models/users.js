@@ -65,7 +65,7 @@ module.exports = {
         addUser(user);
     },
     addUserVehicle: function (vehicleProfile) {
-        vehicle.addVehicle(vehicleProfile);
+        return vehicle.addVehicle(vehicleProfile);
     },
     getUserProfile: function (userEmail) {
         return getUserProfile(userEmail);

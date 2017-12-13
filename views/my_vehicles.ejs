@@ -78,8 +78,8 @@
 
         <% if(typeof newVehicleProfile != 'undefined'){ %>
         <div class="col l10 m5 push-l1 s12 green center">
-            <h5>Vehicle <%- newVehicleProfile.vehicle_identification %> added
-                for <%- newVehicleProfile.departure_date.toDateString()%></h5>
+            <h5>Vehicle <%= newVehicleProfile.vehicle_identification %> added
+                for <%= newVehicleProfile.departure_date.toDateString()%></h5>
         </div>
         <div class="section"></div>
         <% } %>
@@ -87,6 +87,7 @@
             <table class="center bordered responsive-table">
                 <thead>
                 <tr>
+                    <!--<th>Sno</th>-->
                     <th>Vehicle</th>
                     <th>Source</th>
                     <th>Destination</th>
@@ -103,9 +104,10 @@
                     var passengers = {}, departure_time = "";
                 for(var loop1 = 0; loop1 < vehicles.length; loop1++){
                     if (String(vehicles[loop1].departure_time).length > 0) {
-                        //departure_time = new Date(vehicles[loop1].departure_time).toISOString().split("T")[1].split(":").slice(0, 2);
-                        //departure_time = String(departure_time).replace(",", ":");
-                        departure_time = vehicles[loop1].departure_time.getUTCHours()+" : "+vehicles[loop1].departure_time.getUTCMinutes();
+                        departure_time = new Date(vehicles[loop1].departure_time).toISOString().split("T")[1].split(":").slice(0, 2);
+                        departure_time = String(departure_time).replace(",", ":");
+                        //line below convers 11:00 to 11:0
+                        //departure_time = vehicles[loop1].departure_time.getUTCHours()+" : "+vehicles[loop1].departure_time.getUTCMinutes();
                     }
                     //passengers[vehicles[loop1]._id] = new Array();
                     passengers[vehicles[loop1]._id] = vehicles[loop1].passengers;
@@ -116,17 +118,18 @@
                     }*/
                 %>
                 <tr>
-                    <th><%- vehicles[loop1].vehicle_identification %></th>
-                    <th><%- vehicles[loop1].source %></th>
-                    <th><%- vehicles[loop1].destination %></th>
-                    <th><%- vehicles[loop1].departure_date.toDateString() %></th>
-                    <th><%- departure_time %></th>
-                    <th><%- vehicles[loop1].total_seats %></th>
-                    <th><%- vehicles[loop1].price %></th>
+                    <!--<th><%= loop1+1 %></th>-->
+                    <th><%= vehicles[loop1].vehicle_identification %></th>
+                    <th><%= vehicles[loop1].source %></th>
+                    <th><%= vehicles[loop1].destination %></th>
+                    <th><%= vehicles[loop1].departure_date.toDateString() %></th>
+                    <th><%= departure_time %></th>
+                    <th><%= vehicles[loop1].total_seats %></th>
+                    <th><%= vehicles[loop1].price %></th>
                     <th>
                         <a href="#modal1"
                            class="blue darken-4 waves-effect waves-light btn modal-trigger view-passengers-button"
-                           data-id="<%- vehicles[loop1]._id %>">View (<%- vehicles[loop1].passengers.length %>)</a>
+                           data-id="<%= vehicles[loop1]._id %>">View (<%= vehicles[loop1].passengers.length %>)</a>
                     </th>
                 </tr>
                 <% } %>
@@ -164,7 +167,7 @@
         $(".button-collapse").sideNav();
         $('.modal').modal();
 
-        var passengerEmails = [], passengerStatus = [], passengerBookingDate = [];
+        var passengerEmails = [], passengerStatus = [], passengerBookingDate = [], passengerIds= [];
         <% for(var key in passengers){
             //key is same as data-id
             //console.log(passengers[key]);
@@ -182,9 +185,9 @@
 
             //console.log(passengers[key].length);
         %>
-        var emails = [];
+        var ids=[];
         <% for(var loop2 = 0; loop2 < passengers[key].length; loop2++){ %>
-        <% //  console.log(passengers[key][loop2])         %>
+        <%   //console.log(passengers[key][loop2])         %>
         /*
             { _id: 5a27f16c4920ab2cacac3108,
               email: 'paras.bhattrai@ashoka.edu.in',
@@ -192,22 +195,24 @@
               date_booked: 2017-12-06T13:32:28.550Z }
         * */
 
-        emails.push('<%- passengers[key][loop2].email %>');
-        passengerStatus['<%- passengers[key][loop2].email %>'] = '<%- passengers[key][loop2].status %>'; //storing with respect to email ID
-        passengerBookingDate['<%- passengers[key][loop2].email %>'] = '<%- passengers[key][loop2].date_booked.toDateString() %>';
+
+        ids.push('<%= passengers[key][loop2]._id %>');
+        passengerEmails['<%= passengers[key][loop2]._id %>'] = '<%= passengers[key][loop2].email %>';
+        passengerStatus['<%= passengers[key][loop2]._id %>'] = '<%= passengers[key][loop2].status %>'; //storing with respect to email ID
+        passengerBookingDate['<%= passengers[key][loop2]._id %>'] = '<%= passengers[key][loop2].date_booked.toDateString() %>';
         /*console.log(passengerEmails['<- key >']);*/
         <% } %>
-        passengerEmails['<%- key %>'] = emails; //array of emails
+        passengerIds['<%= key %>'] = ids;
         <% } %>
 
         var viewPassengersButton = document.getElementsByClassName("view-passengers-button");
         for (var loop1 = 0; loop1 < viewPassengersButton.length; loop1++) {
             viewPassengersButton[loop1].addEventListener("click", function () {
                 //data-id is same as vehicle-id
-                //console.log(passengerEmails[this.getAttribute("data-id")]); //array of emails
+                //console.log(passengerIds[this.getAttribute("data-id")]); //array of ids
                 //["paras.bhattrai@ashoka.edu.in", "paras.bhattrai@ashoka.edu.in", "paras.bhattrai@ashoka.edu.in"]
-                var passengerOfThisVehicleEmails = passengerEmails[this.getAttribute("data-id")];
-                if (passengerOfThisVehicleEmails.length > 0) {
+                var passengerOfThisVehicleIds = passengerIds[this.getAttribute("data-id")];
+                if (passengerOfThisVehicleIds.length > 0) {
                     //preparing title
                     $("#passengers_list_table").html("<tr>" +
                         " <th>Sno</th>" +
@@ -218,7 +223,7 @@
                 } else {
                     $("#passengers_list_table").html("<br><b> No Passengers </b>");
                 }
-                for (var loop3 = 0; loop3 < passengerOfThisVehicleEmails.length; loop3++) {
+                for (var loop3 = 0; loop3 < passengerOfThisVehicleIds.length; loop3++) {
                     /*
                     //not to be deleted, for reference purposes--paras
                     console.log(passengerOfThisVehicleEmails[loop3]);
@@ -227,10 +232,27 @@
                     */
                     $("#passengers_list_table").append("<tr>" +
                         " <th>" + (loop3 + 1) + "</th>" +
-                        " <th>" + passengerOfThisVehicleEmails[loop3] + "</th>" +
-                        " <th>" + passengerStatus[passengerOfThisVehicleEmails[loop3]] + "</th>" +
+                        " <th>" + escapeHtml(passengerEmails[passengerOfThisVehicleIds[loop3]]) + "</th>" +
+                        " <th>" + escapeHtml(passengerStatus[passengerOfThisVehicleIds[loop3]]) + "</th>" +
                         "</tr>");
                 }
+            });
+        }
+
+        //for escaping html
+        var entityMap = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;',
+            '/': '&#x2F;',
+            '`': '&#x60;',
+            '=': '&#x3D;'
+        };
+        function escapeHtml (string) {
+            return String(string).replace(/[&<>"'`=\/]/g, function (s) {
+                return entityMap[s];
             });
         }
     });
