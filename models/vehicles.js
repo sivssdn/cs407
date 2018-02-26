@@ -6,11 +6,11 @@ var url = "mongodb://localhost:27017/transit";
 var addVehicle = function (vehicleProfile) {
 
     return MongoClient.connect(url).then(function (db, error) {
-        if(error) throw error;
+        if (error) throw error;
         db.collection("vehicles").insertOne(vehicleProfile, function (err, numAffected) {
-           db.close();
-            if(err) throw err;
-           return numAffected;
+            db.close();
+            if (err) throw err;
+            return numAffected;
         });
     });
 };
@@ -140,9 +140,51 @@ var cancelSeat = function (vehicleID, passengerID) {
                     }
                 };
                 db.collection("vehicles").update(updateQuery, setQuery, function (error, numAffected) {
+
+                    //promote waitlist to confirmed if the booking status was confirmed
+                    if (passengerBookingStatus === "Confirmed") {
+
+                        //vehicleID
+                        db.collection("vehicles").findOne({_id: new ObjectID(vehicleID)}, {
+                            passengers: {
+                                $elemMatch: {status: "Waitlist"}
+                            }
+                        }).then(function (vehicleWaitlistPassenger) {
+                            //if someone with waitlist status is found then promote to confirmed status
+                            if (Object.keys(vehicleWaitlistPassenger).length > 0) {
+
+                                var waitlistUpdateQuery = {}, waitlistSetQuery = {};
+                                waitlistUpdateQuery = {
+                                    _id: new ObjectID(vehicleID),
+                                    passengers: {
+                                        $elemMatch: {_id: new ObjectID(vehicleWaitlistPassenger.passengers[0]._id)}
+                                    }
+                                };
+                                waitlistSetQuery = {
+                                    $set: {
+                                        "passengers.$.status": "Confirmed"
+                                    }
+                                };
+
+
+                                db.collection("vehicles").update(waitlistUpdateQuery, waitlistSetQuery, function (error1, numAffected1){
+                                    if (error1) console.log(error1); //connection to db won't close in case error is thrown
+
+                                });
+                            }
+                        });
+                    }
+                    //---waitlist promotion ended
+
+                    //db.close();
+                    if (error) throw error;
+
+                    return numAffected; //returning from callback, different from returning from then()
+                }).then(function (error, numberAffected) {
                     db.close();
                     if (error) throw error;
-                    return numAffected; //returning from callback, different from returning from then()
+
+                    return numberAffected;
                 });
             }
 

@@ -52,6 +52,9 @@
             bottom: 10%;
             left: auto !important;
         }
+        .navbar-fixed {
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
@@ -225,7 +228,18 @@
             var date = new Date(); // for now
             increment_hour = parseInt(increment_hour) || 0;
             date.setHours(date.getHours() + increment_hour);
-            return date.getHours()+":"+date.getMinutes();
+            var hours = date.getHours(), minutes = date.getMinutes();
+            if(hours < 10){
+                hours = "0"+hours;
+            }else if(hours.length === 1){
+                hours = hours+"0";
+            }
+            if(minutes < 10){
+                minutes = "0"+minutes;
+            }else if(hours.length === 1){
+                minutes = minutes+"0";
+            }
+            return hours+":"+minutes;
         }
         //for placing default value in departure_date field
         document.getElementById("departure_date").value=dateToday();
@@ -238,8 +252,18 @@
             var date = new Date(); // for now
             date.setHours(parseInt(time_selected.split(":")[0]) + 1);
             date.setMinutes(parseInt(time_selected.split(":")[1]));
-
-            document.getElementById("departure_time2").value=date.getHours()+":"+date.getMinutes();
+            var hours = date.getHours(), minutes = date.getMinutes();
+            if(hours < 10){
+                hours = "0"+hours;
+            }else if(hours.length === 1){
+                hours = hours+"0";
+            }
+            if(minutes < 10){
+                minutes = "0"+minutes;
+            }else if(hours.length === 1){
+                minutes = minutes+"0";
+            }
+            document.getElementById("departure_time2").value=hours+":"+minutes;
         });
 
         //submitting form
