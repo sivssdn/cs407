@@ -16,14 +16,21 @@
     <link type="text/css" rel="stylesheet" href="/css/animate.css">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        html {
-            background-image: url("/images/bg_ashoka.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            color: #ffffff;
+        @media only screen and (max-width: 990px) {
+            html, body {
+                background-color: #000000;
+                color: #ffffff;
+            }
         }
-
+        @media only screen and (min-width: 992px) {
+            html {
+                background-image: url("/images/bg_ashoka.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+                color: #ffffff;
+            }
+        }
         th {
             text-align: center;
         }

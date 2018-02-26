@@ -32,14 +32,21 @@ if(typeof vehicles == 'undefined')
     <link type="text/css" rel="stylesheet" href="/css/animate.css">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        html {
-            background-image: url("/images/bg_ashoka.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            color: #ffffff;
+        @media only screen and (max-width: 990px) {
+            html, body {
+                background-color: #000000;
+                color: #ffffff;
+            }
         }
-
+        @media only screen and (min-width: 992px) {
+            html {
+                background-image: url("/images/bg_ashoka.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+                color: #ffffff;
+            }
+        }
         th {
             text-align: center;
         }
@@ -105,7 +112,7 @@ if(typeof vehicles == 'undefined')
                         <%
                             seats_left = vehicles[loop1].total_seats - vehicles[loop1].passengers.length;
                         if(seats_left < 0){
-                            seats_left = 0;
+                            //seats_left = 0;
                         %>
                         <a class="btn-floating btn-large waves-effect waves-light red button-availability"
                            data-vehicle-id="<%= vehicles[loop1]._id %>"

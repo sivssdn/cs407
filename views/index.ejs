@@ -15,14 +15,21 @@
     <link type="text/css" rel="stylesheet" href="/css/animate.css">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        html {
-            background-image: url("/images/bg_ashoka.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            color: #ffffff;
+        @media only screen and (max-width: 990px) {
+            html, body {
+                background-color: #000000;
+                color: #ffffff;
+            }
         }
-
+        @media only screen and (min-width: 992px) {
+            html {
+                background-image: url("/images/bg_ashoka.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+                color: #ffffff;
+            }
+        }
         th {
             text-align: center;
         }
@@ -44,11 +51,11 @@
 
         <div class="row animated bounceInDown">
             <div class="section hide-on-small-and-down"></div>
-            <div class="col l5 m5 push-l4 s12 push-s2">
-                <img src="/images/logo.png" height="400">
+            <div class="col m3 push-l4 s8 push-s2">
+                <img src="/images/logo.png" class="responsive-img">
                 <div class="section"></div>
                     <a href="/authentication/auth/google" class="btn btn-large blue darken-4"><span class="fa fa-google-plus"></span>
-                        &nbsp; &nbsp; Sign in using Gmail Account &nbsp; &nbsp;</a>
+                        Sign in using Gmail Account</a>
             </div>
         </div>
 

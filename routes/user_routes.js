@@ -13,9 +13,15 @@ router.get('/', function (req, res, next) {
         users.getUserProfile(userMail).then(function (profile) {
             /*    var userMail = req.session.userMail;
                 console.log(userMail);
-             */
+            */
 
-            res.render('my_profile', {userProfile: profile});
+            if (profile.length > 0) {
+                //if user profile exists
+                res.render('available_seats_form');
+            } else {
+                //profile does not exist
+                res.render('my_profile', {userProfile: profile});
+            }
         }, function (err) {
             console.error('The promise was rejected', err, err.stack);
         });
@@ -38,9 +44,9 @@ router.post("/add", function (req, res, next) {
             phone: req.body.phone,
             department: req.body.department
         };
-        users.addUser(user);
-        res.redirect('/user');
-        //res.send("user added");
+        users.addUser(user).then(function () {
+            res.redirect('/user');
+        });
 
     } else {
         //not logged in
@@ -95,7 +101,7 @@ router.post('/vehicles/add', function (req, res, next) {
         };
 
         users.addUserVehicle(vehicleProfile).then(function (error) {
-            if(error) throw error;
+            if (error) throw error;
             var userMail = req.session.userMail;
 
             return users.getUserVehicles(userMail);
@@ -141,6 +147,14 @@ router.post('/bookings/add', function (req, res, next) {
         res.redirect("/authentication/login");
     }
 });
+router.get('/bookings/add', function (req, res, next) {
+    if (sessionPresent(req, res)) {
+        res.redirect("/user/bookings");
+    } else {
+        //not logged in
+        res.redirect("/authentication/login");
+    }
+});
 
 router.post('/bookings/cancel', function (req, res, next) {
     if (sessionPresent(req, res)) {
@@ -154,6 +168,14 @@ router.post('/bookings/cancel', function (req, res, next) {
             console.log("Promise was rejected in /bookings", error, error.stack);
         });
 
+    } else {
+        //not logged in
+        res.redirect("/authentication/login");
+    }
+});
+router.get('/bookings/cancel', function (req, res, next) {
+    if (sessionPresent(req, res)) {
+        res.redirect("/user/bookings");
     } else {
         //not logged in
         res.redirect("/authentication/login");

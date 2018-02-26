@@ -33,6 +33,7 @@ router.post('/', function (req, res, next) {
             };
 
             vehicles.getVehicles(journeyDetails).then(function (vehicleList) {
+
                 res.render("available_seats", {vehicles: vehicleList, journey: journeyDetails});
             }, function (error) {
                 console.log("Promise was rejected in /bookings", error, error.stack);

@@ -16,12 +16,21 @@
     <link type="text/css" rel="stylesheet" href="/css/animate.css">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        html {
-            background-image: url("/images/bg_ashoka.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            color: #ffffff;
+        @media only screen and (max-width: 990px) {
+            html, body {
+                background-color: #000000;
+                color: #ffffff;
+            }
+        }
+
+        @media only screen and (min-width: 992px) {
+            html {
+                background-image: url("/images/bg_ashoka.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+                color: #ffffff;
+            }
         }
 
         th {
@@ -120,8 +129,8 @@
                     <td>
                         <div class="input-field">
                             <select id="departure_place">
-                                <option value="" disabled selected>Choose your option</option>
-                                <option value="Campus">Campus</option>
+                                <!--<option value="" disabled selected>Choose your option</option>-->
+                                <option value="Campus" selected>Campus</option>
                                 <option value="Parker">Parker</option>
                                 <option value="Jahangirpuri">Jahangirpuri</option>
                             </select>
@@ -136,10 +145,10 @@
                     <td>
                         <div class="input-field">
                             <select id="arrival_place">
-                                <option value="" disabled selected>Choose your option</option>
+                                <!--<option value="" disabled selected>Choose your option</option>-->
                                 <option value="Campus">Campus</option>
                                 <option value="Parker">Parker</option>
-                                <option value="Jahangirpuri">Jahangirpuri</option>
+                                <option value="Jahangirpuri" selected>Jahangirpuri</option>
                             </select>
                             <label for="arrival_place">Click here to select place</label>
                         </div>
@@ -188,13 +197,52 @@
             donetext: 'OK', // text for done-button
             cleartext: 'Clear', // text for clear-button
             canceltext: 'Cancel', // Text for cancel-button
-            autoclose: false, // automatic close timepicker
+            autoclose: true, // automatic close timepicker
             ampmclickable: true, // make AM PM clickable
             aftershow: function () {
             } //Function for after opening timepicker
         });
         $('select').material_select();
 
+        function dateToday() {
+            //gets present date from user device
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            return dd + '-' + mm + '-' + yyyy;
+        }
+
+        //returns present time on users machine
+        function timeNow(increment_hour) {
+            var date = new Date(); // for now
+            increment_hour = parseInt(increment_hour) || 0;
+            date.setHours(date.getHours() + increment_hour);
+            return date.getHours()+":"+date.getMinutes();
+        }
+        //for placing default value in departure_date field
+        document.getElementById("departure_date").value=dateToday();
+        document.getElementById("departure_time1").value=timeNow();
+        document.getElementById("departure_time2").value=timeNow(1);
+
+        //to fill departure_time2 to the next hour when departure_time1 is changed
+        $("#departure_time1").on('change',function () {
+            var time_selected = this.value;
+            var date = new Date(); // for now
+            date.setHours(parseInt(time_selected.split(":")[0]) + 1);
+            date.setMinutes(parseInt(time_selected.split(":")[1]));
+
+            document.getElementById("departure_time2").value=date.getHours()+":"+date.getMinutes();
+        });
+
+        //submitting form
         document.getElementById("submit_available_seats_form").addEventListener("click", function () {
             if (document.getElementById("departure_place").value.length < 1) {
                 Materialize.toast("Place of Departure empty", 3000, 'rounded');
@@ -202,9 +250,9 @@
                 Materialize.toast("Destination empty", 3000, 'rounded');
             } else if (document.getElementById("departure_time1").value.length < 1 || document.getElementById("departure_time2").value.length < 1) {
                 Materialize.toast("Time empty", 3000, 'rounded');
-            }else if(document.getElementById("departure_date").value.length < 1){
+            } else if (document.getElementById("departure_date").value.length < 1) {
                 Materialize.toast("Departure date empty", 3000, 'rounded');
-            }else {
+            } else {
                 document.getElementById("source").value = document.getElementById("departure_place").value;
                 document.getElementById("destination").value = document.getElementById("arrival_place").value;
                 document.getElementById("time1").value = document.getElementById("departure_time1").value;

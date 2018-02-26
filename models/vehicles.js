@@ -5,19 +5,11 @@ var url = "mongodb://localhost:27017/transit";
 
 var addVehicle = function (vehicleProfile) {
 
-    /*return MongoClient.connect(url, function (error, db) {
-        if (error) throw error;
-
-        return db.collection("vehicles").insertOne(vehicleProfile, function (err, result) {
-            if (err) throw err;
-            db.close();
-        });
-    });*/
-    //return "vehicle added";
     return MongoClient.connect(url).then(function (db, error) {
         if(error) throw error;
         db.collection("vehicles").insertOne(vehicleProfile, function (err, numAffected) {
            db.close();
+            if(err) throw err;
            return numAffected;
         });
     });
@@ -38,9 +30,13 @@ var getVehicles = function (journeyDetails) {
         };
 
         var sortResults = {departure_date: 1}; //1 for sorting in ascending order
-        var vehicleList = db.collection("vehicles").find(query).sort(sortResults).limit(200).toArray();
-        db.close();
-        return vehicleList;
+        //var vehicleList = db.collection("vehicles").find(query).sort(sortResults).limit(200).toArray();
+        return db.collection("vehicles").find(query).sort(sortResults).limit(200).toArray().then(function (vehicleList) {
+            db.close();
+            return vehicleList;
+        });
+        //db.close();
+        //return vehicleList;
     });
 };
 
@@ -48,17 +44,17 @@ var bookSeat = function (vehicleId, userMail) {
 
     return MongoClient.connect(url).then(function (db, error) {
         if (error) throw error;
-        console.log(new ObjectID(vehicleId));
+        //console.log(new ObjectID(vehicleId));
         db.collection("vehicles").findOne({_id: new ObjectID(vehicleId)}, {
             total_seats: 1,
-            passengers: 1
+            passengers: 1 //return only total_seats and passengers
         }).then(function (vehicleDetails) {
             //we have vehicle data now as per vehicle id
             //for getting seats left :
             return parseInt(vehicleDetails.total_seats) - parseInt(vehicleDetails.passengers.length);
 
         }).then(function (seatsLeft) {
-            console.log(seatsLeft);
+
             var upadteQuery = {};
             if (seatsLeft > 0) {
                 upadteQuery = {
@@ -94,8 +90,8 @@ var bookSeat = function (vehicleId, userMail) {
                 model.update(conditions, update, options, callback);
             * */
             var insertStatus = db.collection("vehicles").update({_id: new ObjectID(vehicleId)}, upadteQuery, {upsert: true}, function (error, numAffected) {
-                if (error) throw error;
                 db.close();
+                if (error) throw error;
                 return numAffected;
             });
             return insertStatus;
@@ -108,7 +104,7 @@ var cancelSeat = function (vehicleID, passengerID) {
 
     return MongoClient.connect(url).then(function (db) {
         //validation the status of the passenger (confirmed or waitlist)
-        db.collection("vehicles").findOne({_id: new ObjectID(vehicleID)}, {passengers: 1}).then(function (vehiclePassengers) {
+        return db.collection("vehicles").findOne({_id: new ObjectID(vehicleID)}, {passengers: 1}).then(function (vehiclePassengers) {
             /*
               {   _id: 5a2546a4d4dfbb1bc0bbef0d,
                   passengers:
@@ -144,11 +140,12 @@ var cancelSeat = function (vehicleID, passengerID) {
                     }
                 };
                 db.collection("vehicles").update(updateQuery, setQuery, function (error, numAffected) {
+                    db.close();
                     if (error) throw error;
-                    return numAffected
+                    return numAffected; //returning from callback, different from returning from then()
                 });
             }
-            db.close();
+
         });
     });
 };

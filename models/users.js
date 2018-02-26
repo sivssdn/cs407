@@ -5,8 +5,7 @@ var url = "mongodb://localhost:27017/transit";
 
 var addUser = function (user) {
 
-    MongoClient.connect(url, function (error, db) {
-
+    return MongoClient.connect(url).then(function (db, error) {
         if (error) throw error;
         var insertUserObject = {
             "name": user.name,
@@ -14,24 +13,27 @@ var addUser = function (user) {
             "contact": user.phone,
             "department": user.department
         };
-        db.collection("users").insertOne(insertUserObject, function (error, result) {
-            if (error) throw error;
+
+        //upsert for inserting if no true record exist
+        return db.collection("users").updateOne({email : user.email},insertUserObject,{upsert: true}, function (error, numAffected) {
             db.close();
+            if(error) throw error;
+            return numAffected;
         });
     });
-
 };
 
 var getUserProfile = function (userEmail) {
 
     //promises to be able to return the result
     return MongoClient.connect(url).then(function (db, error) {
-        console.log("----get user / users.js-----");
+
         if (error) throw error;
-        /*return db.collection("users").find({email: userEmail}).toArray();*/
-        var profile = db.collection("users").find({email: userEmail}).toArray();
-        db.close();
-        return profile;
+        return db.collection("users").find({email: userEmail}).toArray().then(function (profile) {
+            db.close();
+            return profile;
+        });
+
     });
 };
 
@@ -62,7 +64,7 @@ var getUserBookings = function (userEmail) {
 
 module.exports = {
     addUser: function (user) {
-        addUser(user);
+        return addUser(user);
     },
     addUserVehicle: function (vehicleProfile) {
         return vehicle.addVehicle(vehicleProfile);
