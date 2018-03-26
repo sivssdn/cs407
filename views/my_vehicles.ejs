@@ -54,7 +54,6 @@
     </style>
 </head>
 <body>
-<header class="animated bounceInDown">
     <nav class="navbar-fixed blue darken-4 z-depth-2 ">
         <div class="nav-wrapper">
             <a class="brand-logo"> &nbsp;Transit</a>
@@ -65,19 +64,18 @@
                 <li><a href="/user">My Profile</a></li>
                 <li class="active"><a href="/user/vehicles">My Vehicles</a></li>
                 <li><a href="/vehicles">See Available Seats</a></li>
-                <li><a href="/authentication/logout">Signout</a></li>
+                <li><a href="/authentication/logout">Sign Out</a></li>
             </ul>
         </div>
-        <ul class="side-nav black-text" id="mobile-side-menu">
-            <li><a href="/user/vehicles/add">Add Vehicle</a></li>
-            <li><a href="/user/bookings">My Bookings</a></li>
-            <li><a href="/user">My Profile</a></li>
-            <li class="active"><a href="/user/vehicles">My Vehicles</a></li>
-            <li><a href="/vehicles">See Available Seats</a></li>
-            <li><a href="/authentication/logout">Signout</a></li>
-        </ul>
     </nav>
-</header>
+    <ul class="side-nav black-text" id="mobile-side-menu">
+        <li><a href="/user/vehicles/add">Add Vehicle</a></li>
+        <li><a href="/user/bookings">My Bookings</a></li>
+        <li><a href="/user">My Profile</a></li>
+        <li class="active"><a href="/user/vehicles">My Vehicles</a></li>
+        <li><a href="/vehicles">See Available Seats</a></li>
+        <li><a href="/authentication/logout">Sign Out</a></li>
+    </ul>
 <main>
     <div class="section"></div>
 
@@ -97,7 +95,7 @@
             <table class="center bordered responsive-table">
                 <thead>
                 <tr>
-                    <!--<th>Sno</th>-->
+                    <th> </th>
                     <th>Vehicle</th>
                     <th>Source</th>
                     <th>Destination</th>
@@ -116,7 +114,7 @@
                     if (String(vehicles[loop1].departure_time).length > 0) {
                         departure_time = new Date(vehicles[loop1].departure_time).toISOString().split("T")[1].split(":").slice(0, 2);
                         departure_time = String(departure_time).replace(",", ":");
-                        //line below convers 11:00 to 11:0
+                        //line below converts 11:00 to 11:0
                         //departure_time = vehicles[loop1].departure_time.getUTCHours()+" : "+vehicles[loop1].departure_time.getUTCMinutes();
                     }
                     //passengers[vehicles[loop1]._id] = new Array();
@@ -128,14 +126,19 @@
                     }*/
                 %>
                 <tr>
-                    <!--<th><%= loop1+1 %></th>-->
+                    <!--<th><%/* loop1+1 */%></th>-->
+                    <th><% if(vehicles[loop1].passengers.length === 0){%>
+                        <a class="btn waves-effect waves-light red cancel-button"
+                           data-vehicle-id="<%= vehicles[loop1]._id %>">Cancel</a>
+                        <%}%>
+                    </th>
                     <th><%= vehicles[loop1].vehicle_identification %></th>
                     <th><%= vehicles[loop1].source %></th>
                     <th><%= vehicles[loop1].destination %></th>
                     <th><%= vehicles[loop1].departure_date.toDateString() %></th>
                     <th><%= departure_time %></th>
                     <th><%= vehicles[loop1].total_seats %></th>
-                    <th><%= vehicles[loop1].price %></th>
+                    <!--<th><%/*vehicles[loop1].price */%></th>-->
                     <th>
                         <a href="#modal1"
                            class="blue darken-4 waves-effect waves-light btn modal-trigger view-passengers-button"
@@ -167,6 +170,10 @@
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
         </div>
     </div>
+
+    <form id="cancel_vehicle_form" method="post" action="/user/vehicles/remove">
+        <input id="vehicle_id" name="vehicle_id" hidden>
+    </form>
 
 </main>
 </body>
@@ -263,6 +270,18 @@
         function escapeHtml (string) {
             return String(string).replace(/[&<>"'`=\/]/g, function (s) {
                 return entityMap[s];
+            });
+        }
+
+        //for deleting vehicle
+        var cancelButtons = document.getElementsByClassName("cancel-button");
+        for (var loop4 = 0; loop4 < cancelButtons.length; loop4++) {
+            cancelButtons[loop4].addEventListener("click", function () {
+                document.getElementById("vehicle_id").value = this.getAttribute("data-vehicle-id");
+
+                if (document.getElementById("vehicle_id").value.length > 1) {
+                    document.getElementById("cancel_vehicle_form").submit();
+                }
             });
         }
     });

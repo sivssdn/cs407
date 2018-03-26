@@ -33,6 +33,7 @@ if (typeof userProfile != 'undefined' && typeof userProfile[0] != 'undefined') {
                 color: #ffffff;
             }
         }
+
         @media only screen and (min-width: 992px) {
             html {
                 background-image: url("/images/bg_ashoka.jpg");
@@ -42,6 +43,7 @@ if (typeof userProfile != 'undefined' && typeof userProfile[0] != 'undefined') {
                 color: #ffffff;
             }
         }
+
         th {
             text-align: center;
         }
@@ -61,36 +63,34 @@ if (typeof userProfile != 'undefined' && typeof userProfile[0] != 'undefined') {
             bottom: 10%;
             left: auto !important;
         }
-        .navbar-fixed {
-            z-index: 999;
-        }
+
     </style>
 </head>
 <body>
-<header class="animated bounceInDown">
-    <nav class="navbar-fixed blue darken-4 z-depth-2 ">
-        <div class="nav-wrapper">
-            <a class="brand-logo"> &nbsp;Transit</a>
-            <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="/user/vehicles/add">Add Vehicle</a></li>
-                <li><a href="/user/bookings">My Bookings</a></li>
-                <li class="active"><a href="/user">My Profile</a></li>
-                <li><a href="/user/vehicles">My Vehicles</a></li>
-                <li><a href="/vehicles">See Available Seats</a></li>
-                <li><a href="/authentication/logout">Signout</a></li>
-            </ul>
-        </div>
-        <ul class="side-nav black-text" id="mobile-side-menu">
+<!--<header class="animated bounceInDown">-->
+<nav class="navbar-fixed blue darken-4 z-depth-2 ">
+    <div class="nav-wrapper">
+        <a class="brand-logo"> &nbsp;Transit</a>
+        <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
             <li><a href="/user/vehicles/add">Add Vehicle</a></li>
             <li><a href="/user/bookings">My Bookings</a></li>
             <li class="active"><a href="/user">My Profile</a></li>
             <li><a href="/user/vehicles">My Vehicles</a></li>
             <li><a href="/vehicles">See Available Seats</a></li>
-            <li><a href="/authentication/logout">Signout</a></li>
+            <li><a href="/authentication/logout">Sign Out</a></li>
         </ul>
-    </nav>
-</header>
+    </div>
+</nav>
+<ul class="side-nav black-text" id="mobile-side-menu">
+    <li><a href="/user/vehicles/add">Add Vehicle</a></li>
+    <li><a href="/user/bookings">My Bookings</a></li>
+    <li class="active"><a href="/user">My Profile</a></li>
+    <li><a href="/user/vehicles">My Vehicles</a></li>
+    <li><a href="/vehicles">See Available Seats</a></li>
+    <li><a href="/authentication/logout">Sign Out</a></li>
+</ul>
+<!--</header>-->
 <main>
     <div class="section"></div>
 

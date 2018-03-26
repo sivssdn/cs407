@@ -15,6 +15,16 @@ var addVehicle = function (vehicleProfile) {
     });
 };
 
+var removeVehicle = function(vehicleID){
+//---------------check delete function--------------------------
+    return MongoClient.connect(url).then(function (db, error) {
+        if(error) throw error;
+        db.collection("vehicles").delete({_id: new ObjectID(vehicleID)}).then(function (numAffected) {
+            return numAffected;
+        });
+    });
+};
+
 var getVehicles = function (journeyDetails) {
 
     return MongoClient.connect(url).then(function (db, error) {
@@ -195,6 +205,9 @@ var cancelSeat = function (vehicleID, passengerID) {
 module.exports = {
     addVehicle: function (vehicleProfile) {
         return addVehicle(vehicleProfile);
+    },
+    removeVehicle: function (vehicleID) {
+      return removeVehicle(vehicleID);
     },
     getVehicles: function (journeyDetails) {
         return getVehicles(journeyDetails);

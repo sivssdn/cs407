@@ -52,13 +52,10 @@
             bottom: 10%;
             left: auto !important;
         }
-        .navbar-fixed {
-            z-index: 999;
-        }
     </style>
 </head>
 <body>
-<header class="animated bounceInDown">
+
     <nav class="navbar-fixed blue darken-4 z-depth-2 ">
         <div class="nav-wrapper">
             <a class="brand-logo"> &nbsp;Transit</a>
@@ -69,19 +66,20 @@
                 <li><a href="/user">My Profile</a></li>
                 <li><a href="/user/vehicles">My Vehicles</a></li>
                 <li class="active"><a href="/vehicles">See Available Seats</a></li>
-                <li><a href="/authentication/logout">Signout</a></li>
+                <li><a href="/authentication/logout">Sign Out</a></li>
             </ul>
         </div>
-        <ul class="side-nav black-text" id="mobile-side-menu">
-            <li><a href="/user/vehicles/add">Add Vehicle</a></li>
-            <li><a href="/user/bookings">My Bookings</a></li>
-            <li><a href="/user">My Profile</a></li>
-            <li><a href="/user/vehicles">My Vehicles</a></li>
-            <li class="active"><a href="/vehicles">See Available Seats</a></li>
-            <li><a href="/authentication/logout">Signout</a></li>
-        </ul>
     </nav>
-</header>
+
+    <ul class="side-nav black-text" id="mobile-side-menu">
+        <li><a href="/user/vehicles/add">Add Vehicle</a></li>
+        <li><a href="/user/bookings">My Bookings</a></li>
+        <li><a href="/user">My Profile</a></li>
+        <li><a href="/user/vehicles">My Vehicles</a></li>
+        <li class="active"><a href="/vehicles">See Available Seats</a></li>
+        <li><a href="/authentication/logout">Sign Out</a></li>
+    </ul>
+
 <main>
     <div class="section"></div>
 
@@ -191,7 +189,8 @@
             clear: 'Clear',
             close: 'Ok',
             closeOnSelect: true, // Close upon selecting a date,
-            format: 'dd-mm-yyyy'
+            format: 'dd-mm-yyyy',
+            min: new Date()
         });
         $('.timepicker').pickatime({
             default: 'now', // Set default time: 'now', '1:30AM', '16:30'

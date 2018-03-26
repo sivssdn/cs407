@@ -51,13 +51,10 @@
             bottom: 10%;
             left: auto !important;
         }
-        .navbar-fixed {
-            z-index: 999;
-        }
     </style>
 </head>
 <body>
-<header class="animated bounceInDown">
+
     <nav class="navbar-fixed blue darken-4 z-depth-2 ">
         <div class="nav-wrapper">
             <a class="brand-logo"> &nbsp;Transit</a>
@@ -68,20 +65,20 @@
                 <li><a href="/user">My Profile</a></li>
                 <li><a href="/user/vehicles">My Vehicles</a></li>
                 <li><a href="/vehicles">See Available Seats</a></li>
-                <li><a href="/authentication/logout">Signout</a></li>
+                <li><a href="/authentication/logout">Sign Out</a></li>
 
             </ul>
         </div>
-        <ul class="side-nav black-text" id="mobile-side-menu">
-            <li class="active"><a href="/user/vehicles/add">Add Vehicle</a></li>
-            <li><a href="/user/bookings">My Bookings</a></li>
-            <li><a href="/user">My Profile</a></li>
-            <li><a href="/user/vehicles">My Vehicles</a></li>
-            <li><a href="/vehicles">See Available Seats</a></li>
-            <li><a href="/authentication/logout">Signout</a></li>
-        </ul>
     </nav>
-</header>
+    <ul class="side-nav black-text" id="mobile-side-menu">
+        <li class="active"><a href="/user/vehicles/add">Add Vehicle</a></li>
+        <li><a href="/user/bookings">My Bookings</a></li>
+        <li><a href="/user">My Profile</a></li>
+        <li><a href="/user/vehicles">My Vehicles</a></li>
+        <li><a href="/vehicles">See Available Seats</a></li>
+        <li><a href="/authentication/logout">Sign Out</a></li>
+    </ul>
+
 <main>
     <div class="section"></div>
 
@@ -125,6 +122,8 @@
                                 <option value="Campus">Campus</option>
                                 <option value="Parker">Parker</option>
                                 <option value="Jahangirpuri">Jahangirpuri</option>
+                                <option value="Airport T3">Airport T3</option>
+                                <option value="Airport IGI">Airport (IGI)</option>
                             </select>
                             <label for="departure">Enter place</label>
                         </div>
@@ -141,6 +140,8 @@
                                 <option value="Campus">Campus</option>
                                 <option value="Parker">Parker</option>
                                 <option value="Jahangirpuri">Jahangirpuri</option>
+                                <option value="Airport T3">Airport T3</option>
+                                <option value="Airport IGI">Airport (IGI)</option>
                             </select>
                             <label for="arrival">Enter place</label>
                         </div>
@@ -168,7 +169,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td>
                         <h5>Price (INR)</h5>
                     </td>
@@ -178,7 +179,7 @@
                             <label for="price">Enter Price</label>
                         </div>
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <th colspan="2">
                         <button class="btn btn-large waves-effect waves-light blue darken-4" type="submit"
