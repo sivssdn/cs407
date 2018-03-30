@@ -121,15 +121,7 @@ router.post('/vehicles/remove', function (req, res, next) {
             if (err) throw err;
 
             //print user vehicles list
-
-            var userMail = req.session.userMail;
-            users.getUserVehicles(userMail).then(function (vehicleList) {
-
-                //console.log(vehicleList[0].passengers);
-                res.render('my_vehicles', {vehicles: vehicleList});
-            }, function (error) {
-                console.log("Promise was rejected in /vehicles", error, error.stack);
-            });
+            res.redirect('/user/vehicles');
             //--user vehicles list over
 
         });

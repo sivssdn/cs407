@@ -200,7 +200,7 @@
         <input name="arrival_place" id="arrival_place" hidden>
         <input name="vehicle_name" id="vehicle_name" hidden>
         <input name="vehicle_seats" id="vehicle_seats" hidden>
-        <input name="seat_price" id="seat_price" hidden>
+        <!--<input name="seat_price" id="seat_price" hidden>-->
     </form>
 </main>
 </body>
@@ -218,7 +218,8 @@
             clear: 'Clear',
             close: 'Ok',
             closeOnSelect: true, // Close upon selecting a date,
-            format: 'dd-mm-yyyy'
+            format: 'dd-mm-yyyy',
+            min: new Date()
         });
         $('.timepicker').pickatime({
             default: 'now', // Set default time: 'now', '1:30AM', '16:30'
@@ -246,9 +247,9 @@
                 Materialize.toast("Vehicle Identification empty", 3000, 'rounded');
             }else if(document.getElementById("v_seats").value.length < 1 || document.getElementById("v_seats").value < 1){
                 Materialize.toast("Vehicle Seats empty", 3000, 'rounded');
-            }else if(document.getElementById("price").value.length < 1 || document.getElementById("price").value < 0){
+            }/*else if(document.getElementById("price").value.length < 1 || document.getElementById("price").value < 0){
                 Materialize.toast("Price empty", 3000, 'rounded');
-            }else {
+            }*/else {
 
                 document.getElementById("departure_date").value = document.getElementById("date").value;
                 document.getElementById("departure_time").value = document.getElementById("time").value;
@@ -256,7 +257,7 @@
                 document.getElementById("arrival_place").value = document.getElementById("arrival").value;
                 document.getElementById("vehicle_name").value = document.getElementById("v_name").value;
                 document.getElementById("vehicle_seats").value = document.getElementById("v_seats").value;
-                document.getElementById("seat_price").value = document.getElementById("price").value;
+                /*document.getElementById("seat_price").value = document.getElementById("price").value;*/
                 document.getElementById("add_vehicle_form").submit();
             }
         });

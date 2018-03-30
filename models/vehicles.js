@@ -15,11 +15,14 @@ var addVehicle = function (vehicleProfile) {
     });
 };
 
-var removeVehicle = function(vehicleID){
-//---------------check delete function--------------------------
+var removeVehicle = function (vehicleID) {
+
     return MongoClient.connect(url).then(function (db, error) {
-        if(error) throw error;
-        db.collection("vehicles").delete({_id: new ObjectID(vehicleID)}).then(function (numAffected) {
+        if (error) throw error;
+        var query = {$and: [{_id: new ObjectID(vehicleID)}, {$where: "this.passengers.length < 1"}]};
+        db.collection("vehicles").remove(query).then(function (numAffected) {
+console.log("--------------");
+console.log(numAffected);
             return numAffected;
         });
     });
@@ -177,7 +180,7 @@ var cancelSeat = function (vehicleID, passengerID) {
                                 };
 
 
-                                db.collection("vehicles").update(waitlistUpdateQuery, waitlistSetQuery, function (error1, numAffected1){
+                                db.collection("vehicles").update(waitlistUpdateQuery, waitlistSetQuery, function (error1, numAffected1) {
                                     if (error1) console.log(error1); //connection to db won't close in case error is thrown
 
                                 });
@@ -207,7 +210,7 @@ module.exports = {
         return addVehicle(vehicleProfile);
     },
     removeVehicle: function (vehicleID) {
-      return removeVehicle(vehicleID);
+        return removeVehicle(vehicleID);
     },
     getVehicles: function (journeyDetails) {
         return getVehicles(journeyDetails);
