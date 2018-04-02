@@ -2,6 +2,7 @@ var mongo = require('mongodb');
 var MongoClient = mongo.MongoClient;
 var ObjectID = mongo.ObjectID;
 var url = "mongodb://localhost:27017/transit";
+var mailer = require('../models/mail');
 
 var addVehicle = function (vehicleProfile) {
 
@@ -58,10 +59,10 @@ var bookSeat = function (vehicleId, userMail) {
     return MongoClient.connect(url).then(function (db, error) {
         if (error) throw error;
         //console.log(new ObjectID(vehicleId));
-        db.collection("vehicles").findOne({_id: new ObjectID(vehicleId)}, {
-            total_seats: 1,
-            passengers: 1 //return only total_seats and passengers
-        }).then(function (vehicleDetails) {
+        var vehicleDetailsForMail;
+        db.collection("vehicles").findOne({_id: new ObjectID(vehicleId)}).then(function (vehicleDetails) {
+
+            vehicleDetailsForMail = vehicleDetails;
             //we have vehicle data now as per vehicle id
             //for getting seats left :
             return parseInt(vehicleDetails.total_seats) - parseInt(vehicleDetails.passengers.length);
@@ -69,28 +70,33 @@ var bookSeat = function (vehicleId, userMail) {
         }).then(function (seatsLeft) {
 
             var upadteQuery = {};
+            var passengerID = new ObjectID;
+            var dateBooked = new Date();
+            var bookingStatus = "";
             if (seatsLeft > 0) {
+                bookingStatus = "Confirmed";
                 upadteQuery = {
                     $push: {
                         passengers:
                             {
-                                _id: new ObjectID(),
+                                _id: passengerID,
                                 email: userMail,
-                                status: "Confirmed",
-                                date_booked: new Date()
+                                status: bookingStatus,
+                                date_booked: dateBooked
                             }
 
                     }
                 }
             } else {
+                bookingStatus = "Waitlist";
                 upadteQuery = {
                     $push: {
                         passengers:
                             {
-                                _id: new ObjectID(),
+                                _id: passengerID,
                                 email: userMail,
-                                status: "Waitlist",
-                                date_booked: new Date()
+                                status: bookingStatus,
+                                date_booked: dateBooked
                             }
 
                     }
@@ -105,6 +111,18 @@ var bookSeat = function (vehicleId, userMail) {
             var insertStatus = db.collection("vehicles").update({_id: new ObjectID(vehicleId)}, upadteQuery, {upsert: true}, function (error, numAffected) {
                 db.close();
                 if (error) throw error;
+
+                try {
+                    //everything's fine, send email
+                    //date format in db ==  2018-04-02T00:00:00.000Z
+                    var emailBody = "Hello,\n Your seat status for vehicle " + vehicleDetailsForMail.vehicle_identification + " departing on " +
+                        vehicleDetailsForMail.departure_date.toDateString() + " at " + String(new Date(vehicleDetailsForMail.departure_time).toISOString().split("T")[1].split(":").slice(0, 2)).replace(",", ":")+ " is " + bookingStatus + "\n" +
+                        "Booking ID : " + passengerID + "\n\nThanks.";
+
+                    mailer.sendGmailMessage(userMail, 'Transit - Seat Booking Status', emailBody);
+                }catch (errorMail){
+                    console.log(errorMail);
+                }
                 return numAffected;
             });
             return insertStatus;

@@ -70,7 +70,7 @@ if(typeof vehicles == 'undefined')
             <ul class="right hide-on-med-and-down">
                 <li><a href="/user/vehicles/add">Add Vehicle</a></li>
                 <li><a href="/user/bookings">My Bookings</a></li>
-                <li><a href="/user">My Profile</a></li>
+                <li><a href="/user/edit">My Profile</a></li>
                 <li><a href="/user/vehicles">My Vehicles</a></li>
                 <li class="active"><a href="/vehicles">See Available Seats</a></li>
                 <li><a href="/authentication/logout">Sign Out</a></li>
@@ -80,7 +80,7 @@ if(typeof vehicles == 'undefined')
     <ul class="side-nav black-text" id="mobile-side-menu">
         <li><a href="/user/vehicles/add">Add Vehicle</a></li>
         <li><a href="/user/bookings">My Bookings</a></li>
-        <li><a href="/user">My Profile</a></li>
+        <li><a href="/user/edit">My Profile</a></li>
         <li><a href="/user/vehicles">My Vehicles</a></li>
         <li class="active"><a href="/vehicles">See Available Seats</a></li>
         <li><a href="/authentication/logout">Sign Out</a></li>
@@ -140,11 +140,12 @@ if(typeof vehicles == 'undefined')
                             <%= departure_time %>
                         </div>
                     </td>
-                    <td>
+                    <!--<td>
                         <div class="card-panel blue card-padding">
-                            &#x20b9; <%= vehicles[loop1].price %>
+                            BOOK
                         </div>
-                    </td>
+
+                    </td>-->
                 </tr>
                 <% } %>
 
