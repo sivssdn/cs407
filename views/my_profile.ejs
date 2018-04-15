@@ -161,6 +161,31 @@ if (typeof userProfile != 'undefined' && typeof userProfile[0] != 'undefined') {
                                 <% }else{ %>
                                 <option value="ASP">ASP</option>
                                 <% } %>
+                                <% if(department && department.trim() === "YIF"){ %>
+                                <option value="YIF" selected>YIF</option>
+                                <% }else{ %>
+                                <option value="YIF">YIF</option>
+                                <% } %>
+                                <% if(department && department.trim() === "MLS"){ %>
+                                <option value="MLS" selected>MLS</option>
+                                <% }else{ %>
+                                <option value="MLS">MLS</option>
+                                <% } %>
+                                <% if(department && department.trim() === "MA-ECO"){ %>
+                                <option value="MA-ECO" selected>MA-ECO</option>
+                                <% }else{ %>
+                                <option value="MA-ECO">MA-ECO</option>
+                                <% } %>
+                                <% if(department && department.trim() === "PHD"){ %>
+                                <option value="PHD" selected>PHD</option>
+                                <% }else{ %>
+                                <option value="PHD">PHD</option>
+                                <% } %>
+                                <% if(department && department.trim() === "YSP"){ %>
+                                <option value="YSP" selected>YSP</option>
+                                <% }else{ %>
+                                <option value="YSP">YSP</option>
+                                <% } %>
                                 <% if(department && department.trim() === "Faculty"){ %>
                                 <option value="Faculty" selected>Faculty</option>
                                 <% }else{ %>
@@ -177,6 +202,11 @@ if (typeof userProfile != 'undefined' && typeof userProfile[0] != 'undefined') {
                                 <option value="UG 2">UG 2</option>
                                 <option value="UG 3">UG 3</option>
                                 <option value="ASP">ASP</option>
+                                <option value="YIF">YIF</option>
+                                <option value="MLS">MLS</option>
+                                <option value="MA-ECO">MA-ECO</option>
+                                <option value="PHD">PHD</option>
+                                <option value="YSP">YSP</option>
                                 <option value="Faculty">Faculty</option>
                                 <option value="Staff">Staff</option>
                                 <% } %>

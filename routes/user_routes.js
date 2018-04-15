@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var users = require("../models/users");
-var bodyParser = require('body-parser');
 var vehicles = require("../models/vehicles");
-var mail = require("../models/mail");
 
 //Application routes
 router.get('/', function (req, res, next) {
@@ -18,7 +16,7 @@ router.get('/', function (req, res, next) {
 
             if (profile.length > 0) {
                 //if user profile exists
-                res.render('available_seats_form');
+                res.render('available_seats_form',{message: 'Saved Successfully'});
             } else {
                 //profile does not exist
                 res.render('my_profile', {userProfile: profile});

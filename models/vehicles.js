@@ -1,3 +1,4 @@
+'use strict';
 var mongo = require('mongodb');
 var MongoClient = mongo.MongoClient;
 var ObjectID = mongo.ObjectID;
@@ -22,8 +23,7 @@ var removeVehicle = function (vehicleID) {
         if (error) throw error;
         var query = {$and: [{_id: new ObjectID(vehicleID)}, {$where: "this.passengers.length < 1"}]};
         db.collection("vehicles").remove(query).then(function (numAffected) {
-console.log("--------------");
-console.log(numAffected);
+
             return numAffected;
         });
     });
@@ -117,7 +117,7 @@ var bookSeat = function (vehicleId, userMail) {
                     //date format in db ==  2018-04-02T00:00:00.000Z
                     var emailBody = "Hello,\n Your seat status for vehicle " + vehicleDetailsForMail.vehicle_identification + " departing on " +
                         vehicleDetailsForMail.departure_date.toDateString() + " at " + String(new Date(vehicleDetailsForMail.departure_time).toISOString().split("T")[1].split(":").slice(0, 2)).replace(",", ":")+ " is " + bookingStatus + "\n" +
-                        "Booking ID : " + passengerID + "\n\nThanks.";
+                        "Booking ID : " + String(passengerID).slice(18) + "\n\nThanks.";
 
                     mailer.sendGmailMessage(userMail, 'Transit - Seat Booking Status', emailBody);
                 }catch (errorMail){

@@ -134,6 +134,7 @@
                                 <option value="Campus" selected>Campus</option>
                                 <option value="Parker">Parker</option>
                                 <option value="Jahangirpuri">Jahangirpuri</option>
+                                <option value="Sonepat">Sonepat</option>
                                 <option value="Airport T3">Airport T3</option>
                                 <option value="Airport IGI">Airport (IGI)</option>
                             </select>
@@ -152,6 +153,7 @@
                                 <option value="Campus">Campus</option>
                                 <option value="Parker">Parker</option>
                                 <option value="Jahangirpuri" selected>Jahangirpuri</option>
+                                <option value="Sonepat">Sonepat</option>
                                 <option value="Airport T3">Airport T3</option>
                                 <option value="Airport IGI">Airport (IGI)</option>
                             </select>
@@ -290,6 +292,10 @@
 
         });
 
+
+        <%if(typeof message != 'undefined'){ %>
+        Materialize.toast('<%=message%>',4000);
+        <%}%>
     });
 </script>
 </html>

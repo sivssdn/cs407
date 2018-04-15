@@ -111,6 +111,7 @@
                         //loop1 iterates over vehicles, loop2 over passengers and prints each row corresponding to each booking
 
                         var departure_time = "", presentDate = new Date();
+                        var newDateForTimeComparison = new Date('2000-11-11T'+presentDate.getHours()+':'+presentDate.getMinutes()+'Z');
                     for (var loop1 = 0; loop1 < vehicles.length; loop1++){
                         //preparing time format for the vehicle
                         if (String(vehicles[loop1].departure_time).length > 0) {
@@ -132,9 +133,10 @@
                             <a class="btn waves-effect waves-light red button-availability cancel-button"
                                data-vehicle-id="<%= vehicles[loop1]._id %>"
                                data-passenger-id="<%= vehicles[loop1].passengers[loop2]._id %>">Cancel</a>
-                            <% }else if(presentDate.getTime() === vehicles[loop1].departure_date){
-                                //if the date is same, don't print cancel button for time before now
-                            if(presentDate.getUTCHours() > vehicles[loop1].departure_time.getUTCHours() && presentDate.getUTCMinutes() > vehicles[loop1].departure_time.getUTCMinutes()){
+                            <% }else if(presentDate.toDateString() === vehicles[loop1].departure_date.toDateString()){
+
+                                //if the date is same, don't print cancel button for time before 2 hours
+                            if(Math.floor(Math.abs(newDateForTimeComparison-vehicles[loop1].departure_time)/36e5) >= 2){ //3600000 for converting into hours
                             %>
                             <a class="btn waves-effect waves-light red button-availability cancel-button"
                                data-vehicle-id="<%= vehicles[loop1]._id %>"

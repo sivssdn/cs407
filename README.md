@@ -13,8 +13,10 @@ Major application endpoints:
 
  - /user
 - /user/add
+- /user/edit
 - /user/vehicles
 - /user/vehicles/add
+- /user/vehicles/remove
 - /user/bookings
 - /user/bookings/add
 - /user/bookings/cancel
