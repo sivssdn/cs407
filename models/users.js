@@ -54,7 +54,7 @@ var getUserBookings = function (userEmail) {
 
     return MongoClient.connect(url).then(function (db, error) {
         if (error) throw error;
-        var sortResults = {departure_time: -1};
+        var sortResults = {departure_date: -1};
         var vehiclesList = db.collection("vehicles").find({passengers: {$elemMatch: {email: userEmail}}}).sort(sortResults).limit(200).toArray();
         db.close();
         return vehiclesList;

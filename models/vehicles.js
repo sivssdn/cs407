@@ -176,11 +176,18 @@ var cancelSeat = function (vehicleID, passengerID) {
                     if (passengerBookingStatus === "Confirmed") {
 
                         //vehicleID
-                        db.collection("vehicles").findOne({_id: new ObjectID(vehicleID)}, {
+                        db.collection("vehicles").findOne({_id: new ObjectID(vehicleID)},
+                            {
                             passengers: {
                                 $elemMatch: {status: "Waitlist"}
-                            }
-                        }).then(function (vehicleWaitlistPassenger) {
+                            },
+                                departure_date:1,
+                                departure_time:1,
+                                source:1,
+                                destination:1,
+                                vehicle_identification:1
+                        })
+                            .then(function (vehicleWaitlistPassenger) {
                             //if someone with waitlist status is found then promote to confirmed status
                             if (Object.keys(vehicleWaitlistPassenger).length > 0) {
 
@@ -201,6 +208,11 @@ var cancelSeat = function (vehicleID, passengerID) {
                                 db.collection("vehicles").update(waitlistUpdateQuery, waitlistSetQuery, function (error1, numAffected1) {
                                     if (error1) console.log(error1); //connection to db won't close in case error is thrown
 
+                                    var emailBody = "Hello,\n Your seat status for vehicle " + vehicleWaitlistPassenger.vehicle_identification + " departing on " +
+                                        vehicleWaitlistPassenger.departure_date.toDateString() + " at " + String(new Date(vehicleWaitlistPassenger.departure_time).toISOString().split("T")[1].split(":").slice(0, 2)).replace(",", ":")+ " is Confirmed\n"
+                                        +"Booking ID : " + String(vehicleWaitlistPassenger.passengers[0]._id).slice(18) + "\n\nThanks.";
+
+                                    mailer.sendGmailMessage(vehicleWaitlistPassenger.passengers[0].email, 'Transit - Seat Booking Status', emailBody);
                                 });
                             }
                         });
