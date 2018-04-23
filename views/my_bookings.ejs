@@ -133,10 +133,10 @@
                             <a class="btn waves-effect waves-light red button-availability cancel-button"
                                data-vehicle-id="<%= vehicles[loop1]._id %>"
                                data-passenger-id="<%= vehicles[loop1].passengers[loop2]._id %>">Cancel</a>
-                            <% }else if(presentDate.toDateString() === vehicles[loop1].departure_date.toDateString()){
+                            <% }else if((vehicles[loop1].passengers[loop2].status !== "Cancelled") && (presentDate.toDateString() === vehicles[loop1].departure_date.toDateString())){
 
                                 //if the date is same, don't print cancel button for time before 2 hours
-                            if(Math.floor(Math.abs(newDateForTimeComparison-vehicles[loop1].departure_time)/36e5) >= 2){ //3600000 for converting into hours
+                            if(Math.floor(Math.abs(newDateForTimeComparison-vehicles[loop1].departure_time)/36e5) >= 1){ //3600000 for converting into hours
                             %>
                             <a class="btn waves-effect waves-light red button-availability cancel-button"
                                data-vehicle-id="<%= vehicles[loop1]._id %>"

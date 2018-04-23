@@ -65,7 +65,13 @@ var bookSeat = function (vehicleId, userMail) {
             vehicleDetailsForMail = vehicleDetails;
             //we have vehicle data now as per vehicle id
             //for getting seats left :
-            return parseInt(vehicleDetails.total_seats) - parseInt(vehicleDetails.passengers.length);
+            var confirmedSeats = 0, totalPassengers = parseInt(vehicleDetails.passengers.length);
+            for(var passengerIndex = 0; passengerIndex < totalPassengers; passengerIndex++){
+                if(vehicleDetails.passengers[passengerIndex].status === "Confirmed"){
+                    confirmedSeats++;
+                }
+            }
+            return parseInt(vehicleDetails.total_seats) - confirmedSeats;
 
         }).then(function (seatsLeft) {
 

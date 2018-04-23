@@ -103,10 +103,11 @@ if(typeof vehicles == 'undefined')
                 </thead>
                 <tbody>
                 <%
-                var departure_time = "", seats_left = "", confirmed_seats=0;
+                var departure_time = "", seats_left = "", confirmed_seats=0, waitlist_seats=0;
                 total_vehicles = vehicles.length;
                 for(var loop1 = 0; loop1 < total_vehicles; loop1++){
                     confirmed_seats = 0;
+                    waitlist_seats = 0;
                 %>
                 <tr>
                     <td>
@@ -115,9 +116,11 @@ if(typeof vehicles == 'undefined')
                             for(var passengerIndexLoop=0; passengerIndexLoop< vehicles[loop1].passengers.length; passengerIndexLoop++){
                                 if(vehicles[loop1].passengers[passengerIndexLoop].status === "Confirmed"){
                                     confirmed_seats++;
+                                }else if(vehicles[loop1].passengers[passengerIndexLoop].status === "Waitlist"){
+                                    waitlist_seats++;
                                 }
                             }
-                            seats_left = vehicles[loop1].total_seats - confirmed_seats;
+                            seats_left = vehicles[loop1].total_seats - (confirmed_seats+waitlist_seats);
                         if(seats_left < 0){
                             //seats_left = 0;
                         %>
