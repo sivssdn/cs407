@@ -11,7 +11,7 @@ if (typeof journey != 'undefined') {
         date = journey.date.toDateString();
     }
 }
-if(typeof vehicles == 'undefined')
+if (typeof vehicles == 'undefined')
     vehicles = "";
 %>
 <!DOCTYPE HTML>
@@ -38,6 +38,7 @@ if(typeof vehicles == 'undefined')
                 color: #ffffff;
             }
         }
+
         @media only screen and (min-width: 992px) {
             html {
                 background-image: url("/images/bg_ashoka.jpg");
@@ -47,6 +48,7 @@ if(typeof vehicles == 'undefined')
                 color: #ffffff;
             }
         }
+
         th {
             text-align: center;
         }
@@ -63,48 +65,56 @@ if(typeof vehicles == 'undefined')
 </head>
 <body>
 
-    <nav class="navbar-fixed blue darken-4 z-depth-2 ">
-        <div class="nav-wrapper">
-            <a class="brand-logo"> &nbsp;Transit</a>
-            <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="/user/vehicles/add">Add Vehicle</a></li>
-                <li><a href="/user/bookings">My Bookings</a></li>
-                <li><a href="/user/edit">My Profile</a></li>
-                <li><a href="/user/vehicles">My Vehicles</a></li>
-                <li class="active"><a href="/vehicles">See Available Seats</a></li>
-                <li><a href="/authentication/logout">Sign Out</a></li>
-            </ul>
-        </div>
-    </nav>
-    <ul class="side-nav black-text" id="mobile-side-menu">
-        <li><a href="/user/vehicles/add">Add Vehicle</a></li>
-        <li><a href="/user/bookings">My Bookings</a></li>
-        <li><a href="/user/edit">My Profile</a></li>
-        <li><a href="/user/vehicles">My Vehicles</a></li>
-        <li class="active"><a href="/vehicles">See Available Seats</a></li>
-        <li><a href="/authentication/logout">Sign Out</a></li>
-    </ul>
+<nav class="navbar-fixed blue darken-4 z-depth-2 ">
+    <div class="nav-wrapper">
+        <a class="brand-logo"> &nbsp;Transit</a>
+        <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="/user/vehicles/add">Add Vehicle</a></li>
+            <li><a href="/user/bookings">My Bookings</a></li>
+            <li><a href="/user/edit">My Profile</a></li>
+            <li><a href="/user/vehicles">My Vehicles</a></li>
+            <li class="active"><a href="/vehicles">See Available Bookings</a></li>
+            <li><a href="/authentication/logout">Sign Out</a></li>
+        </ul>
+    </div>
+</nav>
+<ul class="side-nav black-text" id="mobile-side-menu">
+    <li><a href="/user/vehicles/add">Add Vehicle</a></li>
+    <li><a href="/user/bookings">My Bookings</a></li>
+    <li><a href="/user/edit">My Profile</a></li>
+    <li><a href="/user/vehicles">My Vehicles</a></li>
+    <li class="active"><a href="/vehicles">See Available Bookings</a></li>
+    <li><a href="/authentication/logout">Sign Out</a></li>
+</ul>
 
 <main>
     <div class="section"></div>
 
     <div class="row animated bounceInDown">
         <div class="section hide-on-small-and-down"></div>
-        <h4 class="center">See Available Seats</h4>
+
+        <%
+        var departure_time = "", seats_left = "", confirmed_seats = 0, waitlist_seats = 0;
+        total_vehicles = vehicles.length;
+        if(total_vehicles === 0){
+        %>
+        <h4 class="center">No Available Bookings</h4>
+        <%
+        }else{
+        %>
+        <h4 class="center">See Available Bookings</h4>
         <div class="section hide-on-small-and-down"></div>
         <div class="col l7 m5 push-l2 s12">
             <table class="center">
                 <thead>
                 <tr>
-                    <th>Availability</th>
-                    <th colspan="3">From <%= source %> to <%= destination %> on <%= date %></th>
+                    <td>Availability</td>
+                    <td colspan="3">From <%= source %> to <%= destination %> on <%= date %></td>
                 </tr>
                 </thead>
                 <tbody>
                 <%
-                var departure_time = "", seats_left = "", confirmed_seats=0, waitlist_seats=0;
-                total_vehicles = vehicles.length;
                 for(var loop1 = 0; loop1 < total_vehicles; loop1++){
                     confirmed_seats = 0;
                     waitlist_seats = 0;
@@ -113,22 +123,24 @@ if(typeof vehicles == 'undefined')
                     <td>
                         <%
                             //to calculate total occupied seats in a vehicle
-                            for(var passengerIndexLoop=0; passengerIndexLoop< vehicles[loop1].passengers.length; passengerIndexLoop++){
-                                if(vehicles[loop1].passengers[passengerIndexLoop].status === "Confirmed"){
+                            for (var passengerIndexLoop = 0; passengerIndexLoop < vehicles[loop1].passengers.length; passengerIndexLoop++) {
+                                if (vehicles[loop1].passengers[passengerIndexLoop].status === "Confirmed") {
                                     confirmed_seats++;
-                                }else if(vehicles[loop1].passengers[passengerIndexLoop].status === "Waitlist"){
+                                } else if (vehicles[loop1].passengers[passengerIndexLoop].status === "Waitlist") {
                                     waitlist_seats++;
                                 }
                             }
-                            seats_left = vehicles[loop1].total_seats - (confirmed_seats+waitlist_seats);
+                            seats_left = vehicles[loop1].total_seats - (confirmed_seats + waitlist_seats);
                         if(seats_left < 0){
                             //seats_left = 0;
                         %>
-                        <a class="btn-floating btn-large waves-effect waves-light red button-availability"
+                        <a class="btn-floating btn-large waves-effect waves-light red button-availability tooltipped"
+                           data-tooltip="Click To Book"
                            data-vehicle-id="<%= vehicles[loop1]._id %>"
                            data-availability="<%= seats_left %>"><%= seats_left %></a>
                         <% }else{ %>
-                        <a class="btn-floating btn-large waves-effect waves-light green button-availability"
+                        <a class="btn-floating btn-large waves-effect waves-light green button-availability tooltipped"
+                           data-tooltip="Click To Book"
                            data-vehicle-id="<%= vehicles[loop1]._id %>"
                            data-availability="<%= seats_left %>"><%= seats_left %></a>
                         <% } %>
@@ -152,11 +164,11 @@ if(typeof vehicles == 'undefined')
                     </td>
                     <!--<td>
                         <div class="card-panel blue card-padding">
-                            BOOK
+                            <%   %>
                         </div>
-
                     </td>-->
                 </tr>
+                <% } %>
                 <% } %>
 
                 </tbody>
@@ -190,7 +202,7 @@ if(typeof vehicles == 'undefined')
         //form
         availability_seats_page.availability_buttons[loop1].addEventListener("click", function () {
             document.getElementById("vehicle_id").value = this.getAttribute("data-vehicle-id");
-            if(document.getElementById("vehicle_id").value.length > 0) {
+            if (document.getElementById("vehicle_id").value.length > 0) {
                 //submit only when vehicle id is present
                 document.getElementById("book_seat_form").submit();
             }

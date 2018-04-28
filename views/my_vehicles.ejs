@@ -63,7 +63,7 @@
                 <li><a href="/user/bookings">My Bookings</a></li>
                 <li><a href="/user/edit">My Profile</a></li>
                 <li class="active"><a href="/user/vehicles">My Vehicles</a></li>
-                <li><a href="/vehicles">See Available Seats</a></li>
+                <li><a href="/vehicles">See Available Bookings</a></li>
                 <li><a href="/authentication/logout">Sign Out</a></li>
             </ul>
         </div>
@@ -73,7 +73,7 @@
         <li><a href="/user/bookings">My Bookings</a></li>
         <li><a href="/user/edit">My Profile</a></li>
         <li class="active"><a href="/user/vehicles">My Vehicles</a></li>
-        <li><a href="/vehicles">See Available Seats</a></li>
+        <li><a href="/vehicles">See Available Bookings</a></li>
         <li><a href="/authentication/logout">Sign Out</a></li>
     </ul>
 <main>
@@ -95,15 +95,15 @@
             <table class="center bordered responsive-table">
                 <thead>
                 <tr>
-                    <th> </th>
-                    <th>Vehicle</th>
-                    <th>Source</th>
-                    <th>Destination</th>
-                    <th>Departure date</th>
-                    <th>Departure time</th>
-                    <th>Seats</th>
+                    <td> </td>
+                    <td>Vehicle</td>
+                    <td>Source</td>
+                    <td>Destination</td>
+                    <td>Departure date</td>
+                    <td>Departure time</td>
+                    <td>Seats</td>
                     <!--<th>Price</th>-->
-                    <th>Passengers</th>
+                    <td>Bookings</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -127,23 +127,23 @@
                 %>
                 <tr>
                     <!--<th><%/* loop1+1 */%></th>-->
-                    <th><% if(vehicles[loop1].passengers.length === 0){%>
+                    <td><% if(vehicles[loop1].passengers.length === 0){%>
                         <a class="btn waves-effect waves-light red cancel-button"
                            data-vehicle-id="<%= vehicles[loop1]._id %>">Cancel</a>
                         <%}%>
-                    </th>
-                    <th><%= vehicles[loop1].vehicle_identification %></th>
-                    <th><%= vehicles[loop1].source %></th>
-                    <th><%= vehicles[loop1].destination %></th>
-                    <th><%= vehicles[loop1].departure_date.toDateString() %></th>
-                    <th><%= departure_time %></th>
-                    <th><%= vehicles[loop1].total_seats %></th>
+                    </td>
+                    <td><%= vehicles[loop1].vehicle_identification %></td>
+                    <td><%= vehicles[loop1].source %></td>
+                    <td><%= vehicles[loop1].destination %></td>
+                    <td><%= vehicles[loop1].departure_date.toDateString() %></td>
+                    <td><%= departure_time %></td>
+                    <td><%= vehicles[loop1].total_seats %></td>
                     <!--<th><%/*vehicles[loop1].price */%></th>-->
-                    <th>
+                    <td>
                         <a href="#modal1"
                            class="blue darken-4 waves-effect waves-light btn modal-trigger view-passengers-button"
                            data-id="<%= vehicles[loop1]._id %>">View (<%= vehicles[loop1].passengers.length %>)</a>
-                    </th>
+                    </td>
                 </tr>
                 <% } %>
                 <% } %>
@@ -232,7 +232,7 @@
                 if (passengerOfThisVehicleIds.length > 0) {
                     //preparing title
                     $("#passengers_list_table").html("<tr>" +
-                        " <th>Sno</th>" +
+                        " <th>Serial</th>" +
                         " <th>Email</th>" +
                         " <th>Status</th>" +
                         "</tr>"

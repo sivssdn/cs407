@@ -58,7 +58,7 @@
                 <li class="active"><a href="/user/bookings">My Bookings</a></li>
                 <li><a href="/user/edit">My Profile</a></li>
                 <li><a href="/user/vehicles">My Vehicles</a></li>
-                <li><a href="/vehicles">See Available Seats</a></li>
+                <li><a href="/vehicles">See Available Bookings</a></li>
                 <li><a href="/authentication/logout">Sign Out</a></li>
             </ul>
         </div>
@@ -68,7 +68,7 @@
         <li class="active"><a href="/user/bookings">My Bookings</a></li>
         <li><a href="/user/edit">My Profile</a></li>
         <li><a href="/user/vehicles">My Vehicles</a></li>
-        <li><a href="/vehicles">See Available Seats</a></li>
+        <li><a href="/vehicles">See Available Bookings</a></li>
         <li><a href="/authentication/logout">Sign Out</a></li>
     </ul>
 <main>
@@ -96,13 +96,13 @@
                 <table class="center bordered responsive-table">
                     <thead>
                     <tr>
-                        <th></th>
-                        <th>Departure Place</th>
-                        <th>Destination</th>
-                        <th>Vehicle</th>
-                        <th>Departure Date</th>
-                        <th>Departure Time</th>
-                        <th>Status</th>
+                        <td></td>
+                        <td>Departure Place</td>
+                        <td>Destination</td>
+                        <td>Vehicle</td>
+                        <td>Departure Date</td>
+                        <td>Departure Time</td>
+                        <td>Status</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -145,12 +145,12 @@
                             }
                             } %>
                         </td>
-                        <th><%= vehicles[loop1].source %></th>
-                        <th><%= vehicles[loop1].destination %></th>
-                        <th><%= vehicles[loop1].vehicle_identification %></th>
-                        <th><%= vehicles[loop1].departure_date.toDateString() %></th>
-                        <th><%= departure_time %></th>
-                        <th><%= vehicles[loop1].passengers[loop2].status %></th>
+                        <td><%= vehicles[loop1].source %></td>
+                        <td><%= vehicles[loop1].destination %></td>
+                        <td><%= vehicles[loop1].vehicle_identification %></td>
+                        <td><%= vehicles[loop1].departure_date.toDateString() %></td>
+                        <td><%= departure_time %></td>
+                        <td><%= vehicles[loop1].passengers[loop2].status %></td>
                     </tr>
                     <% } %>
                     <% } %>
