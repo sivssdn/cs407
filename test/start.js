@@ -1,9 +1,10 @@
 /**
- * To start the program, on command line type node start.js
+ * To start the program:
+    - start mongodb server
+    - on command line type node start.js
  * */
 
-const fs = require('fs');
-const child_process = require('child_process');
+const childProcess = require('child_process');
 
 
 for (var i = 0; i < 3; i++) {
@@ -12,9 +13,9 @@ for (var i = 0; i < 3; i++) {
      in addition to having all the methods in a normal ChildProcess instance.
     * */
 
-    var worker_process = child_process.fork("support.js", [i]);
+    var workerProcess = childProcess.fork("checkSeatsBooking.js", [i]);
 
-    worker_process.on('close', function (code) {
+    workerProcess.on('close', function (code) {
         console.log('child process exited with code ' + code);
     });
 }

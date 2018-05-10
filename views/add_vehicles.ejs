@@ -8,7 +8,7 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta name="theme-color" content="black">
 
-    <title>Transit</title>
+    <title>Ashoka Cabs</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
 
@@ -54,31 +54,30 @@
     </style>
 </head>
 <body>
-
+    <ul id="profile_dropdown" class="dropdown-content">
+        <li><a href="/authentication/logout">Sign Out</a></li>
+    </ul>
     <nav class="navbar-fixed blue darken-4 z-depth-2 ">
         <div class="nav-wrapper">
-            <a class="brand-logo"> &nbsp;Transit</a>
+            <a class="brand-logo"> &nbsp;Ashoka Cabs <sub>(beta)</sub></a>
             <a data-activates="mobile-side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li class="active"><a href="/user/vehicles/add">Add Vehicle</a></li>
-                <li><a href="/user/bookings">My Bookings</a></li>
-                <li><a href="/user/edit">My Profile</a></li>
                 <li><a href="/user/vehicles">My Vehicles</a></li>
-                <li><a href="/vehicles">See Available Bookings</a></li>
-                <li><a href="/authentication/logout">Sign Out</a></li>
-
+                <li><a href="/user/bookings">My Bookings</a></li>
+                <li><a href="/vehicles">Make Bookings</a></li>
+                <li><a href="/user/edit" class="dropdown-button" data-activates="profile_dropdown">My Profile</a></li>
             </ul>
         </div>
     </nav>
     <ul class="side-nav black-text" id="mobile-side-menu">
         <li class="active"><a href="/user/vehicles/add">Add Vehicle</a></li>
-        <li><a href="/user/bookings">My Bookings</a></li>
-        <li><a href="/user/edit">My Profile</a></li>
         <li><a href="/user/vehicles">My Vehicles</a></li>
-        <li><a href="/vehicles">See Available Bookings</a></li>
+        <li><a href="/user/bookings">My Bookings</a></li>
+        <li><a href="/vehicles">Make Bookings</a></li>
+        <li><a href="/user/edit">My Profile</a></li>
         <li><a href="/authentication/logout">Sign Out</a></li>
     </ul>
-
 <main>
     <div class="section"></div>
 
@@ -205,6 +204,16 @@
         <!--<input name="seat_price" id="seat_price" hidden>-->
     </form>
 </main>
+
+    <footer class="page-footer blue darken-4">
+        <div class="footer-copyright">
+            <div class="container">
+                ©  Copyright Ashoka University
+                <a class="btn red darken-1 right" href="https://goo.gl/forms/hGHBiA21kKbMsz9w1">FEEDBACK</a>
+            </div>
+        </div>
+    </footer>
+
 </body>
 <script type="text/javascript" src="/javascripts/jquery.js"></script>
 <!--<script type="text/javascript" src="js/materialize.min.js"></script>-->
@@ -235,6 +244,12 @@
             /*aftershow: function(){} //Function for after opening timepicker*/
         });
         $('select').material_select();
+        $(".dropdown-button").dropdown({
+            hover: true,
+            belowOrigin: true,
+            constrainWidth: false,
+            gutter: 0
+        });
 
         document.getElementById("submit_vehicle").addEventListener("click", function () {
             if(document.getElementById("date").value.length < 1){
