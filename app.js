@@ -28,7 +28,7 @@ app.use(helmet()); //for security headers
 //intialize express sessions
 app.use(session({
     key: 'user_sid',
-    secret: 'sivssdn',
+    secret: 'any-secret',
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -64,7 +64,7 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-// error handler
+// error handler middleware
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
