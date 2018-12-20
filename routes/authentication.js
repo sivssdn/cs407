@@ -12,7 +12,7 @@ var express          = require( 'express' )
 // API Access link for creating client ID and secret:
 // https://code.google.com/apis/console/
 var GOOGLE_CLIENT_ID      = "447413120920-vc7i2j5a8lefvotflqlbfb7sm43cqtmf.apps.googleusercontent.com"
-    , GOOGLE_CLIENT_SECRET  = "2UI84c3t1gX2siTRFaj9CH6a";
+    , GOOGLE_CLIENT_SECRET  = "";
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
